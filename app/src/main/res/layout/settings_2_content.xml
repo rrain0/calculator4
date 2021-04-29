@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.rrain.calculator4.SettingsActivity"
+    tools:showIn="@layout/settings_1_app_bar"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_horizontal_margin"
+            android:divider="@drawable/separator_mh_transparent"
+            android:showDividers="middle">
+
+            <LinearLayout
+                android:id="@+id/theme_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="5dp"
+                android:background="@drawable/card_bgc"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/theme"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    style="@style/card_text"/>
+
+                <TextView
+                    android:id="@+id/theme_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    style="@style/card_text"
+                    android:gravity="center"
+
+                    tools:text="@string/theme_light_yellow"/>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/enable_autocalculation_check_box"
+                style="@style/card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="10dp"
+                android:paddingStart="58dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/card_bgc"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:text="@string/enable_autocalculation"
+
+                tools:checked="true" />
+
+            <CheckBox
+                android:id="@+id/enable_second_field_check_box"
+                style="@style/card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/card_bgc"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:paddingStart="58dp"
+                android:paddingEnd="20dp"
+                android:text="@string/enable_second_edit_text"
+
+                tools:checked="true" />
+
+            <LinearLayout
+                android:id="@+id/rounding_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="5dp"
+                android:background="@drawable/card_bgc"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/rounding"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    style="@style/card_text"/>
+
+                <CheckBox
+                    android:id="@+id/enable_rounding_check_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="58dp"
+                    android:paddingVertical="5dp"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                    android:gravity="center"
+                    style="@style/card_text"
+                    android:text="@string/enable_rounding"
+
+                    tools:checked="true" />
+
+                <LinearLayout
+                    android:id="@+id/rounding_precision_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null">
+
+                    <TextView
+                        android:duplicateParentState="true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:paddingLeft="55dp"
+                        android:background="@null"
+                        android:text="@string/precision"
+                        style="@style/card_text"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/rounding_precision_tv"
+                        android:duplicateParentState="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:paddingVertical="8dp"
+                        android:paddingHorizontal="16dp"
+                        android:background="@drawable/circlce_for_number"
+                        style="@style/card_text"
+                        android:textColor="?attr/onCircleIndicatorColor"
+                        android:gravity="center"
+                        android:textStyle="bold"
+
+                        tools:text="13"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/number_format_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/card_bgc"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    style="@style/card_text"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/number_format"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_format"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null">
+
+                    <RadioButton
+                        android:id="@+id/format_normal"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/format_normal" />
+
+                    <RadioButton
+                        android:id="@+id/format_scientific"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/format_scientific" />
+
+                    <RadioButton
+                        android:id="@+id/format_engineering"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/format_engineering" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/digit_separator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/card_bgc"
+                android:orientation="vertical"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    style="@style/card_text"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/digit_separator"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_digit_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null">
+
+                    <RadioButton
+                        android:id="@+id/digit_separator_none"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/digit_separator_none" />
+
+                    <RadioButton
+                        android:id="@+id/digit_separator_space"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/digit_separator_space" />
+
+                    <RadioButton
+                        android:id="@+id/digit_separator_low_line"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/digit_separator_low_line" />
+
+                    <RadioButton
+                        android:id="@+id/digit_separator_apostrophe"
+                        style="@style/card_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="58dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/digit_separator_apostrophe" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/history_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="5dp"
+                android:background="@drawable/card_bgc"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    style="@style/card_text"
+                    android:text="@string/history"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <CheckBox
+                    android:id="@+id/enable_autodeleting_of_history_check_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="58dp"
+                    android:paddingVertical="5dp"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                    android:gravity="center"
+                    style="@style/card_text"
+                    android:text="@string/autodeleting_of_history"
+
+                    tools:checked="true" />
+
+                <LinearLayout
+                    android:id="@+id/history_limit_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null">
+
+                    <TextView
+                        android:duplicateParentState="true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingVertical="5dp"
+                        android:paddingStart="55dp"
+                        android:background="@null"
+                        android:text="@string/delete_if_more_than"
+                        style="@style/card_text"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/history_limit_tv"
+                        android:duplicateParentState="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:paddingVertical="8dp"
+                        android:paddingHorizontal="16dp"
+                        android:background="@drawable/circlce_for_number"
+                        style="@style/card_text"
+                        android:textColor="?attr/onCircleIndicatorColor"
+                        android:gravity="center"
+                        android:textStyle="bold"
+
+                        tools:text="200"/>
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/enable_add_to_history_by_equals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="58dp"
+                    android:paddingVertical="5dp"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                    android:gravity="center"
+                    style="@style/card_text"
+                    android:text="@string/add_to_history_only_by_Equals_button"
+
+                    tools:checked="true" />
+
+                <TextView
+                    android:id="@+id/clear_history_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/clear_history"
+                    style="@style/card_text"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_size_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="5dp"
+                android:background="@drawable/card_bgc"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/button_size"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    style="@style/card_text"/>
+
+                <TextView
+                    android:id="@+id/change_button_size_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/change_button_size"
+                    style="@style/card_text"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/change_button_size_info_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    android:text="@string/info"
+                    style="@style/card_text"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/debug_functions_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:paddingVertical="5dp"
+                android:background="@drawable/card_bgc">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@null"
+                    style="@style/card_text"
+                    android:text="@string/debug_functions"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+                <CheckBox
+                    android:id="@+id/enable_conversion_toast_check_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="58dp"
+                    android:paddingVertical="5dp"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                    android:gravity="center"
+                    style="@style/card_text"
+                    android:text="@string/enable_conversion_toast"
+
+                    tools:checked="true" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_banner"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+    <!--<Button
+                        android:id="@+id/clear_history_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="5dp"
+                        android:background="#0000"
+                        style="@style/settings_text"
+                        android:textAllCaps="false"
+                        android:text="@string/clear_history"/>-->
+
+    <!--
+                    android:divider="@drawable/separator_settings"
+                    android:showDividers="middle|end"-->
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            style="@style/settings_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="16dp"
+            android:text="@string/theme" />
+
+        <Spinner
+            android:id="@+id/spinner_themes"
+            android:layout_width="138dp"
+            android:layout_height="match_parent"
+            android:entries="@array/themes" />
+
+    </LinearLayout>-->
+
+
+    <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/settingsSeparator" />-->
+
+
+    <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/settingsSeparator" />-->
+
+
+    <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/settingsSeparator" />-->
+
+
+    <!--<TextView
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/number_format" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />-->
+
+    <!--<CheckBox
+        android:id="@+id/enable_rounding_check_box"
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="start|center_vertical"
+        android:onClick="enableRoundingCheckBox"
+        android:paddingLeft="16dp"
+        android:text="@string/enable_rounding" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="16dp">
+
+        <TextView
+            style="@style/settings_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="16dp"
+            android:text="@string/accuracy" />
+
+        <EditText
+            android:id="@+id/rounding_accuracy_edit_text"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeRoundingAccuracy"
+            android:text="OK" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />-->
+
+
+    <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/settingsSeparator" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="16dp"
+                android:text="@string/digit_separator"
+                style="@style/settings_text" />
+
+            <Spinner
+                android:id="@+id/spinner_digit_separator"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:entries="@array/digit_separators" />
+
+        </LinearLayout>-->
+
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />-->
+
+    <!--<TextView
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/history" />
+    &lt;!&ndash;android:text="@string/history"&ndash;&gt;
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <CheckBox
+        android:id="@+id/enable_autodeleting_of_history_check_box"
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="start|center_vertical"
+        android:onClick="enableAutodeleteHistoryCheckBox"
+        android:paddingLeft="16dp"
+        android:text="@string/autodeleting_of_history" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="16dp">
+
+        <TextView
+            style="@style/settings_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="16dp"
+            android:text="@string/delete_if_more_than" />
+
+        <EditText
+            android:id="@+id/number_of_entries_edit_text"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setNumberOfEntriesToDelete"
+            android:text="OK" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <CheckBox
+        android:id="@+id/enable_add_to_history_by_equals"
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="start|center_vertical"
+        android:onClick="enableSavingByEquals"
+        android:paddingLeft="16dp"
+        android:text="@string/add_to_history_only_by_Equals_button" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />-->
+
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <TextView
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/debug_functions" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />
+
+
+    <CheckBox
+        android:id="@+id/enable_conversion_toast_check_box"
+        style="@style/settings_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="start|center_vertical"
+        android:onClick="enableConversionToastCheckBox"
+        android:paddingLeft="16dp"
+        android:text="@string/enable_conversion_toast" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/settingsSeparator" />-->
+
+
+
+

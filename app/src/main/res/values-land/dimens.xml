@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize1">28sp</dimen>
+    <dimen name="textSize2">20sp</dimen>
+    <dimen name="textSize3">12sp</dimen>
+
+    <dimen name="bottomSheetHeight">200dp</dimen>
+
+    <!--<dimen name="textSize4">16dp</dimen>
+    <dimen name="textSize5">16dp</dimen>
+    <dimen name="textSize6">16dp</dimen>-->
+
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="number_buttons_side">90dp</dimen>
+    <dimen name="number_buttons0_side">70dp</dimen>
+</resources>

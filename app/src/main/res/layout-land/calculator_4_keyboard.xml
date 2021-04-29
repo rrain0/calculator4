@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="landSize" type="com.rrain.calculator4.calculator.BtnSizeLand"/>
+    </data>
+
+    <androidx.gridlayout.widget.GridLayout
+
+        android:id="@+id/btn_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+
+        app:columnCount="16"
+
+        tools:context="com.rrain.calculator4.calculator.Calculator">
+
+        <!--tools:showIn="@layout/calculator_3_content"-->
+        <!--tools:context="com.rrain.calculator4.calculator.Calculator"-->
+
+
+        <Button
+            android:id="@+id/btn_cursor_to_start"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="@{landSize.lh, default = @dimen/number_buttons0_side}"
+            android:text="start"
+            android:textSize="@{landSize.textTop1}"/>
+        <!--
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="@{landSize.lh, default = @dimen/number_buttons_side}"
+            -->
+
+
+        <Button
+            android:id="@+id/btn_cursor_to_left"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+
+            android:text="‹"
+            android:textSize="@{landSize.textTop2}"
+
+            tools:textSize="28sp"
+            tools:textColor="#0000FF" />
+
+
+
+        <Button
+            android:id="@+id/btn_cursor_to_right"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+
+            android:text="›"
+            android:textSize="@{landSize.textTop2}"
+
+            tools:textSize="28sp"
+            tools:textColor="#0000FF" />
+
+
+        <Button
+            android:id="@+id/btn_cursor_to_end"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="end"
+            android:textSize="@{landSize.textTop1}" />
+
+        <FrameLayout
+            android:id="@+id/btn_left_parenthesis"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="("
+                android:textSize="@{landSize.textTop2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary.Paratheses"
+                android:text="["
+                android:textSize="@{landSize.textTop3}" />
+
+        </FrameLayout>
+
+        <!-- <Button
+             android:id="@+id/btn_left_parenthesis"
+             style="@style/DigitalButton.Func"
+             android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+             android:layout_height="match_parent"
+
+             tools:textColor="#FF0000"
+             tools:text="("/>-->
+
+        <FrameLayout
+            android:id="@+id/btn_right_parenthesis"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text=")"
+                android:textSize="@{landSize.textTop2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary.Paratheses"
+                android:text="]"
+                android:textSize="@{landSize.textTop3}" />
+
+        </FrameLayout>
+
+        <!--<Button
+            android:id="@+id/btn_right_parenthesis"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="match_parent"
+
+            tools:textColor="#FF0000"
+            tools:text=")"/>-->
+
+        <FrameLayout
+            android:id="@+id/btn_parentheses"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="( )"
+                android:textSize="@{landSize.textTop2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary.Paratheses"
+                android:text="[ ]"
+                android:textSize="@{landSize.textTop3}" />
+
+        </FrameLayout>
+
+        <!--<Button
+            android:id="@+id/btn_parentheses"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="match_parent"
+
+            tools:textColor="#FF0000"
+            tools:text="( )"/>-->
+
+        <FrameLayout
+            android:id="@+id/btn_clear"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="C"
+                android:textSize="@{landSize.textTop2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="CLEAR ALL"
+                android:textSize="@{landSize.textTop3}" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_coverWithBrackets"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="(...)"
+                android:textSize="@{landSize.textTop2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary.Paratheses"
+                android:text="(...)|"
+                android:textSize="@{landSize.textTop3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_undo"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="@string/undo"
+            android:textSize="@{landSize.textTop4}" />
+
+        <Button
+            android:id="@+id/btn_redo"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="@string/redo"
+            android:textSize="@{landSize.textTop4}" />
+
+        <ImageButton
+            android:id="@+id/btn_copy"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:src="@drawable/ic_copy"
+            android:scaleType="centerInside"
+            android:paddingTop="@{landSize.lh * 0.2f}"
+            android:paddingBottom="@{landSize.lh * 0.2f}" />
+        <!--android:text="copy"
+        android:textSize="@{landSize.textTop1}"-->
+
+        <ImageButton
+            android:id="@+id/btn_paste"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:src="@drawable/ic_paste"
+            android:scaleType="centerInside"
+            android:paddingTop="@{landSize.lh * 0.2f}"
+            android:paddingBottom="@{landSize.lh * 0.2f}"/>
+        <!--android:text="paste"
+        android:textSize="@{landSize.textTop1}"-->
+
+        <Button
+            android:id="@+id/btn_changeSign"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="+/−"
+            android:textSize="@{landSize.textTop2}" />
+
+        <ImageButton
+            android:id="@+id/btn_kbd"
+            style="@style/DigitalButton"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:src="@drawable/ic_keyboard"
+            android:scaleType="centerInside"
+            android:paddingTop="@{landSize.lh * 0.2f}"
+            android:paddingBottom="@{landSize.lh * 0.2f}" />
+        <!--android:text="kbd"
+        android:textSize="@{landSize.textTop1}"-->
+
+
+
+        <Button
+            android:id="@+id/btn_C11"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="" />
+
+        <!--Row 2-->
+        <Button
+            android:id="@+id/btn_7"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="@{landSize.lh, default = @dimen/number_buttons0_side}"
+            android:text="7"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_8"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="8"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_9"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="9"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_E_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="E"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_power"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="^"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_factorial"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="!"
+            android:textSize="@{landSize.text1}" />
+
+        <!--<Button
+            android:id="@+id/btn_pi"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="π"
+            android:textAllCaps="false"
+            android:textSize="@{landSize.text1}" />-->
+
+        <Button
+            android:id="@+id/btn_percent"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="%"
+            android:textSize="@{landSize.text1}" />
+
+        <FrameLayout
+            android:id="@+id/btn_sin"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="sin"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="arcsin"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_cos"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="cos"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="arccos"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_angle_degree"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="°"
+            android:textSize="@{landSize.text1}" />
+
+
+        <Button
+            android:id="@+id/btn_cube"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:textSize="@{landSize.text1}" />
+        <!--android:text="³"-->
+
+        <FrameLayout
+            android:id="@+id/btn_sh"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="sh"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="arcsh"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_A_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="A"
+            android:textSize="@{landSize.text1}" />
+
+
+        <Button
+            android:id="@+id/btn_B_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="B"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_bin"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="bin"
+            android:textSize="@{landSize.text2}" />
+
+        <Button
+            android:id="@+id/btn_oct"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="oct"
+            android:textSize="@{landSize.text2}" />
+
+
+        <!--Row 3-->
+        <Button
+            android:id="@+id/btn_4"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="@{landSize.lh, default = @dimen/number_buttons0_side}"
+            android:text="4"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_5"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="5"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_6"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="6"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_point"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="."
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_plus"
+            style="@style/DigitalButton.Btn.Accent"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="+"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_minus"
+            style="@style/DigitalButton.Btn.Accent"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="−"
+            android:textSize="@{landSize.text1}" />
+
+        <!--<Button
+            android:id="@+id/btn_square"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="²"
+            android:textSize="@{landSize.text1}" />-->
+        <FrameLayout
+            android:id="@+id/btn_square"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="²"
+                android:textSize="@{landSize.text1}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="@string/ic_more"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_tg"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="tg"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="@string/ic_more"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/btn_ln"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="ln"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="@string/ic_more"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_cbrt"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:textSize="@{landSize.text1}"
+            app:layout_gravity="fill_vertical"
+
+            tools:textColor="#00FF00" />
+        <!--android:text="@string/cubeRoot"-->
+
+        <Button
+            android:id="@+id/btn_signum"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:textSize="@{landSize.text2}" />
+
+        <FrameLayout
+            android:id="@+id/btn_ch"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="ch"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="arcch"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_C_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="C"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_D_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="D"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_dec"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="dec"
+            android:textSize="@{landSize.text2}" />
+
+        <Button
+            android:id="@+id/btn_hex"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="hex"
+            android:textSize="@{landSize.text2}" />
+
+
+        <!--Row 4-->
+        <Button
+            android:id="@+id/btn_1"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="@{landSize.lh, default = @dimen/number_buttons0_side}"
+            android:text="1"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_2"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="2"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_3"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="3"
+            android:textSize="@{landSize.text1}" />
+
+        <FrameLayout
+            android:id="@+id/btn_zero"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain"
+                android:text="0"
+                android:textSize="@{landSize.text1}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="000"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_mult"
+            style="@style/DigitalButton.Btn.Accent"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="×"
+            android:textSize="@{landSize.text1}" />
+        <!--android:text="*"-->
+
+        <Button
+            android:id="@+id/btn_div"
+            style="@style/DigitalButton.Btn.Accent"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="/"
+            android:textSize="@{landSize.text1}" />
+
+        <!--<Button
+            android:id="@+id/btn_sqrt"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="√"
+            android:textSize="@{landSize.text1}" />-->
+        <FrameLayout
+            android:id="@+id/btn_sqrt"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="√"
+                android:textSize="@{landSize.text1}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="@string/ic_more"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_pi"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="π"
+                android:textSize="@{landSize.text1}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="∞"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_e"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="e"
+            android:textAllCaps="false"
+            android:textSize="@{landSize.text1}" />
+
+        <FrameLayout
+            android:id="@+id/btn_abs"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="abs"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="sgn"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"/>
+        <!--android:text="sgn"-->
+
+        <FrameLayout
+            android:id="@+id/btn_th"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            style="@style/FrameBtn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextMain.Func"
+                android:text="th"
+                android:textSize="@{landSize.text2}"
+
+                tools:textColor="#FF0000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/FrameBtn.TextSecondary"
+                android:text="@string/ic_more"
+                android:textSize="@{landSize.text3}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_Exp"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="E"
+            android:textSize="@{landSize.text1}" />
+
+        <Button
+            android:id="@+id/btn_F_hex"
+            style="@style/DigitalButton.Btn"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="F"
+            android:textSize="@{landSize.text1}" />
+
+
+        <Button
+
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical" />
+
+        <Button
+            android:id="@+id/btn_inv"
+            style="@style/DigitalButton.Func"
+            android:layout_width="@{landSize.lw, default = @dimen/number_buttons_side}"
+            android:layout_height="0dp"
+            app:layout_gravity="fill_vertical"
+            android:text="inv"
+            android:textSize="@{landSize.text2}" />
+
+
+    </androidx.gridlayout.widget.GridLayout>
+</layout>
+
+
+

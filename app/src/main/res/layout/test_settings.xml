@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:background="#F2F2F2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp"
+        android:paddingVertical="5dp"
+        android:background="@drawable/test_card_bgc"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:text="@string/format"
+            android:gravity="center"
+            android:textStyle="bold"
+            style="@style/card_text"
+            android:textColor="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/format_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="58dp"
+                android:paddingVertical="5dp"
+                android:text="@string/format_normal"
+                style="@style/card_text"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/format_scientific"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="58dp"
+                android:paddingVertical="5dp"
+                android:text="@string/format_scientific"
+                style="@style/card_text"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/format_engineering"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="58dp"
+                android:paddingVertical="5dp"
+                android:text="@string/format_engineering"
+                style="@style/card_text"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:textColor="@color/black" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/enable_autocalculation_check_box_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="58dp"
+        android:paddingVertical="5dp"
+        android:button="@null"
+        android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="center"
+        style="@style/card_text"
+        android:textColor="@color/black"
+        android:text="@string/enable_autocalculation"
+        android:onClick="enableAutocalculationCheckBox"
+        android:background="@drawable/test_card_bgc"
+
+        tools:checked="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp"
+        android:paddingVertical="5dp"
+        android:background="@drawable/test_card_bgc"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:text="Округление"
+            android:gravity="center"
+            android:textStyle="bold"
+            style="@style/card_text"
+            android:textColor="@color/black"/>
+
+        <CheckBox
+            android:id="@+id/enable_autocalculation_check_box_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="20dp"
+            android:paddingStart="58dp"
+            android:paddingVertical="5dp"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center"
+            style="@style/card_text"
+            android:textColor="@color/black"
+            android:text="@string/enable_autocalculation"
+            android:onClick="enableAutocalculationCheckBox"
+
+            tools:checked="true" />
+
+        <LinearLayout
+            android:id="@+id/rounding_precision_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:duplicateParentState="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="5dp"
+                android:paddingStart="55dp"
+                android:text="Точность"
+                style="@style/card_text"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/rounding_precision_tv"
+                android:duplicateParentState="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="15dp"
+                tools:text="13"
+                style="@style/card_text"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/circlce_for_number"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

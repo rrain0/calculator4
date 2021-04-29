@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    tools:showIn="@layout/help_1_app_bar"
+    tools:context=".HelpActivity">
+
+    <!--<HorizontalScrollView
+        android:id="@+id/scrolllll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF0000"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:longClickable="true"
+        android:duplicateParentState="false">
+
+        <TextView
+            android:duplicateParentState="true"
+            android:id="@+id/texttttttt"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="dsfjgbksfdgbvsdfgkbvsfgbvk"
+            android:background="#00FF00"/>
+
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/scrolllll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF0099"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:longClickable="true"
+        android:duplicateParentState="false">
+
+        <TextView
+            android:duplicateParentState="true"
+            android:id="@+id/texttttttt2"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="dsfjgbksfdgbvsdfgkbvsfgbvk"
+            android:background="#00FF99"/>
+
+    </ScrollView>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/description_and_hints"/>
+    </ScrollView>
+
+</LinearLayout>

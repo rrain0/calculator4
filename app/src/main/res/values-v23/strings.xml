@@ -1,0 +1,7 @@
+<resources>
+    <string name="cubeRoot" translatable="false">∛</string>
+    <string name="quadRoot" translatable="false">∜</string>
+
+    <!--<string name="ic_more">⭘⭘⬤</string>-->
+    <string name="ic_more">⭘⭘●</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Атрибут android:opacity=”opaque” крайне важен для предотвращения черных миганий при переходе к вашей теме -->
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <!-- Цвет фона, предпочтительно как в главной теме -->
+    <item android:drawable="?colorPrimary"/>
+
+    <item
+        android:height="120dp"
+        android:width="120dp"
+        android:gravity="center">
+
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+
+            <!--<padding
+                android:bottom="500dp"
+                android:left="500dp"
+                android:right="500dp"
+                android:top="500dp"/>-->
+
+            <!--<size
+                android:width="250dp"
+                android:height="250dp"/>-->
+        </shape>
+    </item>
+
+    <!-- Лого приложения - 144dp версия иконки приложения -->
+    <item
+        android:height="70dp"
+        android:width="70dp"
+        android:gravity="center">
+
+        <bitmap
+            android:src="@mipmap/ic_launcher"/>
+
+    </item>
+
+</layer-list>

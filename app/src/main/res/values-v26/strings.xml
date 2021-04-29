@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="undo">⤺</string>
+    <string name="redo">⤻</string>
+</resources>

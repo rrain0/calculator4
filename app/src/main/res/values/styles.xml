@@ -1,0 +1,937 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Launch Screen-->
+    <!-- Кастомная AppTheme.Launcher. Устанавливает в качестве фона вашу drawable -->
+    <style name="AppThemeDark.Launcher">
+        <!-- для Android 5+ вы можете поменять цвет colorPrimaryDark, чтобы соответствовать цвету windowBackground -->
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+
+
+
+
+
+    <!--СЮДА ВЫНЕСЕНЫ НАИБОЛЕЕ ОБЩИЕ АТРИБУТЫ СВЕТЛЫХ ТЕМ-->
+    <style name="ThemeLightAbstract" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--задаёт высоту экшн бара-->
+        <item name="actionBarSize">48dp</item>
+
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <item name="onColorPrimary">@color/white</item>
+
+        <item name="android:textColor">@color/black</item>
+
+        <item name="colorAccent">?colorPrimary</item>
+        <item name="onColorAccent">@color/white</item>
+        <item name="onColorAccentVariant">?onColorAccent</item>
+
+        <item name="themeColor">?colorPrimary</item>
+        <item name="onThemeColor">?onColorPrimary</item>
+
+        <item name="android:colorControlNormal">@color/black</item>
+
+        <item name="android:colorControlActivated">?themeColor</item>
+        <item name="circleIndicatorColor">?themeColor</item>
+        <item name="onCircleIndicatorColor">?onThemeColor</item>
+
+        <item name="expressionBgc">@color/white</item>
+        <item name="onExpressionBgc">@color/black</item>
+        <item name="onExpressionBgcVariant">@color/gray2</item>
+
+        <item name="resultBgc">?themeColor</item>
+        <item name="onResultBgc">?onKbdThemeColor</item>
+        <item name="resultColor">?onThemeColor</item>
+        <item name="resultColorVariant">@color/light_gray_2</item>
+        <item name="resultColorLand">?onExpressionBgc</item>
+
+        <item name="kbdColor">?expressionBgc</item>
+        <item name="onKbdColor">@color/gray</item>
+        <item name="onKbdColorVariant">@color/gray</item>
+
+        <item name="kbdThemeColor">?themeColor</item>
+        <item name="onKbdThemeColor">?onThemeColor</item>
+
+        <item name="historyPeekBgc">?themeColor</item>
+        <item name="onHistoryPeekBgc">?onThemeColor</item>
+
+        <item name="cardListColor">@color/light_gray_5</item>
+        <item name="cardColor">@color/white</item>
+        <item name="onCard">@color/black</item>
+
+        <item name="android:navigationBarColor">?android:colorPrimaryDark</item>
+
+        <item name="twoFieldsSeparator">@color/light_gray_2</item>
+
+        <item name="toolbarBtnColor">@color/black</item>
+        <item name="toolbarBtnColorLight">?android:colorPrimaryDark</item>
+
+        <item name="onToolbarBtnColor">@color/white</item>
+        <item name="onToolbarBtnColorLight">@color/white</item>
+        <item name="onToolbarBtnColorWarn">@color/white</item>
+
+    </style>
+
+
+
+    <style name="AppThemeLight" parent="ThemeLightAbstract">
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <item name="colorPrimaryDark">@color/white</item>
+
+        <item name="colorPrimary">@color/white</item>
+        <item name="onColorPrimary">@color/black</item>
+
+        <item name="colorAccent">@color/light_orange_dark</item>
+        <item name="onColorAccent">@color/white</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="onKbdThemeColor">?onKbdColor</item>
+
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <item name="toolbarBtnColorWarn">@color/red</item>
+        <item name="toolbarBtnColorLight">?colorAccent</item>
+
+        <item name="bracket0color0">#FF6600</item>
+        <item name="bracket0color1">#888888</item>
+        <item name="bracket0color2">#00AA00</item>
+        <item name="bracket0color3">#964b00</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#0079db</item>
+
+    </style>
+
+
+    <!--Основная светлая тема-->
+    <!--ПОЛНЫЙ НАБОР АТРИБУТОВ-->
+    <style name="AppThemeLightYellow" parent="ThemeLightAbstract">
+
+        <!--цвет значков строки состояния (статусбара)-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <!--цвет для системных элементов-->
+        <!--цвет Строки состояния-->
+        <item name="colorPrimaryDark">@color/light_yellow_dark</item>
+
+
+        <!--основной цвет для интерфейса программы - панель, кнопки и т.д.-->
+        <!--цвет Тулбара (который под строкой состояния)-->
+        <item name="colorPrimary">@color/light_yellow</item>
+        <item name="onColorPrimary">@color/black</item>
+
+
+        <item name="android:textColor">@color/black</item>
+
+
+        <!--Цвет по умолчанию для компонентов, которые находятся в фокусе или активны-->
+        <item name="colorAccent">@color/light_purple</item>
+        <item name="onColorAccent">@color/white</item>
+        <item name="onColorAccentVariant">?onColorAccent</item>
+
+
+        <item name="themeColor">?colorPrimary</item>
+        <item name="onThemeColor">?onColorPrimary</item>
+
+
+        <!--Цвет для неактивных компонентов-->
+        <!--цвет неактивной галочки CheckBox, кнопки назад ActionBar, неактивного RadioButton,
+        кнопки Menu, цвет ScrollBar-->
+        <item name="colorControlNormal">@color/black</item>
+
+
+        <!--Цвет для активных компонентов-->
+        <!--цвет курсора EditText, галочки CheckBox-->
+        <!--по дефолту colorAccent-->
+        <item name="android:colorControlActivated">?android:colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccentVariant</item>
+
+
+        <item name="expressionBgc">@color/white</item>
+        <item name="onExpressionBgc">@color/black</item>
+        <!--Info TextView textColor-->
+        <item name="onExpressionBgcVariant">@color/gray2</item>
+
+
+        <item name="resultBgc">?themeColor</item>
+        <!--цвет кнопок Удалить и Равно-->
+        <item name="onResultBgc">?onKbdThemeColor</item>
+        <item name="resultColor">?onThemeColor</item>
+        <item name="resultColorVariant">@color/gray2</item>
+        <item name="resultColorLand">?onExpressionBgc</item>
+
+
+        <item name="kbdColor">?expressionBgc</item>
+        <item name="onKbdColor">@color/gray</item>
+        <item name="onKbdColorVariant">@color/gray</item>
+
+        <item name="kbdThemeColor">?themeColor</item>
+        <item name="onKbdThemeColor">?onKbdColor</item>
+
+
+        <item name="historyPeekBgc">?themeColor</item>
+        <item name="onHistoryPeekBgc">?onThemeColor</item>
+
+
+        <item name="cardListColor">@color/light_gray_5</item>
+        <item name="cardColor">@color/white</item>
+        <item name="onCard">@color/black</item>
+
+
+        <!--цвет навбара (системная панель внизу с кнопками назад, домой....)-->
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+        <!--цвет кнопок навбара-->
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+
+        <item name="twoFieldsSeparator">@color/light_gray_2</item>
+
+
+        <item name="toolbarBtnColor">@color/black</item>
+        <item name="toolbarBtnColorLight">@color/darkGreen</item>
+        <item name="toolbarBtnColorWarn">@color/red</item>
+
+        <item name="onToolbarBtnColor">@color/white</item>
+        <item name="onToolbarBtnColorLight">@color/white</item>
+        <item name="onToolbarBtnColorWarn">@color/white</item>
+
+
+        <item name="bracket0color0">#FF6600</item>
+        <item name="bracket0color1">#FF888888</item>
+        <item name="bracket0color2">#00AA00</item>
+        <item name="bracket0color3">#964b00</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#0079db</item>
+
+
+
+
+
+
+        <!---->
+        <!--Toolbar: цвет кнопки назад, кнопки Menu-->
+        <!-- <item name="android:tint">?android:textColor</item>-->
+
+        <!--<item name="actionMenuTextColor">@android:color/holo_purple</item>-->
+
+        <!---->
+        <!--background Menu-->
+        <!--<item name="android:colorBackground">@android:color/holo_purple</item>-->
+
+        <!---->
+        <!--неактивное состояние переключателя Switch-->
+        <!--<item name="android:colorSwitchThumbNormal">@color/lightGray3</item>-->
+
+        <!---->
+        <!--Цвет дорожки, вдоль которой двигается ползунок Switch-->
+        <!--<item name="trackTint">@android:color/holo_purple</item>-->
+
+        <!--Цвет для нажатых элементов интерфейса-->
+        <!--цвет нажатой Button, нажатого меню-->
+        <!--<item name="android:colorControlHighlight">@color/purpleLight</item>-->
+
+
+        <!--определено через основные цвета или в XML-->
+        <!--<item name="toolbarBgc"></item>
+        <item name="toolbarTitleColor"></item>
+        <item name="menuColor"></item>-->
+
+
+        <!--<item name="android:alertDialogTheme">@style/MyAlertDialogTheme</item>-->
+
+        <!--удалить-->
+        <!--<item name="colorPrimaryLight">@color/lightGray3</item>-->
+
+
+        <!--<item name="titleTextColorAttr">@color/black</item>-->
+        <!--<item name="actionOverflowButtonStyle">@style/OverFlow</item>-->
+        <!--<item name="textColorSecondary">@color/gray2</item>-->
+        <!--<item name="textColorOnAccentBgc">@color/white</item>-->
+
+
+
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorOnPrimary">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorOnSecondary">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorError">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorOnError">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorSurface">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorOnSurface">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!---->
+        <!--<item name="colorOnBackground">@color/lightGray3</item>-->
+
+        <!--Material-->
+        <!--новый colorPrimaryDark в Material-->
+        <!--не работает в AppCompatTheme-->
+        <!--<item name="colorPrimaryVariant">@android:color/holo_purple</item>-->
+
+        <!--Material-->
+        <!--новый colorAccent в Material-->
+        <!--не работает в AppCompatTheme-->
+        <!--<item name="colorSecondary">@android:color/holo_purple</item>-->
+
+        <!--Material-->
+        <!--оттенок вторичного цвета-->
+        <!--не работает в AppCompat-->
+        <!--<item name="colorSecondaryVariant">@color/lightGray3</item>-->
+
+    </style>
+
+
+    <style name="AppThemeLightLightPink" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_gray_3</item>
+
+        <item name="colorPrimary">@color/light_pink_light</item>
+
+        <item name="colorAccent">@color/light_light_blue</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="android:navigationBarColor">?colorPrimary</item>
+
+        <item name="toolbarBtnColor">@color/light_gray_3</item>
+        <item name="toolbarBtnColorLight">@color/light_light_blue</item>
+        <item name="toolbarBtnColorWarn">@color/red</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightPink" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_pink_dark</item>
+
+        <item name="colorPrimary">@color/light_pink</item>
+
+        <item name="colorAccent">@color/light_light_blue</item>
+
+        <item name="toolbarBtnColor">@color/light_gray_3</item>
+
+        <item name="toolbarBtnColorWarn">@color/light_light_blue</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightGrey" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_gray</item>
+        <item name="onColorPrimary">@color/black</item>
+
+        <item name="colorPrimary">@color/light_gray_3</item>
+
+        <item name="colorAccent">@color/light_light_blue</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="onKbdThemeColor">@color/white</item>
+
+        <item name="toolbarBtnColor">?colorPrimary</item>
+        <item name="toolbarBtnColorLight">@color/light_light_blue</item>
+        <item name="toolbarBtnColorWarn">@color/red</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightViolet" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_violet_dark</item>
+
+        <item name="colorPrimary">@color/light_violet</item>
+
+        <item name="colorAccent">@color/light_purple</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="toolbarBtnColor">@color/yellow_2</item>
+        <item name="toolbarBtnColorLight">@color/yellow_2</item>
+        <item name="toolbarBtnColorWarn">?colorAccent</item>
+
+        <item name="onToolbarBtnColor">@color/dark_gray</item>
+        <item name="onToolbarBtnColorLight">@color/dark_gray</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightBlue" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_blue_dark</item>
+
+        <item name="colorPrimary">@color/light_blue</item>
+
+        <item name="colorAccent">@color/light_purple</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="toolbarBtnColorWarn">?colorAccent</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightPurple" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_purple_dark</item>
+
+        <item name="colorPrimary">@color/light_purple_2</item>
+
+        <item name="colorAccent">@color/light_purple</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="toolbarBtnColorWarn">?colorAccent</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightLightBlue" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_light_blue_dark</item>
+
+        <item name="colorPrimary">@color/light_light_blue</item>
+
+        <item name="toolbarBtnColorWarn">@color/blue</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightGreen" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_green_dark</item>
+
+        <item name="colorPrimary">@color/light_green</item>
+
+        <item name="colorAccent">@color/light_purple</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="toolbarBtnColorWarn">@color/light_yellow</item>
+        <item name="onToolbarBtnColorWarn">@color/black</item>
+
+        <item name="bracket0color0">#00AA00</item>
+        <item name="bracket0color1">#0f93ff</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeLightOrange" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_orange_dark</item>
+
+        <item name="colorPrimary">@color/light_orange</item>
+
+        <item name="colorAccent">@color/black</item>
+        <item name="onColorAccent">@color/white</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccent</item>
+
+        <item name="toolbarBtnColorWarn">@color/red</item>
+
+        <item name="bracket0color0">#FF6600</item>
+        <item name="bracket0color1">#888888</item>
+        <item name="bracket0color2">#00AA00</item>
+        <item name="bracket0color3">#964b00</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#0079db</item>
+
+    </style>
+
+
+    <style name="AppThemeLightRed" parent="ThemeLightAbstract">
+
+        <item name="colorPrimaryDark">@color/light_red_dark</item>
+
+        <item name="colorPrimary">@color/light_red</item>
+
+        <item name="toolbarBtnColorWarn">@color/light_orange</item>
+        <item name="onToolbarBtnColorWarn">@color/black</item>
+
+        <item name="bracket0color0">#00AA00</item>
+        <item name="bracket0color1">#0f93ff</item>
+        <item name="bracket0color2">#888888</item>
+        <item name="bracket0color3">#FF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+
+
+
+
+    <!--СЮДА ВЫНЕСЕНЫ НАИБОЛЕЕ ОБЩИЕ АТРИБУТЫ ТЁМНЫХ ТЕМ-->
+    <style name="ThemeDarkAbstract" parent="Theme.AppCompat.NoActionBar">
+        <!--задаёт высоту экшн бара-->
+        <item name="actionBarSize">48dp</item>
+
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <item name="android:colorPrimaryDark">@color/black</item>
+
+        <item name="colorPrimary">@color/dark_gray_3</item>
+        <item name="onColorPrimary">@color/light_gray_3</item>
+
+        <item name="android:textColor">@color/light_gray_3</item>
+
+        <item name="onColorAccent">?android:textColor</item>
+        <item name="onColorAccentVariant">@color/white</item>
+
+        <item name="themeColor">?colorAccent</item>
+        <item name="onThemeColor">?onColorAccent</item>
+
+        <item name="android:colorControlNormal">@color/light_gray_3</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccentVariant</item>
+
+        <item name="expressionBgc">?colorPrimary</item>
+        <item name="onExpressionBgc">?android:textColor</item>
+        <item name="onExpressionBgcVariant">@color/gray2</item>
+
+        <item name="resultBgc">?android:colorPrimaryDark</item>
+        <item name="onResultBgc">?android:textColor</item>
+        <item name="resultColor">?android:textColor</item>
+        <item name="resultColorVariant">@color/dark_gray</item>
+        <item name="resultColorLand">?resultColor</item>
+
+        <item name="kbdColor">?colorPrimary</item>
+        <item name="onKbdColor">?android:textColor</item>
+        <item name="onKbdColorVariant">?android:textColor</item>
+
+        <item name="kbdThemeColor">?attr/themeColor</item>
+        <item name="onKbdThemeColor">?attr/onThemeColor</item>
+
+        <item name="historyPeekBgc">?android:colorPrimaryDark</item>
+        <item name="onHistoryPeekBgc">?android:textColor</item>
+
+        <item name="cardListColor">@color/dark_gray_2</item>
+        <item name="cardColor">@color/black</item>
+        <item name="onCard">?android:textColor</item>
+
+        <item name="android:navigationBarColor">?android:colorPrimaryDark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+        <item name="twoFieldsSeparator">?colorAccent</item>
+
+
+        <item name="toolbarBtnColor">@color/black</item>
+        <item name="toolbarBtnColorLight">?themeColor</item>
+
+        <item name="onToolbarBtnColor">?android:textColor</item>
+        <item name="onToolbarBtnColorLight">?onThemeColor</item>
+        <item name="onToolbarBtnColorWarn">?android:textColor</item>
+
+
+        <item name="bracket0color1">#0f93ff</item>
+        <item name="bracket0color2">#00AA00</item>
+        <item name="bracket0color3">#888888</item>
+        <item name="bracket0color4">#FF00FF</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <!--Основная тёмная тема-->
+    <!--ПОЛНЫЙ НАБОР АТРИБУТОВ-->
+    <style name="AppThemeDark" parent="ThemeDarkAbstract">
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <item name="android:colorPrimaryDark">@color/black</item>
+
+        <item name="colorPrimary">@color/dark_gray_3</item>
+
+        <item name="android:textColor">@color/light_gray_3</item>
+
+        <item name="colorAccent">@color/dark_holo_green</item>
+        <item name="onColorAccent">@color/black</item>
+        <item name="onColorAccentVariant">?onColorAccent</item>
+
+        <item name="themeColor">@color/black</item>
+        <item name="onThemeColor">?android:textColor</item>
+
+        <item name="android:colorControlNormal">@color/light_gray_3</item>
+
+        <item name="android:colorControlActivated">?colorAccent</item>
+        <item name="circleIndicatorColor">?colorAccent</item>
+        <item name="onCircleIndicatorColor">?onColorAccentVariant</item>
+
+        <item name="expressionBgc">?colorPrimary</item>
+        <item name="onExpressionBgc">?android:textColor</item>
+        <item name="onExpressionBgcVariant">@color/gray2</item>
+
+        <item name="resultBgc">?android:colorPrimaryDark</item>
+        <item name="onResultBgc">?android:textColor</item>
+        <item name="resultColor">?colorAccent</item>
+        <item name="resultColorVariant">@color/dark_gray</item>
+
+        <item name="kbdColor">?colorPrimary</item>
+        <item name="onKbdColor">?android:textColor</item>
+        <item name="onKbdColorVariant">?android:textColor</item>
+
+        <item name="kbdThemeColor">?attr/themeColor</item>
+        <item name="onKbdThemeColor">?attr/onThemeColor</item>
+
+        <item name="historyPeekBgc">?android:colorPrimaryDark</item>
+        <item name="onHistoryPeekBgc">?android:textColor</item>
+
+        <item name="cardListColor">@color/dark_gray_2</item>
+        <item name="cardColor">@color/black</item>
+        <item name="onCard">?android:textColor</item>
+
+        <item name="android:navigationBarColor">?android:colorPrimaryDark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+        <item name="twoFieldsSeparator">?colorAccent</item>
+
+        <item name="toolbarBtnColor">@color/black</item>
+        <item name="toolbarBtnColorLight">@color/darkGreen</item>
+        <item name="toolbarBtnColorWarn">@color/darkRed2</item>
+
+        <item name="onToolbarBtnColor">?android:textColor</item>
+        <item name="onToolbarBtnColorLight">?android:textColor</item>
+        <item name="onToolbarBtnColorWarn">?android:textColor</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+
+    </style>
+
+
+    <style name="AppThemeDarkBlue" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/darkBlue</item>
+
+        <item name="toolbarBtnColorWarn">@color/dark_yellow</item>
+        <item name="onToolbarBtnColorWarn">@color/black</item>
+
+        <item name="bracket0color0">#0f93ff</item>
+        <item name="bracket0color1">#00AA00</item>
+        <item name="bracket0color2">#FF888888</item>
+        <item name="bracket0color3">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+        <item name="bracket0color5">#FF6600</item>
+    </style>
+
+
+    <style name="AppThemeDarkGreen" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/darkGreen</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkRed2</item>
+
+        <item name="bracket0color0">#00AA00</item>
+    </style>
+
+
+    <style name="AppThemeDarkPurple" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/dark_purple</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkRed2</item>
+
+        <item name="bracket0color0">#FFFF00FF</item>
+        <item name="bracket0color4">@color/red</item>
+
+    </style>
+
+
+    <style name="AppThemeDarkYellow" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/dark_yellow</item>
+        <item name="onColorAccent">@color/black</item>
+        <item name="onColorAccentVariant">@color/black</item>
+
+        <item name="resultColor">?themeColor</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkOrange</item>
+
+        <item name="bracket0color0">#ffbf00</item>
+        <item name="bracket0color4">@color/red</item>
+
+    </style>
+
+
+    <style name="AppThemeDarkPink" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/darkPink</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkRed2</item>
+
+        <item name="bracket0color0">#e75480</item>
+        <item name="bracket0color4">@color/red</item>
+
+    </style>
+
+
+    <style name="AppThemeDarkOrange" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/darkOrange</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkRed2</item>
+
+        <item name="bracket0color0">#FF6600</item>
+    </style>
+
+
+    <style name="AppThemeDarkRed" parent="ThemeDarkAbstract">
+        <item name="colorAccent">@color/darkRed2</item>
+
+        <item name="toolbarBtnColorWarn">@color/darkOrange</item>
+
+        <item name="bracket0color0">@color/red</item>
+    </style>
+
+
+
+
+
+
+
+
+
+    <!--Toolbar - используется как ActionBar-->
+    <style name="Toolbar">
+        <!--Toolbar: цвет заголовка-->
+        <item name="titleTextColor">?onColorPrimary</item>
+        <!--Toolbar: цвет кнопки назад, кнопки Menu-->
+        <item name="tint">?onColorPrimary</item>
+        <item name="colorControlNormal">?onColorPrimary</item>
+    </style>
+
+
+
+    <style name="DigitalButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/onKbdColor</item>
+        <item name="android:background">?attr/kbdColor</item>
+    </style>
+
+
+    <style name="DigitalButton.Btn">
+        <item name="android:textSize">@dimen/textSize1</item>
+    </style>
+
+    <style name="DigitalButton.Btn.Accent">
+        <item name="android:background">?attr/kbdThemeColor</item>
+        <item name="android:textColor">?attr/onKbdThemeColor</item>
+    </style>
+
+    <style name="DigitalButton.Func">
+        <item name="android:textSize">@dimen/textSize2</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DigitalButton.Btn3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+    <style name="FrameBtn">
+        <item name="android:background">?attr/kbdColor</item>
+        <!--<item name="android:paddingStart">-10dp</item>-->
+        <!--<item name="android:paddingLeft">-10dp</item>-->
+        <!--<item name="android:maxLines">1</item>-->
+    </style>
+
+    <style name="FrameBtn.TextMain">
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/onKbdColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FrameBtn.TextMain.Func">
+        <item name="android:textSize">@dimen/textSize2</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="FrameBtn.TextSecondary">
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize3</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:textColor">?attr/onKbdColorVariant</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="FrameBtn.TextSecondary.Paratheses">
+        <item name="android:gravity">end|bottom</item>
+        <item name="android:paddingRight">4dp</item>
+        <!--<item name="android:paddingStart">0dp</item>-->
+        <!--<item name="android:paddingLeft">0dp</item>-->
+    </style>
+
+
+    <style name="card_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/onCard</item>
+    </style>
+
+
+    <!--CALCULATOR TOOLBAR BTN-->
+    <style name="CalcToolbarBtn">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+
+        <item name="android:layout_gravity">end</item>
+
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/toolbar_btn</item>
+        <item name="android:textColor">?attr/onToolbarBtnColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="InfoTextView">
+        <item name="android:gravity">end</item>
+        <item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">@dimen/textSize3</item>
+        <item name="android:background">?attr/expressionBgc</item>
+        <item name="android:textColor">?attr/onExpressionBgcVariant</item>
+    </style>
+
+    <style name="ExpressionEditText">
+        <item name="android:gravity">top|start</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">@dimen/expr_text_sz</item>
+
+        <item name="android:textColor">?attr/onExpressionBgc</item>
+        <item name="android:background">@drawable/expression_edit_text_bgc_selector</item>
+        <!--<item name="android:background">?attr/bgc1</item>-->
+    </style>
+
+
+
+
+
+
+
+    <!--test theme floating activity-->
+    <style name="PopupTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="colorAccent">?colorPrimary</item>
+    </style>
+
+    <!--for test-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
+
+
+
+
+    <!--Reference to a theme that should be used to inflate popups shown by widgets in the Toolbar-->
+    <!--<style name="ActionBarPopupOverlay">
+        &lt;!&ndash;фиксит цвет текста пунктов Menu&ndash;&gt;
+        <item name="android:textColor">?onCard</item>
+    </style>-->
+
+
+</resources>

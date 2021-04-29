@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rrain.calculator4"
+    android:installLocation="auto">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeDark.Launcher">
+
+
+        <!-- android:roundIcon="@mipmap/ic_launcher_round" -->
+
+
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4212093490173723~1748538785" />
+
+
+
+        <activity
+            android:name=".calculator.Calculator"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/help"/>
+
+
+
+
+
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppThemeDark.Launcher"/>
+
+        <activity
+            android:name=".FloatingActivity"
+            android:enabled="true"
+            android:label="@string/app_name"
+            android:theme="@style/PopupTheme" />
+
+    </application>
+
+</manifest>

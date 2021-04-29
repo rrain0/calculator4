@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:divider="@drawable/separator_2dp_h_and_padding"
+    android:showDividers="end">
+    <!--android:divider="@drawable/separator_1dp_color_accent"
+        android:showDividers="end"-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@null">
+
+            <TextView
+                android:id="@+id/expr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@null"
+
+                tools:text="expression" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@null"
+
+                tools:text="result" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@null">
+
+                <Button
+                    android:id="@+id/copy_e"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:text="copy expr." />
+
+                <Button
+                    android:id="@+id/copy_r"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:text="copy res." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@null">
+
+                <Button
+                    android:id="@+id/delete_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:text="Del" />
+
+                <Button
+                    android:id="@+id/copy_all"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:text="copy all" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?colorAccent"/>-->
+
+</LinearLayout>
+
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="portSize" type="com.rrain.calculator4.calculator.BtnSizePort"/>
+        <variable name="landSize" type="com.rrain.calculator4.calculator.BtnSizeLand"/>
+        <variable name="bottomSheetHeight" type="float"/>
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/app_bar_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/expressionBgc"
+
+        tools:context="com.rrain.calculator4.calculator.Calculator"
+        tools:showIn="@layout/calculator_1_drawer_layout">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+
+
+            <!--app:titleTextColor = цвет текста заголовка ActionBar-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/calculator_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@null"
+
+                android:theme="@style/Toolbar">
+                <!--app:popupTheme="@style/ActionBarPopupOverlay"-->
+            <!--app:titleTextColor="?android:textColor"-->
+
+                <Button
+                    android:id="@+id/btn_angle_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/CalcToolbarBtn"
+
+                    tools:text="Deg"/>
+
+                <Button
+                    android:id="@+id/btn_radix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/CalcToolbarBtn"
+
+                    tools:text="dec"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <include layout="@layout/calculator_3_content"
+            bind:portSize="@{portSize}"
+            bind:landSize="@{landSize}"/>
+
+        <include layout="@layout/calculator_3_bottom_sheet"
+            bind:bottomSheetHeight="@{bottomSheetHeight}"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <!-- <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+</layout>

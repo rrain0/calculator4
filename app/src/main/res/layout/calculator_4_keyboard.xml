@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="portSize" type="com.rrain.calculator4.calculator.BtnSizePort"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:orientation="vertical"
+
+        tools:context="com.rrain.calculator4.calculator.Calculator">
+        <!--tools:showIn="@layout/calculator_3_content"-->
+        <!--tools:context="com.rrain.calculator4.calculator.Calculator"-->
+
+
+        <!--ROW_1-->
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/btn_container1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:columnCount="11">
+
+            <Button
+                android:id="@+id/btn_cursor_to_start"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.th, default = @dimen/number_buttons0_side}"
+                android:text="start"
+                android:textSize="@{portSize.textTop1}" />
+
+            <Button
+                android:id="@+id/btn_cursor_to_left"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="‹"
+                android:textSize="@{portSize.textTop2}"
+
+                tools:textColor="#0000FF"
+                tools:ignore="HardcodedText" />
+            <!--android:textSize="28sp"-->
+
+            <Button
+                android:id="@+id/btn_cursor_to_right"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="›"
+
+                android:textSize="@{portSize.textTop2}"
+
+                tools:textColor="#0000FF"
+                tools:ignore="HardcodedText" />
+            <!--android:textSize="28sp"-->
+
+            <Button
+                android:id="@+id/btn_cursor_to_end"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="end"
+                android:textSize="@{portSize.textTop1}" />
+
+
+            <FrameLayout
+                android:id="@+id/btn_clear"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="C"
+                    android:textSize="@{portSize.textTop2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+
+                    android:text="CLEAR ALL"
+                    android:textSize="@{portSize.textTop3}"
+
+                    tools:textColor="#0000FF" />
+                <!--android:textSize="10sp"-->
+
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/btn_coverWithBrackets"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="(...)"
+                    android:textSize="@{portSize.textTop2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary.Paratheses"
+                    android:text="(...)|"
+                    android:textSize="@{portSize.textTop3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_coverWithBrackets"
+                style="@style/DigitalButton"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="(...)"
+                android:textSize="@{portSize.textTop1}" />-->
+
+            <!--<Button
+                android:id="@+id/btn_clear"
+                style="@style/DigitalButton.Text"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                tools:textColor="#FF0000"
+                tools:text="C" />-->
+
+
+            <Button
+                android:id="@+id/btn_undo"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="@string/undo"
+                android:textSize="@{portSize.textTop4}" />
+
+            <Button
+                android:id="@+id/btn_redo"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="@string/redo"
+                android:textSize="@{portSize.textTop4}" />
+
+            <ImageButton
+                android:id="@+id/btn_copy"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_copy"
+                android:scaleType="centerInside"
+                android:paddingTop="@{portSize.th * 0.2f}"
+                android:paddingBottom="@{portSize.th * 0.2f}"
+                app:layout_gravity="fill_vertical" />
+            <!--android:textSize="@{portSize.textTop1}"-->
+            <!--android:text="copy"-->
+
+
+            <ImageButton
+                android:id="@+id/btn_paste"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:src="@drawable/ic_paste"
+                android:scaleType="centerInside"
+                android:paddingTop="@{portSize.th * 0.2f}"
+                android:paddingBottom="@{portSize.th * 0.2f}" />
+            <!--android:text="paste"-->
+            <!--android:textSize="@{portSize.textTop1}"-->
+
+            <!--<Button
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:textSize="@{portSize.textTop2}" />-->
+            <!--android:id="@+id/btn_changeSign"-->
+            <!--android:text="+/−"-->
+
+            <ImageButton
+                android:id="@+id/btn_kbd"
+                style="@style/DigitalButton"
+                android:layout_width="@{portSize.tw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:src="@drawable/ic_keyboard"
+                android:scaleType="centerInside"
+                android:paddingTop="@{portSize.th * 0.2f}"
+                android:paddingBottom="@{portSize.th * 0.2f}" />
+            <!--android:textSize="@{portSize.textTop1}"-->
+            <!--android:text="kbd"-->
+
+
+            <!--android:id="@+id/btn_A"-->
+            <!--android:text="A"-->
+
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/btn_container2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+
+            app:columnCount="11">
+            
+            <!--ROW_2-->
+            <FrameLayout
+                android:id="@+id/btn_left_parenthesis"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.mh, default = @dimen/number_buttons_side}"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain"
+                    android:text="("
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary.Paratheses"
+                    android:text="["
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_right_parenthesis"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=")"
+                    android:textSize="@{portSize.textMain1}"
+                    style="@style/FrameBtn.TextMain"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="]"
+                    style="@style/FrameBtn.TextSecondary.Paratheses"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+
+            <!--<Button
+                android:id="@+id/btn_right_parenthesis"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"
+
+                tools:textColor="#FF0000"
+                tools:text=")" />-->
+
+
+            <FrameLayout
+                android:id="@+id/btn_parentheses"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain"
+                    android:text="( )"
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary.Paratheses"
+                    android:text="[ ]"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_parentheses"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"
+
+                tools:textColor="#FF0000"
+                tools:text="( )" />-->
+
+            <Button
+                android:id="@+id/btn_power"
+                style="@style/DigitalButton.Btn.Accent"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="^"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <FrameLayout
+                android:id="@+id/btn_square"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain"
+                    android:text="²"
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="@string/ic_more"
+                    android:textSize="@{portSize.textMain3}" />
+                <!--style="@style/FrameBtn.TextSecondary.Paratheses"
+                                    android:text="4"-->
+                <!--android:paddingBottom="2dp"-->
+                <!--android:text='@{"&lt;"+@string/power+">"}'-->
+            </FrameLayout>
+
+
+            <!--<Button
+                android:id="@+id/btn_square"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="²"
+                android:textSize="@{portSize.textMain1}" />-->
+
+
+            <FrameLayout
+                android:id="@+id/btn_sin"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="sin"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="arcsin"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+            <!--<Button
+                android:id="@+id/btn_sin"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="sin\narcsin" />-->
+
+            <Button
+                android:id="@+id/btn_factorial"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="!"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <Button
+                android:id="@+id/test_btn"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"/>
+            <!--android:id="@+id/btn_lb"-->
+            <!--android:text="lb"-->
+
+
+            <!--<Button
+                android:id="@+id/BtnRow2Pos9"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+
+                app:layout_gravity="fill_vertical" />-->
+            <!-- android:text="TEST"
+                        android:textSize="?attr/btnMainTextSize"-->
+
+
+            <FrameLayout
+                android:id="@+id/btn_sh"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="sh"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="arsh"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_sh"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="sh\narsh"
+                />-->
+
+            <Button
+                android:id="@+id/btn_A_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="A"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <Button
+                android:id="@+id/btn_B_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="B"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <!--ROW_3-->
+
+
+            <Button
+                android:id="@+id/btn_7"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.mh, default = @dimen/number_buttons_side}"
+                android:text="7"
+                android:textSize="@{portSize.textMain1}"
+                />
+            <!--android:textSize="@{portSize.textMain1}"-->
+
+            <Button
+                android:id="@+id/btn_8"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="8"
+                android:textSize="@{portSize.textMain1}"
+                 />
+
+            <Button
+                android:id="@+id/btn_9"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="9"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_plus"
+                style="@style/DigitalButton.Btn.Accent"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="+"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <FrameLayout
+                android:id="@+id/btn_sqrt"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain"
+                    android:text="√"
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="@string/ic_more"
+                    android:textSize="@{portSize.textMain3}"
+
+                    tools:textColor="#00FF00" />
+                <!--style="@style/FrameBtn.TextSecondary.Paratheses"
+                android:text="@string/quadRoot"-->
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/btn_cos"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="cos"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="arccos"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_cos"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="cos\narccos" />-->
+
+            <FrameLayout
+                android:id="@+id/btn_abs"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="abs"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="sgn"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+
+                android:textSize="@{portSize.textMain1}" />-->
+
+            <Button
+                android:id="@+id/BtnRow3Pos9"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical" />
+
+            <FrameLayout
+                android:id="@+id/btn_ch"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="ch"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="arch"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_ch"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="ch\narch"/>-->
+
+
+            <Button
+                android:id="@+id/btn_C_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="C"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_D_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="D"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <!--ROW_4-->
+
+            <Button
+                android:id="@+id/btn_4"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.mh, default = @dimen/number_buttons_side}"
+                android:text="4"
+                android:textSize="@{portSize.textMain1}"
+                 />
+
+            <Button
+                android:id="@+id/btn_5"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="5"
+                android:textSize="@{portSize.textMain1}"
+                 />
+
+            <Button
+                android:id="@+id/btn_6"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="6"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                style="@style/DigitalButton.Btn.Accent"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="−"
+                android:textSize="@{portSize.textMain1}" />
+
+
+
+
+            <Button
+                android:id="@+id/btn_percent"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="%"
+                android:textSize="@{portSize.textMain1}"/>
+
+
+            <!--<Button
+                android:id="@+id/btn_sqrt"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="√"
+                android:textSize="@{portSize.textMain1}" />-->
+
+            <FrameLayout
+                android:id="@+id/btn_tg"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="tg"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="@string/ic_more"
+                    android:textSize="@{portSize.textMain3}" />
+                <!--android:text="arctg"-->
+                <!--android:text='@{"&lt;"+@string/more+">"}'-->
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_tg"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:text="tg\narctg"
+                tools:textColor="#FF0000" />-->
+
+
+            <Button
+                android:id="@+id/btn_changeSign"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                android:text="+/−"
+                app:layout_gravity="fill_vertical"
+                android:textSize="@{portSize.textMain1}" />
+
+            <!--<Button
+                android:id="@+id/btn_log"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="log" />-->
+
+
+            <Button
+
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+
+                android:textSize="@{portSize.textMain1}" />
+
+            <!--<Button
+                android:id="@+id/BtnRow4Pos9"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical" />-->
+
+            <FrameLayout
+                android:id="@+id/btn_th"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="th"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="@string/ic_more"
+                    android:textSize="@{portSize.textMain3}" />
+                <!--android:text="arth"-->
+                <!--android:text='@{"&lt;"+@string/more+">"}'-->
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_th"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="th\narth"/>-->
+
+            <Button
+                android:id="@+id/btn_Exp"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="E"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_F_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+                app:layout_gravity="fill_vertical"
+                android:text="F"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <!--ROW_5-->
+            <Button
+                android:id="@+id/btn_1"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.mh, default = @dimen/number_buttons_side}"
+                android:text="1"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_2"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="2"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_3"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="3"
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_mult"
+                style="@style/DigitalButton.Btn.Accent"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="×"
+                android:textSize="@{portSize.textMain1}" />
+            <!--android:text="*"-->
+
+            <Button
+                android:id="@+id/btn_angle_degree"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="°"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <!--<Button
+                android:id="@+id/btn_pi"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="π"
+                android:textSize="@{portSize.textMain1}"
+                android:textAllCaps="false" />-->
+
+            <FrameLayout
+                android:id="@+id/btn_pi"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="π"
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="∞"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_ctg"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="ctg\narcctg"/>-->
+
+            <Button
+                android:id="@+id/btn_cube"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+
+                android:textSize="@{portSize.textMain1}" />
+            <!--android:text="³"-->
+
+            <Button
+
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical" />
+            <!--android:id="@+id/btn_lg"-->
+            <!--android:text="lg"-->
+
+            <!--<Button
+                android:id="@+id/btn_infinity"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:textSize="@{portSize.textMain1}" />-->
+            <!--android:text="∞"-->
+
+
+            <FrameLayout
+                android:id="@+id/btn_cth"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+                <!--android:text="cth"-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:textSize="@{portSize.textMain3}" />
+                <!--android:text="arcth"-->
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_cth"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
+                tools:textColor="#FF0000"
+                tools:text="cth\narcth"/>-->
+
+            <Button
+                android:id="@+id/btn_bin"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="bin"
+                android:textSize="@{portSize.textMain2}" />
+
+            <Button
+                android:id="@+id/btn_oct"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="oct"
+                android:textSize="@{portSize.textMain2}" />
+
+
+            <!--ROW_6-->
+            <Button
+                android:id="@+id/btn_E_hex"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="@{portSize.mh, default = @dimen/number_buttons_side}"
+                android:text="E"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <FrameLayout
+                android:id="@+id/btn_zero"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain"
+                    android:text="0"
+                    android:textSize="@{portSize.textMain1}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="000"
+                    android:textSize="@{portSize.textMain3}" />
+
+            </FrameLayout>
+
+
+            <!-- <Button
+                 android:id="@+id/btn_zero"
+                 style="@style/DigitalButton.Btn"
+                 android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+                 android:layout_height="match_parent"
+                 android:textAllCaps="false"
+
+                 tools:textColor="#FF0000"
+                 tools:text="0" />-->
+
+            <Button
+                android:id="@+id/btn_point"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="."
+                android:textSize="@{portSize.textMain1}" />
+
+            <Button
+                android:id="@+id/btn_div"
+                style="@style/DigitalButton.Btn.Accent"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="/"
+                android:textSize="@{portSize.textMain1}" />
+
+
+            <FrameLayout
+                android:id="@+id/btn_ln"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+                    android:text="ln"
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+                    android:text="@string/ic_more"
+                    android:textSize="@{portSize.textMain3}" />
+                <!--style="@style/FrameBtn.TextSecondary"
+                android:text="lg"-->
+                <!--android:text='@{"&lt;"+"log"+">"}'-->
+
+            </FrameLayout>
+
+            <!--<Button
+                android:id="@+id/btn_ln"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@dimen/number_buttons_side"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="ln" />-->
+            <!--android:onClick="goToHistory"
+                android:text="⟲"
+                android:textSize="60sp"-->
+
+            <Button
+                android:id="@+id/btn_e"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="e"
+                android:textSize="@{portSize.textMain1}"
+                android:textAllCaps="false" />
+
+
+
+            <FrameLayout
+                android:id="@+id/btn_ctg"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                style="@style/FrameBtn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextMain.Func"
+
+                    android:textSize="@{portSize.textMain2}"
+
+                    tools:textColor="#FF0000" />
+                <!--android:text="ctg"-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/FrameBtn.TextSecondary"
+
+                    android:textSize="@{portSize.textMain3}" />
+                <!--android:text="arcctg"-->
+
+            </FrameLayout>
+
+
+            <!--<Button
+                android:id="@+id/btn_abs"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="abs"
+                android:textSize="@{portSize.textMain2}" />-->
+
+
+            <!--<Button
+                android:id="@+id/btn_cbrt"
+                style="@style/DigitalButton.Btn"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+
+                app:layout_gravity="fill_vertical"
+                android:textSize="@{portSize.textMain1}"
+
+                tools:textColor="#00FF00" />-->
+            <!--android:text="@string/cubeRoot"-->
+
+            <Button
+                android:id="@+id/btn_signum"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:textSize="@{portSize.textMain2}" />
+            <!--android:text="sgn"-->
+
+            <Button
+                android:id="@+id/btn_inv"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="inv"
+                android:textSize="@{portSize.textMain2}" />
+
+
+            <Button
+                android:id="@+id/btn_dec"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="dec"
+                android:textSize="@{portSize.textMain2}" />
+
+            <Button
+                android:id="@+id/btn_hex"
+                style="@style/DigitalButton.Func"
+                android:layout_width="@{portSize.mw, default = @dimen/number_buttons_side}"
+                android:layout_height="0dp"
+
+                app:layout_gravity="fill_vertical"
+                android:text="hex"
+                android:textSize="@{portSize.textMain2}" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+    </LinearLayout>
+
+</layout>

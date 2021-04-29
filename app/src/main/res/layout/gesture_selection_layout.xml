@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gesture_selection_layout"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gesture_selection_bgc"
+    android:padding="10dp"
+    android:showDividers="middle"
+    android:divider="@drawable/separator_10dp_transparent">
+
+    <!--<TextView
+        android:id="@+id/rounded_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_btn"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:textStyle="bold"
+        android:textColor="?onCircleIndicatorColor"
+        style="@style/card_text"
+
+        tools:text="200" />
+
+    <TextView
+        android:id="@+id/rounded_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_btn"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:textStyle="bold"
+        android:textColor="?onCircleIndicatorColor"
+        style="@style/card_text"
+
+        tools:text="200" />-->
+
+</LinearLayout>

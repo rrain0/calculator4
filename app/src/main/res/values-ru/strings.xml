@@ -1,0 +1,212 @@
+<resources>
+
+
+    <string name="app_name">Калькулятор 4</string>
+    <string name="settings">Настройки</string>
+
+    <!--<string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>-->
+
+    <string name="went_wrong">Что-то пошло не так :(</string>
+    <string name="incorrect_symbols">Не могу распознать символ или функцию :(</string>
+    <string name="wrong_brackets">Неправильно расставлены скобки</string>
+    <!--<string name="converted_to">Преобразовано в</string>-->
+    <!--<string name="time_elapsed">Затрачено времени:</string><string name="ms">мс</string>-->
+    <string name="incorrect_expression">Некорректное выражение</string>
+    <string name="error">Ошибка</string>
+    <string name="error_history">Ошибка сохранения в историю</string>
+    <string name="set">Установлено</string>
+    <string name="attention_disable_rounding">Внимание! Числа всё равно будут округляться, если они слишком длинные</string>
+
+    <string name="rounding">Округление</string>
+    <string name="angle">Угол</string>
+
+    <string name="together">Вместе</string>
+    <string name="button_side_ratio">Соотношение сторон кнопки ШИРИНА:ВЫСОТА</string>
+
+    <!--<string name="no">Нет</string>
+    <string name="yes">Да</string>-->
+
+    <string name="theme">Тема</string>
+
+    <string name="theme_light">Светлая</string>
+    <string name="theme_light_yellow">Светлая Жёлтая</string>
+    <string name="theme_light_light_pink">Светлая Светло-розовая</string>
+    <string name="theme_light_pink">Светлая Розовая</string>
+    <string name="theme_light_gray">Светлая Серая</string>
+    <string name="theme_light_violet">Светлая Фиолетовая</string>
+    <string name="theme_light_blue">Светлая Синяя</string>
+    <string name="theme_light_purple">Светлая Пурпурная</string>
+    <string name="theme_light_light_blue">Светлая Голубая</string>
+    <string name="theme_light_green">Светлая Зелёная</string>
+    <string name="theme_light_orange">Светлая Оранжевая</string>
+    <string name="theme_light_red">Светлая Красная</string>
+
+    <string name="theme_dark">Тёмная</string>
+    <string name="theme_dark_blue">Тёмная Синяя</string>
+    <string name="theme_dark_green">Тёмная Зелёная</string>
+    <string name="theme_dark_purple">Тёмная Фиолетовая</string>
+    <string name="theme_dark_yellow">Тёмная Жёлтая</string>
+    <string name="theme_dark_pink">Тёмная Розовая</string>
+    <string name="theme_dark_orange">Тёмная Оранжевая</string>
+    <string name="theme_dark_red">Тёмная Красная</string>
+
+
+
+
+
+    <string name="enable_autocalculation">Вычислять на ходу</string>
+    <string name="enable_second_edit_text">Включить второе поле ввода выражений</string>
+    <string name="number_format">Формат чисел</string>
+    <string name="enable_button_change_dimens">Показать кнопки, которые изменяют размеры основных кнопок</string>
+    <string name="button_size">Размеры кнопок</string>
+    <string name="change_button_size">Изменить размеры кнопок</string>
+    <string name="info">Инфо</string>
+
+    <string name="format">Формат</string>
+    <!--<string-array name="formats">
+        <item>Обычный</item>
+        <item>Научный</item>
+        <item>Инженерный</item>
+    </string-array>-->
+    <string name="format_normal">Обычный</string>
+    <string name="format_scientific">Научный</string>
+    <string name="format_engineering">Инженерный</string>
+    <string name="digit_separator">Разделитель разрядов</string>
+    <!--<string-array name="digit_separators">
+        <item>Нет</item>
+        <item>Пробел</item>
+        <item>_</item>
+    </string-array>-->
+    <string name="digit_separator_none">Нет</string>
+    <string name="digit_separator_space">Пробел</string>
+    <string name="digit_separator_low_line">Нижнее подчёркивание</string>
+    <string name="digit_separator_apostrophe">Апостроф</string>
+
+    <string name="history">История</string>
+
+    <string name="change_dimens_hint">
+        Ползунок меняет ширину кнопки. Пропорционально ширине меняется высота.
+        Отношение ширины к высоте находится слева от ползунка и его можно менять, нажав на него.
+        Кнопка \"Предыдущие\" вернёт настройки до вызова окна с ползунками.
+        Кнопка \"Исходные\" вернёт настройки по умолчанию.
+        В портретном режиме будут 2 ползунка: верхний регулирует верхний ряд кнопок, нижний - все остальные кнопки.
+        Чтобы ширина была одинаковой, поставьте галочку \"Вместе\"
+    </string>
+
+    <string name="enable_rounding">Включить округление</string>
+    <string name="precision">Точность</string>
+    <string name="rounding_precision">Точность округления</string>
+    <string name="autodeleting_of_history">Автоудаление старых записей истории</string>
+    <string name="delete_if_more_than">Удалять, если больше чем</string>
+    <string name="add_to_history_only_by_Equals_button">Добавлять в историю только по кнопке Равно</string>
+    <string name="debug_functions">Отладочные функции</string>
+    <string name="enable_conversion_toast">Показать сообщение с преобразованным выражением перед вычислениями</string>
+    <string name="enable_time_elapsed_toast">Показать сообщение о времени, затраченном на операции с выражением</string>
+
+    <string name="enable_autocalculation_short">Вычислять на ходу</string>
+    <string name="enable_second_edit_text_short">Второе поле</string>
+    <string name="button_dimens">Размеры кнопок</string>
+    <string name="clear_history">Удалить историю</string>
+    <string name="help">Справка</string>
+
+    <string name="description_and_hints" formatted="false">
+        Описание и подсказки\n\n
+
+        Нажмите на результат, чтобы скопировать\n
+        Зажмите результат, чтобы перевести в другие системы счисления\n
+        Нажмите в истории на цифры, чтобы их использовать\n\n
+
+        Кнопка \"(…)\" - нажмите, чтобы обволочь в скобки ближайшее к курсору выражение, можно нажимать дальше, чтобы
+        обволчь в скобки выражение уровнем выше\n
+        Зажмите, чтобы обволочь в скобки выражение от начала до курсора\n\n
+
+        Можно писать функции подряд без скобочек, например\n
+        lglg10000000000 вместо lg(lg(10000000000))\n
+        sin-arcsin1 = sin(-arcsin(1))\n
+        cos-2π = cos(-2π)\n
+        arcsin-1=-1.5707963267949\n
+        sinπcosπ = (sinπ)*(cosπ)\n
+		cosπ(2) = cos(π)*(2)\n
+		cosπ2 = cos(π*2)\n
+        sin-π/2 = (sin(-π))/2\n
+		2^2(10) = 2^(2)*10\n
+        2^2e = 2^(2*e)\n\n
+
+        Результат \"NaN\" – математическая неопределённость (напрмер, 0/0), либо число не принадлежит множеству Действительных чисел (например, оно комплексное)\n\n
+
+        Кнопка \"E\" – ввести экспоненту числа (числоEзначение = число*10^(значение))\n
+        123E2 = 12300 и 123E-3 = 0.123\n\n
+
+        Кнопка \"!\" – факториал. !! – двойной факториал. Только для целых неотрицательных чисел.\n
+        Факториал (n!) – это произведение всех натуральных чисел от 1 до n включительно, но 0! = 1.\n
+        Например, 5! = 1*2*3*4*5 = 120\n
+        Двойной факториал (n!!) – это произведение всех натуральных чисел от 1 до n включительно, имеющих ту же чётность что и n, но 0!! = 1.\n
+        Например, 5!! = 1*3*5 = 15\n
+        6!! = 2*4*6 = 48\n\n
+
+        Кнопка \"°\" – считать число градусами, а не радианами, даже если переключатель RAD/DEG вверху справа переключен на RAD.\n\n
+
+        Кнопка \"abs\" – вычислить абсолютную величину числа (или, проще говоря, отбросить минус, если он есть).\n\n
+
+        Кнопка \"ln\" – вычислить натуральный логарифм числа (логарифм по основанию e).\n
+        Кнопка \"lg\" – вычислить десятичный логарифм числа (логарифм по основанию 10).\n
+        Кнопка \"lb\" – вычислить двоичный логарифм числа (логарифм по основанию 2).\n
+        Кнопка \"log\" – вычислить логарифм числа по произвольному основанию: log[x][b] = logₓb\n
+        Также его можно вычислить, используя свойство логарифмов\n
+        logₓb  \t\t\t\t\t\t\t\t  lnb \t\t lgb \t\t lbb\n
+        --------- = logₐb =     ------ = ------ = ------\n
+        logₓa  \t\t\t\t\t\t\t\t  lna \t\t lga \t\t lba\n\n\n
+
+
+        Кнопка \"%\".\n
+        Определение: Процент – это сотая часть числа.\n
+        Логика использования:\n\n
+
+        Вычисление процента от числа: число*процент% \n
+        20*50%=10\n
+        (сам знак процента считается за действие *0.01)\n
+        формула без использования процента:\n
+        число*(процент/100)\n
+        Напрмер, 20% от 5 можно вычислить:\n
+        5(20/100) = 5*0.2 = 1\n\n
+
+        Вычитание или прибавка процента к числу:\n
+        число±процент%\n
+        20+50%=30 \t\t\t 20-50%=10\n
+        формула без использования процента:\n
+        число*((100±процент)/100) = число*(1±процент/100)\n
+        или число±число*процент/100\n
+        Например:\n
+        5-20% = 5-5*20/100 = 5-5*0.2 = 5(1-0.2) = 5*0.8 = 4\n\n
+
+        Ещё примеры: 16/(2*2)-50% = 4-50% = 2\n
+        20+50%4/2 = 20+50%*2 = 20+100% = 40\n
+        20+(50+25)% = 20+75% = 35\n
+        20+300%! = 20+20*(300*0.01)! = 20+20*6 = 140\n
+        20+10*10% = 20+1 = 21\n
+        20+(50%) = 20+(50*0.01) = 20+0.5 = 20.5
+    </string>
+
+    <string name="cancel">Отмена</string>
+    <string name="back">Назад</string>
+    <string name="default_">Исходные</string>
+    <string name="previous">Предыдущие</string>
+
+    <string name="delete_all">Удалить всё</string>
+
+    <string name="result_was_copied">Результат скопирован</string>
+    <string name="expression_was_copied">Выражение скопировано</string>
+    <string name="copied">Скопировано</string>
+    <string name="alloted_was_copied">Выделенное скопировано</string>
+
+    <!--<string name="ic_more">&lt;ещё></string>-->
+
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_settings_screen">Настройки</string>
+
+    <string name="power">степень</string>
+    <string name="root">корень</string>
+    <string name="more">ещё</string>
+
+</resources>

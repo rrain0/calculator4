@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="dynamic_style_attrs">
+
+        <attr format="color" name="themeColor"/>
+
+        <attr format="color" name="expressionBgc"/>
+        <attr format="color" name="resultBgc"/>
+        <attr format="color" name="kbdColor"/>
+        <attr format="color" name="kbdThemeColor"/>
+        <attr format="color" name="historyPeekBgc"/>
+        <attr format="color" name="cardColor"/>
+        <attr format="color" name="cardListColor"/>
+
+        <attr format="color" name="onColorPrimary"/>
+        <attr format="color" name="onColorAccent"/>
+        <attr format="color" name="onColorAccentVariant"/>
+        <attr format="color" name="onThemeColor"/>
+        <attr format="color" name="onExpressionBgc"/>
+        <attr format="color" name="onExpressionBgcVariant"/>
+        <attr format="color" name="onResultBgc"/>
+        <!--<attr format="color" name="onResultBgcVariant"/>-->
+        <attr format="color" name="onKbdColor"/>
+        <attr format="color" name="onKbdColorVariant"/>
+        <attr format="color" name="onKbdThemeColor"/>
+        <attr format="color" name="onHistoryPeekBgc"/>
+        <attr format="color" name="onCard"/>
+        <attr format="color" name="circleIndicatorColor"/>
+        <attr format="color" name="onCircleIndicatorColor"/>
+
+
+        <attr format="color" name="twoFieldsSeparator"/>
+
+
+        <attr format="color" name="resultColor"/>
+        <attr format="color" name="resultColorVariant"/>
+        <attr format="color" name="resultColorLand"/>
+
+        <attr format="color" name="toolbarBtnColor"/>
+        <attr format="color" name="toolbarBtnColorLight"/>
+        <attr format="color" name="toolbarBtnColorWarn"/>
+
+        <attr format="color" name="onToolbarBtnColor"/>
+        <attr format="color" name="onToolbarBtnColorLight"/>
+        <attr format="color" name="onToolbarBtnColorWarn"/>
+
+
+        <attr format="color" name="bracket0color0"/>
+        <attr format="color" name="bracket0color1"/>
+        <attr format="color" name="bracket0color2"/>
+        <attr format="color" name="bracket0color3"/>
+        <attr format="color" name="bracket0color4"/>
+        <attr format="color" name="bracket0color5"/>
+
+
+
+        <!-- icon src attribute -->
+        <!--<attr name="emailIcon" format="reference" />-->
+
+    </declare-styleable>
+
+
+
+
+
+
+
+</resources>

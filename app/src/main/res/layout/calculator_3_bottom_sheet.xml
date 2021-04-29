@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="bottomSheetHeight" type="float" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="30dp"
+
+        android:background="?attr/expressionBgc"
+
+        tools:viewBindingIgnore="true">
+        <!--app:behavior_halfExpandedRatio="0.5"-->
+        <!--app:behavior_draggable="true"-->
+        <!--app:behavior_expandedOffset="500dp"-->
+    <!--android:maxHeight="300dp"
+            android:minHeight="100dp"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="?attr/historyPeekBgc">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/history"
+                android:background="@null"
+                android:textColor="?attr/onHistoryPeekBgc"/>
+
+            <!--<Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/delete_all"
+                android:onClick="clearHistory"
+                android:background="@android:color/transparent"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"/>
+
+            <TextView
+                android:id="@+id/additionalTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:onClick="useFromAdditionalTV"/>-->
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/history_recycler_view"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="@{bottomSheetHeight, default = @dimen/bottomSheetHeight}"
+            android:background="@null"/>
+
+        <!--добавить кнопку наверх-->
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+            &lt;!&ndash;android:text="@string/bottom_sheet_content"&ndash;&gt;-->
+
+    </LinearLayout>
+</layout>
