@@ -961,7 +961,8 @@ public final class CalculationUtil {
                     break;
             }*/
 
-                try {
+                /*try {
+
                     switch (expression.substring(i, i+1)){//√³_√⁴
                         case "√³":
                             switchForFunctions();
@@ -975,7 +976,7 @@ public final class CalculationUtil {
                             i++;
                             continue;
                     }
-                } catch (Exception e) {/*e.printStackTrace();*/}
+                } catch (Exception e) {*//*e.printStackTrace();*//*}*/
 
                 switch (expression.charAt(i)){//π_e_∞_!&!!_°_%_√_∛_∜_√³_√⁴
                     case 'π':
