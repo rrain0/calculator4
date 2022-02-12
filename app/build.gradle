@@ -48,8 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //lombok - аннотации Getter Setter
-    implementation 'org.projectlombok:lombok:1.18.12' //не трогать, доложно быть implementation
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    implementation 'org.projectlombok:lombok:1.18.22' //не трогать, доложно быть implementation
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     //похож на css flex
     //https://github.com/google/flexbox-layout
