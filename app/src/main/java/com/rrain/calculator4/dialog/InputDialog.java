@@ -89,11 +89,9 @@ public class InputDialog {
         //d.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor();
 
         View.OnClickListener onClickListener = v -> {
-            switch (v.getId()){
-                case R.id.rounded_tv:
-                    action.run(((TextView)v).getText().toString());
-                    d.dismiss();
-                    break;
+            if (v.getId() == R.id.rounded_tv) {
+                action.run(((TextView) v).getText().toString());
+                d.dismiss();
             }
         };
         for(String s : presets){

@@ -36,9 +36,9 @@ public class SelectDialog {
 
 
     private static class SelectionRecyclerAdapter extends RecyclerView.Adapter<SelectionRecyclerAdapter.ViewHolder> {
-        private String[] entries;
-        private SelectAction action;
-        private Dialog dialog;
+        private final String[] entries;
+        private final SelectAction action;
+        private final Dialog dialog;
 
         SelectionRecyclerAdapter(String[] entries, Dialog dialog, SelectAction action) {
             this.entries = entries;
@@ -56,11 +56,9 @@ public class SelectDialog {
 
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.choice_variant_tv:
-                        action.setPosition(this.getAdapterPosition());
-                        dialog.dismiss();
-                        break;
+                if (v.getId() == R.id.choice_variant_tv) {
+                    action.setPosition(this.getAdapterPosition());
+                    dialog.dismiss();
                 }
             }
         }

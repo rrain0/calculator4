@@ -23,7 +23,7 @@ import com.rrain.calculator4.dialog.InputDialog;
 import static com.rrain.calculator4.ViewUtil.toastShort;
 
 public class ButtonsSizeLandDialog extends DialogFragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-    private Calculator calc;
+    private final Calculator calc;
 
     private final int max;
     private final BtnSizeLand oldSize;
@@ -112,41 +112,37 @@ public class ButtonsSizeLandDialog extends DialogFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_ratio_tv:
-                InputDialog.show(
-                        calc,
-                        getString(R.string.button_side_ratio),
-                        InputDialog.INPUT_TIME,
-                        txt -> {
-                            try {
-                                String[] arr = txt.split("[^\\d\\.]+");
-                                size = size.buildNew(Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
-                                //size = new ButtonSizeLandscape(size.lw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
-                                updateTextView();
-                                setButtonsSize();
-                            } catch (NumberFormatException e) {
-                                toastShort(getString(R.string.incorrect_expression));
-                            }
-                        },
-                        "1:1", "16:9",   "16:10", "16:11", "16:12", "16:13",   "16:14"
-                );
-                break;
-            case R.id.btn_select_dialog_prev:
-                size = oldSize;
-                updateTextView();
-                updateSeekBar();
-                setButtonsSize();
-                break;
-            case R.id.btn_select_dialog_default:
-                size = new BtnSizeLand(calc);
-                updateTextView();
-                updateSeekBar();
-                setButtonsSize();
-                break;
-            case R.id.btn_select_dialog_ok:
-                this.dismiss();
-                break;
+        int id = v.getId();
+        if (id == R.id.button_ratio_tv) {
+            InputDialog.show(
+                    calc,
+                    getString(R.string.button_side_ratio),
+                    InputDialog.INPUT_TIME,
+                    txt -> {
+                        try {
+                            String[] arr = txt.split("[^\\d.]+");
+                            size = size.buildNew(Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
+                            //size = new ButtonSizeLandscape(size.lw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
+                            updateTextView();
+                            setButtonsSize();
+                        } catch (NumberFormatException e) {
+                            toastShort(getString(R.string.incorrect_expression));
+                        }
+                    },
+                    "1:1", "16:9", "16:10", "16:11", "16:12", "16:13", "16:14"
+            );
+        } else if (id == R.id.btn_select_dialog_prev) {
+            size = oldSize;
+            updateTextView();
+            updateSeekBar();
+            setButtonsSize();
+        } else if (id == R.id.btn_select_dialog_default) {
+            size = new BtnSizeLand(calc);
+            updateTextView();
+            updateSeekBar();
+            setButtonsSize();
+        } else if (id == R.id.btn_select_dialog_ok) {
+            this.dismiss();
         }
     }
 

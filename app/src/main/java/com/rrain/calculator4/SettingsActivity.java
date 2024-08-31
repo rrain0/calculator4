@@ -260,103 +260,91 @@ public class SettingsActivity extends AppCompatActivity
         View radioButton = radioButtonGroup.findViewById(radioButtonID);
         int idx = radioButtonGroup.indexOfChild(radioButton);*/
 
-        switch (radioGroup.getId()){
-            case R.id.radio_group_format:
-                switch (checkedId){
-                    default: case R.id.format_normal: Calculator.numberFormat = 0; break;
-                    case R.id.format_scientific: Calculator.numberFormat = 1; break;
-                    case R.id.format_engineering: Calculator.numberFormat = 3; break;
-                }
-                break;
-            case R.id.radio_group_digit_separator:
-                switch (checkedId){
-                    default: case R.id.digit_separator_none: Calculator.digitSeparator = ""; break;
-                    case R.id.digit_separator_space: Calculator.digitSeparator = " "; break;
-                    case R.id.digit_separator_low_line: Calculator.digitSeparator = "_"; break;
-                    case R.id.digit_separator_apostrophe: Calculator.digitSeparator = "'"; break;
-                }
-                break;
+        int id = radioGroup.getId();
+        if (id == R.id.radio_group_format) {
+            if (checkedId == R.id.format_scientific) {
+                Calculator.numberFormat = 1;
+            } else if (checkedId == R.id.format_engineering) {
+                Calculator.numberFormat = 3;
+            } else {
+                Calculator.numberFormat = 0;
+            }
+        } else if (id == R.id.radio_group_digit_separator) {
+            if (checkedId == R.id.digit_separator_space) {
+                Calculator.digitSeparator = " ";
+            } else if (checkedId == R.id.digit_separator_low_line) {
+                Calculator.digitSeparator = "_";
+            } else if (checkedId == R.id.digit_separator_apostrophe) {
+                Calculator.digitSeparator = "'";
+            } else {
+                Calculator.digitSeparator = "";
+            }
         }
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.theme_tv:
-                String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
-                SelectDialog.show(this, "", elems, pos -> {// TODO: 25.08.2020 string R
-                    theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
-                    //Calculator.doRestart = true;
-                    Intent intent = new Intent();
-                    intent.putExtra(Calculator.INTENT_CODE_RESTART, true);
-                    setResult(RESULT_OK, intent);
-                    restartActivity();
-                });
-                break;
-            case R.id.enable_autocalculation_check_box:
-                Calculator.enableAutocalculation = ((CheckBox)view).isChecked();
-                break;
-            case R.id.enable_second_field_check_box:
-                Calculator.enableSecondField = ((CheckBox)view).isChecked();
-                break;
-            case R.id.enable_rounding_check_box:
-                if (((CheckBox)view).isChecked()) Calculator.enableRounding = true;
-                else {
-                    Calculator.enableRounding = false;
-                    ViewUtil.toastLong(getString(R.string.attention_disable_rounding));
-                }
-                //findViewById(R.id.rounding_precision_tv).setActivated(((CheckBox)view).isChecked());
-                break;
-            case R.id.rounding_precision_layout:
-                InputDialog.show(this, getString(R.string.rounding_precision), InputDialog.INPUT_INTEGER,
-                        input -> {
-                            try {
-                                Calculator.roundingPrecision = Integer.parseInt(input);
-                                ViewUtil.setTxt(SettingsActivity.this, R.id.rounding_precision_tv, input);
-                            }
-                            catch (NumberFormatException e) {
-                                ViewUtil.toastLong(SettingsActivity.this, getText(R.string.incorrect_expression));
-                            }
-                        },
-                        "-6", "-3", "0", "3", "6", "9", "13", "15");
-                break;
-            case R.id.enable_autodeleting_of_history_check_box:
-                Calculator.enableAutodeleteOfHistory = ((CheckBox)view).isChecked();
-                break;
-            case R.id.history_limit_layout:
-                InputDialog.show(this, getString(R.string.delete_if_more_than), InputDialog.INPUT_POSITIVE_INTEGER,
-                        input -> {
-                            try {
-                                int i = Integer.parseInt(input);
-                                if (i<0) throw new NumberFormatException();
-                                Calculator.historyLimit = i;
-                                ViewUtil.setTxt(SettingsActivity.this, R.id.history_limit_tv, input);
-                            }
-                            catch (NumberFormatException e) {
-                                ViewUtil.toastLong(SettingsActivity.this, getText(R.string.incorrect_expression));
-                            }
-                        },
-                        "50", "100", "200", "500", "1000", "2000");
-                break;
-            case R.id.clear_history_tv:
-                ConfirmDialog.show(this, getString(R.string.clear_history)+"?", history::clear);// TODO: 31.08.2020 шторкой снизу
-                break;
-            case R.id.enable_add_to_history_by_equals:
-                Calculator.enableSavingByEquals = ((CheckBox)view).isChecked();
-                break;
-            case R.id.change_button_size_tv:
-                //Calculator.changeButtonsSizeDialogEnabled = true;
+        int id = view.getId();
+        if (id == R.id.theme_tv) {
+            String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
+            SelectDialog.show(this, "", elems, pos -> {// TODO: 25.08.2020 string R
+                theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
+                //Calculator.doRestart = true;
                 Intent intent = new Intent();
-                intent.putExtra(Calculator.INTENT_CODE_CHANGE_BUTTONS_SIZE, true);
+                intent.putExtra(Calculator.INTENT_CODE_RESTART, true);
                 setResult(RESULT_OK, intent);
-                onBackPressed();
-                break;
-            case R.id.change_button_size_info_tv:
-                InfoDialog.show(this, getString(R.string.change_dimens_hint));
-                break;
-            case R.id.enable_conversion_toast_check_box:
-                Calculator.enableConversionToast = ((CheckBox)view).isChecked();
-                break;
+                restartActivity();
+            });
+        } else if (id == R.id.enable_autocalculation_check_box) {
+            Calculator.enableAutocalculation = ((CheckBox) view).isChecked();
+        } else if (id == R.id.enable_second_field_check_box) {
+            Calculator.enableSecondField = ((CheckBox) view).isChecked();
+        } else if (id == R.id.enable_rounding_check_box) {
+            if (((CheckBox) view).isChecked()) Calculator.enableRounding = true;
+            else {
+                Calculator.enableRounding = false;
+                ViewUtil.toastLong(getString(R.string.attention_disable_rounding));
+            }
+            //findViewById(R.id.rounding_precision_tv).setActivated(((CheckBox)view).isChecked());
+        } else if (id == R.id.rounding_precision_layout) {
+            InputDialog.show(this, getString(R.string.rounding_precision), InputDialog.INPUT_INTEGER,
+                    input -> {
+                        try {
+                            Calculator.roundingPrecision = Integer.parseInt(input);
+                            ViewUtil.setTxt(SettingsActivity.this, R.id.rounding_precision_tv, input);
+                        } catch (NumberFormatException e) {
+                            ViewUtil.toastLong(SettingsActivity.this, getText(R.string.incorrect_expression));
+                        }
+                    },
+                    "-6", "-3", "0", "3", "6", "9", "13", "15");
+        } else if (id == R.id.enable_autodeleting_of_history_check_box) {
+            Calculator.enableAutodeleteOfHistory = ((CheckBox) view).isChecked();
+        } else if (id == R.id.history_limit_layout) {
+            InputDialog.show(this, getString(R.string.delete_if_more_than), InputDialog.INPUT_POSITIVE_INTEGER,
+                    input -> {
+                        try {
+                            int i = Integer.parseInt(input);
+                            if (i < 0) throw new NumberFormatException();
+                            Calculator.historyLimit = i;
+                            ViewUtil.setTxt(SettingsActivity.this, R.id.history_limit_tv, input);
+                        } catch (NumberFormatException e) {
+                            ViewUtil.toastLong(SettingsActivity.this, getText(R.string.incorrect_expression));
+                        }
+                    },
+                    "50", "100", "200", "500", "1000", "2000");
+        } else if (id == R.id.clear_history_tv) {
+            ConfirmDialog.show(this, getString(R.string.clear_history) + "?", history::clear);// TODO: 31.08.2020 шторкой снизу
+        } else if (id == R.id.enable_add_to_history_by_equals) {
+            Calculator.enableSavingByEquals = ((CheckBox) view).isChecked();
+        } else if (id == R.id.change_button_size_tv) {//Calculator.changeButtonsSizeDialogEnabled = true;
+            Intent intent = new Intent();
+            intent.putExtra(Calculator.INTENT_CODE_CHANGE_BUTTONS_SIZE, true);
+            setResult(RESULT_OK, intent);
+            onBackPressed();
+        } else if (id == R.id.change_button_size_info_tv) {
+            InfoDialog.show(this, getString(R.string.change_dimens_hint));
+        } else if (id == R.id.enable_conversion_toast_check_box) {
+            Calculator.enableConversionToast = ((CheckBox) view).isChecked();
         }
     }
 }

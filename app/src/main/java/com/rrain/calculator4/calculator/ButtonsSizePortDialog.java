@@ -24,7 +24,7 @@ import com.rrain.calculator4.dialog.InputDialog;
 import static com.rrain.calculator4.ViewUtil.toastShort;
 
 public class ButtonsSizePortDialog extends DialogFragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-    private Calculator calc;
+    private final Calculator calc;
 
     private final int max;
     private final BtnSizePort oldSize;
@@ -108,88 +108,83 @@ public class ButtonsSizePortDialog extends DialogFragment implements View.OnClic
 
     @Override
     public void onResume() {
-        calc.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);//зафиксировать ориентацию экрана
+        calc.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);// зафиксировать ориентацию экрана
         super.onResume();
     }
 
     @Override
     public void onDestroy() {
-        calc.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);//разрешить поворот экрана
+        calc.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);// разрешить поворот экрана
         super.onDestroy();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_ratio_tv:
-                InputDialog.show(
-                        calc,
-                        getString(R.string.button_side_ratio),
-                        InputDialog.INPUT_TIME_DECIMAL,
-                        txt -> {
-                            try {
-                                String[] arr = txt.split("[^\\d\\.]+");
-                                size = size.buildNew(true, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
-                                //size = calc.new ButtonSizePortrait(size.tw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]), size.mw, size.mrw, size.mrh);
-                                updateTextView1();
-                                setButtonsSize1();
-                            } catch (NumberFormatException e) {
-                                toastShort(getString(R.string.incorrect_expression));
-                            }
-                        },
-                        "1:1", "16:9", "16:10", "16:11", "16:12", "16:13", "16:14"
-                );
-                break;
-            case R.id.button_ratio_tv_2:
-                InputDialog.show(
-                        calc,
-                        getString(R.string.button_side_ratio),
-                        InputDialog.INPUT_TIME,
-                        txt -> {
-                            try {
-                                String[] arr = txt.split("[^\\d\\.]+");
-                                size = size.buildNew(false, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
-                                //size = calc.new ButtonSizePortrait(size.tw, size.trw, size.trh, size.mw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
-                                updateTextView2();
-                                setButtonsSize2();
-                            } catch (NumberFormatException e) {
-                                toastShort(getString(R.string.incorrect_expression));
-                            }
-                        },
-                        "1:1", "16:9", "16:10", "16:11", "16:12", "16:13", "16:14"
-                );
-                break;
-            case R.id.change_together:
-                together = checkBox.isChecked();
-                if (together) size = size.buildNew(size.mw); //size = calc.new ButtonSizePortrait(size.mw, size.trw, size.trh, size.mw, size.mrw, size.mrh);
-                updateSeekBar1();
-                setButtonsSize1();
-                break;
-            case R.id.btn_select_dialog_prev:
-                size = oldSize;
-                together = size.isSameWidth();
-                updateCheckBox();
-                updateTextView1();
-                updateSeekBar1();
-                updateTextView2();
-                updateSeekBar2();
-                setButtonsSize1();
-                setButtonsSize2();
-                break;
-            case R.id.btn_select_dialog_default:
-                size = new BtnSizePort(calc);
-                together = size.isSameWidth();
-                updateCheckBox();
-                updateTextView1();
-                updateSeekBar1();
-                updateTextView2();
-                updateSeekBar2();
-                setButtonsSize1();
-                setButtonsSize2();
-                break;
-            case R.id.btn_select_dialog_ok:
-                this.dismiss();
-                break;
+        int id = v.getId();
+        if (id == R.id.button_ratio_tv) {
+            InputDialog.show(
+                    calc,
+                    getString(R.string.button_side_ratio),
+                    InputDialog.INPUT_TIME_DECIMAL,
+                    txt -> {
+                        try {
+                            String[] arr = txt.split("[^\\d.]+");
+                            size = size.buildNew(true, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
+                            //size = calc.new ButtonSizePortrait(size.tw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]), size.mw, size.mrw, size.mrh);
+                            updateTextView1();
+                            setButtonsSize1();
+                        } catch (NumberFormatException e) {
+                            toastShort(getString(R.string.incorrect_expression));
+                        }
+                    },
+                    "1:1", "16:9", "16:10", "16:11", "16:12", "16:13", "16:14"
+            );
+        } else if (id == R.id.button_ratio_tv_2) {
+            InputDialog.show(
+                    calc,
+                    getString(R.string.button_side_ratio),
+                    InputDialog.INPUT_TIME,
+                    txt -> {
+                        try {
+                            String[] arr = txt.split("[^\\d.]+");
+                            size = size.buildNew(false, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
+                            //size = calc.new ButtonSizePortrait(size.tw, size.trw, size.trh, size.mw, Float.parseFloat(arr[0]), Float.parseFloat(arr[1]));
+                            updateTextView2();
+                            setButtonsSize2();
+                        } catch (NumberFormatException e) {
+                            toastShort(getString(R.string.incorrect_expression));
+                        }
+                    },
+                    "1:1", "16:9", "16:10", "16:11", "16:12", "16:13", "16:14"
+            );
+        } else if (id == R.id.change_together) {
+            together = checkBox.isChecked();
+            if (together)
+                size = size.buildNew(size.mw); //size = calc.new ButtonSizePortrait(size.mw, size.trw, size.trh, size.mw, size.mrw, size.mrh);
+            updateSeekBar1();
+            setButtonsSize1();
+        } else if (id == R.id.btn_select_dialog_prev) {
+            size = oldSize;
+            together = size.isSameWidth();
+            updateCheckBox();
+            updateTextView1();
+            updateSeekBar1();
+            updateTextView2();
+            updateSeekBar2();
+            setButtonsSize1();
+            setButtonsSize2();
+        } else if (id == R.id.btn_select_dialog_default) {
+            size = new BtnSizePort(calc);
+            together = size.isSameWidth();
+            updateCheckBox();
+            updateTextView1();
+            updateSeekBar1();
+            updateTextView2();
+            updateSeekBar2();
+            setButtonsSize1();
+            setButtonsSize2();
+        } else if (id == R.id.btn_select_dialog_ok) {
+            this.dismiss();
         }
     }
 
@@ -198,33 +193,31 @@ public class ButtonsSizePortDialog extends DialogFragment implements View.OnClic
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (fromUser) {
-            switch (seekBar.getId()){
-                case R.id.button_width_seekbar:
-                    if (together){
-                        size = size.buildNew(progress);
-                        //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, progress, size.mrw, size.mrh);
-                        seekBar2.setProgress(progress);
-                        setButtonsSize1();
-                        setButtonsSize2();
-                    } else {
-                        size = size.buildNew(true, progress);
-                        //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, size.mw, size.mrw, size.mrh);
-                        setButtonsSize1();
-                    }
-                    break;
-                case R.id.button_width_seekbar_2:
-                    if (together){
-                        size = size.buildNew(progress);
-                        //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, progress, size.mrw, size.mrh);
-                        seekBar1.setProgress(progress);
-                        setButtonsSize1();
-                        setButtonsSize2();
-                    } else {
-                        size = size.buildNew(false, progress);
-                        //size = calc.new ButtonSizePortrait(size.tw, size.trw, size.trh, progress, size.mrw, size.mrh);
-                        setButtonsSize2();
-                    }
-                    break;
+            int id = seekBar.getId();
+            if (id == R.id.button_width_seekbar) {
+                if (together) {
+                    size = size.buildNew(progress);
+                    //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, progress, size.mrw, size.mrh);
+                    seekBar2.setProgress(progress);
+                    setButtonsSize1();
+                    setButtonsSize2();
+                } else {
+                    size = size.buildNew(true, progress);
+                    //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, size.mw, size.mrw, size.mrh);
+                    setButtonsSize1();
+                }
+            } else if (id == R.id.button_width_seekbar_2) {
+                if (together) {
+                    size = size.buildNew(progress);
+                    //size = calc.new ButtonSizePortrait(progress, size.trw, size.trh, progress, size.mrw, size.mrh);
+                    seekBar1.setProgress(progress);
+                    setButtonsSize1();
+                    setButtonsSize2();
+                } else {
+                    size = size.buildNew(false, progress);
+                    //size = calc.new ButtonSizePortrait(size.tw, size.trw, size.trh, progress, size.mrw, size.mrh);
+                    setButtonsSize2();
+                }
             }
         }
     }
