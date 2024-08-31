@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -157,6 +158,7 @@ public class Calculator
         setTheme(themeManager.getStyleIdByName(theme));
 
         super.onCreate(savedInstanceState);
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
         binding = DataBindingUtil.setContentView(this, R.layout.calculator_1_drawer_layout);
 
@@ -419,10 +421,10 @@ public class Calculator
         viewModel.updateRadix(radix);
 
 
-        //реклама
+        // реклама
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) { }
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) { }
         });
 
 
@@ -487,9 +489,13 @@ public class Calculator
         if( (resultTextView2.getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
     }
 
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override public void handleOnBackPressed() {
+            onBack();
+        }
+    };
 
-    @Override
-    public void onBackPressed() {
+    private void onBack() {
         //  Navigation View
         /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -497,8 +503,6 @@ public class Calculator
         } else {
             super.onBackPressed();
         }*/
-
-        super.onBackPressed();
     }
 
 

@@ -9,6 +9,12 @@ android {
         versionCode 26
         versionName '1.8.4'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -24,8 +30,8 @@ android {
     productFlavors {
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         dataBinding = true
