@@ -543,35 +543,28 @@ public class Calculator
         // as you specify a parent activity in AndroidManifest.xml.
         //Log.d("MENU", "onOptionsItemSelected: "+item.getMenuInfo());
 
-        switch (item.getItemId()){
-            case R.id.menu_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                //startActivity(intent);
-                startActivityForResult(intent, REQUEST_CODE_SETTINGS);
-                break;
-            case R.id.menu_calc_on_the_go:
-                changeAutocalculationMode();
-                break;
-            case R.id.menu_second_field:
-                showSecondField();
-                break;
-            case R.id.menu_btn_dimens:
-                changeButtonsSize();
-                break;
-            case R.id.menu_clear_history:
-                showClearHistoryAlertDialog();
-                break;
-            case R.id.menu_help:
-                Intent intent1 = new Intent(this, HelpActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.theme_menu:
-                String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
-                SelectDialog.show(this, null, elems, pos -> {
-                    theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
-                    restartActivity();
-                });
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            //startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS);
+        } else if (itemId == R.id.menu_calc_on_the_go) {
+            changeAutocalculationMode();
+        } else if (itemId == R.id.menu_second_field) {
+            showSecondField();
+        } else if (itemId == R.id.menu_btn_dimens) {
+            changeButtonsSize();
+        } else if (itemId == R.id.menu_clear_history) {
+            showClearHistoryAlertDialog();
+        } else if (itemId == R.id.menu_help) {
+            Intent intent1 = new Intent(this, HelpActivity.class);
+            startActivity(intent1);
+        } else if (itemId == R.id.theme_menu) {
+            String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
+            SelectDialog.show(this, null, elems, pos -> {
+                theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
+                restartActivity();
+            });
         }
 
         return super.onOptionsItemSelected(item);
@@ -729,8 +722,15 @@ public class Calculator
     private void add_D(){addSymbols("D", 1);}
     private void add_F(){addSymbols("F", 1);}
 
+    private EditText getCurrentEditText() {
+        var view = getCurrentFocus();
+        var editText = expressionEditText1;
+        if (view instanceof EditText et) editText = et;
+        return editText;
+    }
+
     private void coverWithBracketsBeforeCursor(){
-        EditText editText = (EditText) getCurrentFocus();
+        var editText = getCurrentEditText();
         int start = editText.getSelectionStart();
         if(start == 0 || start != editText.getSelectionEnd()) return;
 
@@ -744,20 +744,31 @@ public class Calculator
 
 
     private void cursorToLeft(){
-        int index = ((EditText) getCurrentFocus()).getSelectionStart();
-        if(index!=0) ((EditText) getCurrentFocus()).setSelection(index-1);
+        var editText = getCurrentEditText();
+        int index = editText.getSelectionStart();
+        if (index != 0) editText.setSelection(index - 1);
     }
     private void cursorToRight(){
-        int index = ((EditText) getCurrentFocus()).getSelectionStart();
-        if (index!= ((EditText) getCurrentFocus()).length()) ((EditText) getCurrentFocus()).setSelection(index+1);
+        var editText = getCurrentEditText();
+        int index = editText.getSelectionStart();
+        if (index!= editText.length()) editText.setSelection(index + 1);
     }
-    private void cursorToStart(){((EditText) getCurrentFocus()).setSelection(0);}
-    private void cursorToEnd(){((EditText) getCurrentFocus()).setSelection(((EditText) getCurrentFocus()).length());}
+    private void cursorToStart(){
+        var editText = getCurrentEditText();
+        editText.setSelection(0);
+    }
+    private void cursorToEnd(){
+        var editText = getCurrentEditText();
+        editText.setSelection(editText.length());
+    }
 
-    private void deleteSymbolFrom1(){deleteSymbols(expressionEditText1);}
-    private void deleteSymbolFrom2(){deleteSymbols(expressionEditText2);}
+    private void deleteSymbolFrom1(){ deleteSymbols(expressionEditText1); }
+    private void deleteSymbolFrom2(){ deleteSymbols(expressionEditText2); }
 
-    private void clear(){((EditText) getCurrentFocus()).setText("");}
+    private void clear(){
+        var editText = getCurrentEditText();
+        editText.setText("");
+    }
     private void clearAll(){
         expressionEditText1.setText("");
         expressionEditText2.setText("");
@@ -766,7 +777,7 @@ public class Calculator
     }
 
     private void copyExpression(){
-        EditText editText = ((EditText) getCurrentFocus());
+        var editText = getCurrentEditText();
         int start = editText.getSelectionStart();
         int end = editText.getSelectionEnd();
         if (start==end){
@@ -846,9 +857,11 @@ public class Calculator
             Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
         }
 
-        switch (resultTextView.getId()){
-            case R.id.result_text_view_1: viewModel.updateResultTV1TextColor(true); break;
-            case R.id.result_text_view_2: viewModel.updateResultTV2TextColor(true); break;
+        int id = resultTextView.getId();
+        if (id == R.id.result_text_view_1) {
+            viewModel.updateResultTV1TextColor(true);
+        } else if (id == R.id.result_text_view_2) {
+            viewModel.updateResultTV2TextColor(true);
         }
         resultTextView.setText(result);
 
@@ -884,27 +897,22 @@ public class Calculator
         View.OnClickListener clickListener = new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.result0:
-                        clipboard.add((String)((TextView)resultLayout.findViewById(R.id.result0)).getText());
-                        Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.result1:
-                        clipboard.add((String)((TextView)resultLayout.findViewById(R.id.result1)).getText());
-                        Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.result2:
-                        clipboard.add((String)((TextView)resultLayout.findViewById(R.id.result2)).getText());
-                        Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.result3:
-                        clipboard.add((String)((TextView)resultLayout.findViewById(R.id.result3)).getText());
-                        Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.result4:
-                        clipboard.add((String)((TextView)resultLayout.findViewById(R.id.result4)).getText());
-                        Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
-                        break;
+                int id = view.getId();
+                if (id == R.id.result0) {
+                    clipboard.add((String) ((TextView) resultLayout.findViewById(R.id.result0)).getText());
+                    Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.result1) {
+                    clipboard.add((String) ((TextView) resultLayout.findViewById(R.id.result1)).getText());
+                    Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.result2) {
+                    clipboard.add((String) ((TextView) resultLayout.findViewById(R.id.result2)).getText());
+                    Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.result3) {
+                    clipboard.add((String) ((TextView) resultLayout.findViewById(R.id.result3)).getText());
+                    Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.result4) {
+                    clipboard.add((String) ((TextView) resultLayout.findViewById(R.id.result4)).getText());
+                    Toast.makeText(getApplicationContext(), R.string.copied, Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -1066,137 +1074,137 @@ public class Calculator
         editText.setTextKeepState(expression);
     }
 
-    class CoveringWithBrackets{
-    int selection = -1;
-    int origSelection = -1;
-    String origText = "";
-    String currentText = "";
-    int currentLevelCount = 0;
+    static class CoveringWithBrackets {
+        int selection = -1;
+        int origSelection = -1;
+        String origText = "";
+        String currentText = "";
+        int currentLevelCount = 0;
 
-    void coverWithBrackets(EditText editText){
-        int selStart = editText.getSelectionStart();
-        if (selStart != editText.getSelectionEnd()) return;
+        void coverWithBrackets(EditText editText){
+            int selStart = editText.getSelectionStart();
+            if (selStart != editText.getSelectionEnd()) return;
 
-        StringBuilder sb = new StringBuilder(editText.getText().toString());
+            StringBuilder sb = new StringBuilder(editText.getText().toString());
 
-        int levelUp = 0;
+            int levelUp = 0;
 
-        if (selection == selStart && sb.toString().equals(currentText)){
-            levelUp = currentLevelCount;
-            sb = new StringBuilder(origText);
-            selStart = origSelection;
-            currentText="";
-        } else{
-            currentLevelCount =0;
-            origText=sb.toString();
-            currentText="";
-            origSelection=selStart;
-        }
-
-        GetBrackets expr = new GetBrackets(sb.toString(), radix);
-
-        try {
-            List<GetBrackets.Bracket> list = expr.getBrackets();
-
-            /*{
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("----------\n");
-                for (int i = 0; i < list.size(); i++) {
-                    sb2.append(list.get(i).toString()+"\n");
-                }
-                sb2.append("----------\n");
-                Log.w("coverWithBrackets", sb2.toString());
-            }*/
-
-
-            for (int i = list.size()-1; i >=0 ; i--) {
-                if(list.get(i).pair==null || list.get(i).isReal) list.remove(i);
+            if (selection == selStart && sb.toString().equals(currentText)){
+                levelUp = currentLevelCount;
+                sb = new StringBuilder(origText);
+                selStart = origSelection;
+                currentText="";
+            } else{
+                currentLevelCount =0;
+                origText=sb.toString();
+                currentText="";
+                origSelection=selStart;
             }
 
+            GetBrackets expr = new GetBrackets(sb.toString(), radix);
+
+            try {
+                List<GetBrackets.Bracket> list = expr.getBrackets();
+
+                /*{
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append("----------\n");
+                    for (int i = 0; i < list.size(); i++) {
+                        sb2.append(list.get(i).toString()+"\n");
+                    }
+                    sb2.append("----------\n");
+                    Log.w("coverWithBrackets", sb2.toString());
+                }*/
 
 
-            /*{
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("----------\n");
-                for (int i = 0; i < list.size(); i++) {
-                    sb2.append(list.get(i).toString()+"\n");
+                for (int i = list.size()-1; i >=0 ; i--) {
+                    if(list.get(i).pair==null || list.get(i).isReal) list.remove(i);
                 }
-                sb2.append("----------\n");
-                Log.w("coverWithBrackets", sb2.toString());
-            }*/
 
 
-            for (int i = 0; i < list.size()-1; i++) {
-                if (list.get(i).isOpen && list.get(i+1).isOpen
-                        && list.get(i).pos == list.get(i+1).pos
-                        /*&& list.get(i).pair!=null && list.get(i+1).pair!=null*/
-                        && list.get(i).pair.pos == list.get(i+1).pair.pos){
-                    list.remove(list.get(i + 1).pair);
-                    list.remove(i+1);
+
+                /*{
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append("----------\n");
+                    for (int i = 0; i < list.size(); i++) {
+                        sb2.append(list.get(i).toString()+"\n");
+                    }
+                    sb2.append("----------\n");
+                    Log.w("coverWithBrackets", sb2.toString());
+                }*/
+
+
+                for (int i = 0; i < list.size()-1; i++) {
+                    if (list.get(i).isOpen && list.get(i+1).isOpen
+                            && list.get(i).pos == list.get(i+1).pos
+                            /*&& list.get(i).pair!=null && list.get(i+1).pair!=null*/
+                            && list.get(i).pair.pos == list.get(i+1).pair.pos){
+                        list.remove(list.get(i + 1).pair);
+                        list.remove(i+1);
+                    }
                 }
-            }
 
 
 
-            int start = -1;
-            int end = list.size();
-            int level = Integer.MIN_VALUE;
+                int start = -1;
+                int end = list.size();
+                int level = Integer.MIN_VALUE;
 
-            for (int i = start + 1; i < end; i++) {
-                if (list.get(i).isOpen && list.get(i).depth > level
-                        /*&& list.get(i).pair!=null*/
-                        && selStart >= list.get(i).pos && selStart <= list.get(i).pair.pos) {
-
-                    start = i;
-                    end = list.indexOf(list.get(start).pair);
-                    level = list.get(i).depth;
-                } else i = list.indexOf(list.get(i).pair);
-            }
-
-
-            while (levelUp>0 && start >0){
-                for (int i = start-1; i >= 0; i--) {
-                    if (list.get(i).isOpen && list.get(i).depth < level
+                for (int i = start + 1; i < end; i++) {
+                    if (list.get(i).isOpen && list.get(i).depth > level
                             /*&& list.get(i).pair!=null*/
-                            && list.indexOf(list.get(i).pair)>end) {
+                            && selStart >= list.get(i).pos && selStart <= list.get(i).pair.pos) {
 
                         start = i;
+                        end = list.indexOf(list.get(start).pair);
                         level = list.get(i).depth;
-                        levelUp--;
-                        end = list.indexOf(list.get(i).pair);
-                        break;
-                    }
-                    /*if (i==0) break loop;*/
+                    } else i = list.indexOf(list.get(i).pair);
                 }
-            }
 
 
-            if (levelUp>0 && list.get(start).depth <=0){
+                while (levelUp>0 && start >0){
+                    for (int i = start-1; i >= 0; i--) {
+                        if (list.get(i).isOpen && list.get(i).depth < level
+                                /*&& list.get(i).pair!=null*/
+                                && list.indexOf(list.get(i).pair)>end) {
+
+                            start = i;
+                            level = list.get(i).depth;
+                            levelUp--;
+                            end = list.indexOf(list.get(i).pair);
+                            break;
+                        }
+                        /*if (i==0) break loop;*/
+                    }
+                }
+
+
+                if (levelUp > 0 && list.get(start).depth <= 0){
+                    editText.setText(sb.toString());
+                    editText.setSelection(origSelection);
+                    currentLevelCount = 0;
+                    selection = origSelection;
+                    currentText = sb.toString();
+                    return;
+                }
+
+                sb.insert(list.get(end).pos, ")");
+                sb.insert(list.get(start).pos, "(");
                 editText.setText(sb.toString());
-                editText.setSelection(origSelection);
-                currentLevelCount=0;
-                selection=origSelection;
+                editText.setSelection(list.get(end).pos+1);
+
+                currentLevelCount++;
+                selection=list.get(end).pos+1;
                 currentText=sb.toString();
-                return;
-            }
+            } catch (Exception e) {/*e.printStackTrace();*/}
+        }
 
-            sb.insert(list.get(end).pos, ")");
-            sb.insert(list.get(start).pos, "(");
-            editText.setText(sb.toString());
-            editText.setSelection(list.get(end).pos+1);
-
-            currentLevelCount++;
-            selection=list.get(end).pos+1;
-            currentText=sb.toString();
-        } catch (Exception e) {/*e.printStackTrace();*/}
     }
 
-}
 
 
 
-
-    class ChangingSing{
+    static class ChangingSing {
 
         void changeSign(EditText editText){
             int selStart = editText.getSelectionStart();
@@ -1349,7 +1357,8 @@ public class Calculator
 
 
     private int[] extractWidthHeight() throws Exception{
-        String[] dimens = ((EditText)getCurrentFocus()).getText().toString().split("[\\*×]");
+        var editText = getCurrentEditText();
+        String[] dimens = editText.getText().toString().split("[\\*×]");
         if (dimens.length==1) dimens = new String[]{dimens[0], ""};
         return new int[] {
                 dimens[0].isEmpty() ? -1 : Integer.parseInt(dimens[0]), //-1 если параметр не введён
@@ -1468,7 +1477,7 @@ public class Calculator
 
 
     static class UndoManager{
-        private List<Entry> stack = new LinkedList<>();
+        private final List<Entry> stack = new LinkedList<>();
         int targetSize;
         private int position = -1;
         boolean alreadyChanged = false;
@@ -1496,7 +1505,7 @@ public class Calculator
         }
 
         private void undo(EditText editText){
-            if (stack.size()>0 && position >0) {
+            if (!stack.isEmpty() && position >0) {
                 alreadyChanged = true;
                 position--;
                 try {
@@ -1534,7 +1543,7 @@ public class Calculator
 
 
         Entry getLast(){
-            if (stack.size()>0 && position >=0){
+            if (!stack.isEmpty() && position >=0){
                 return stack.get(position);
             }else return null;
         }
@@ -1566,112 +1575,166 @@ public class Calculator
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         v.startAnimation(animAlpha);
 
-        switch (v.getId()){
-            case R.id.btn_cursor_to_start: cursorToStart(); break;
-            case R.id.btn_cursor_to_left: cursorToLeft(); break;
-            case R.id.btn_cursor_to_right: cursorToRight(); break;
-            case R.id.btn_cursor_to_end: cursorToEnd(); break;
-            case R.id.btn_clear: clear(); break;
-            case R.id.btn_copy: copyExpression(); break;
-            case R.id.btn_paste: pasteExpression(); break;
-            case R.id.btn_undo:
-                if(getCurrentFocus()==expressionEditText1){
-                    undoManager1.undo(expressionEditText1);
-                }else if(getCurrentFocus()==expressionEditText2){
-                    undoManager2.undo(expressionEditText2);
-                }
-                break;
-            case R.id.btn_redo:
-                if(getCurrentFocus()==expressionEditText1){
-                    undoManager1.redo(expressionEditText1);
-                }else if(getCurrentFocus()==expressionEditText2){
-                    undoManager2.redo(expressionEditText2);
-                }
-                break;
-            case R.id.btn_kbd: ViewUtil.showHideKbd(this); break;
-            case R.id.btn_coverWithBrackets: coveringWithBrackets.coverWithBrackets((EditText)getCurrentFocus()); break;
-            case R.id.btn_changeSign: changingSign.changeSign((EditText)getCurrentFocus()); break;
+        var editText = getCurrentEditText();
 
-            case R.id.btn_A_hex: add_A(); break;
-
-            case R.id.btn_left_parenthesis: add_left_parenthesis(); break;
-            case R.id.btn_right_parenthesis: add_right_parenthesis(); break;
-            case R.id.btn_parentheses: add_parentheses(); break;
-            case R.id.btn_power: add_pow(); break;
-            case R.id.btn_square: add_square(); break;
-            case R.id.btn_sin: add_sin(); break;
+        int id = v.getId();
+        if (id == R.id.btn_cursor_to_start) {
+            cursorToStart();
+        } else if (id == R.id.btn_cursor_to_left) {
+            cursorToLeft();
+        } else if (id == R.id.btn_cursor_to_right) {
+            cursorToRight();
+        } else if (id == R.id.btn_cursor_to_end) {
+            cursorToEnd();
+        } else if (id == R.id.btn_clear) {
+            clear();
+        } else if (id == R.id.btn_copy) {
+            copyExpression();
+        } else if (id == R.id.btn_paste) {
+            pasteExpression();
+        } else if (id == R.id.btn_undo) {
+            if (getCurrentFocus() == expressionEditText1) {
+                undoManager1.undo(expressionEditText1);
+            } else if (getCurrentFocus() == expressionEditText2) {
+                undoManager2.undo(expressionEditText2);
+            }
+        } else if (id == R.id.btn_redo) {
+            if (getCurrentFocus() == expressionEditText1) {
+                undoManager1.redo(expressionEditText1);
+            } else if (getCurrentFocus() == expressionEditText2) {
+                undoManager2.redo(expressionEditText2);
+            }
+        } else if (id == R.id.btn_kbd) {
+            ViewUtil.showHideKbd(this);
+        } else if (id == R.id.btn_coverWithBrackets) {
+            coveringWithBrackets.coverWithBrackets(editText);
+        } else if (id == R.id.btn_changeSign) {
+            changingSign.changeSign(editText);
+        } else if (id == R.id.btn_A_hex) {
+            add_A();
+        } else if (id == R.id.btn_left_parenthesis) {
+            add_left_parenthesis();
+        } else if (id == R.id.btn_right_parenthesis) {
+            add_right_parenthesis();
+        } else if (id == R.id.btn_parentheses) {
+            add_parentheses();
+        } else if (id == R.id.btn_power) {
+            add_pow();
+        } else if (id == R.id.btn_square) {
+            add_square();
+        } else if (id == R.id.btn_sin) {
+            add_sin();
             //case R.id.btn_log: add_log(); break;
             //case R.id.btn_quad: add_quad(); break;
             /*case R.id.BtnRow2Pos9: (); break;*/
-            case R.id.btn_sh: add_sh(); break;
-            case R.id.btn_bin: add_bin(); break;
-            case R.id.btn_B_hex: add_B(); break;
-
-            case R.id.btn_1: add_1(); break;
-            case R.id.btn_2: add_2(); break;
-            case R.id.btn_3: add_3(); break;
-            case R.id.btn_plus: add_plus(); break;
+        } else if (id == R.id.btn_sh) {
+            add_sh();
+        } else if (id == R.id.btn_bin) {
+            add_bin();
+        } else if (id == R.id.btn_B_hex) {
+            add_B();
+        } else if (id == R.id.btn_1) {
+            add_1();
+        } else if (id == R.id.btn_2) {
+            add_2();
+        } else if (id == R.id.btn_3) {
+            add_3();
+        } else if (id == R.id.btn_plus) {
+            add_plus();
             //case R.id.btn_cube: add_cube(); break;
-            case R.id.btn_cos: add_cos(); break;
-            case R.id.btn_ln: add_ln(); break;
+        } else if (id == R.id.btn_cos) {
+            add_cos();
+        } else if (id == R.id.btn_ln) {
+            add_ln();
             //case R.id.btn_quad_root: add_quad_root(); break;
             /*case R.id.BtnRow3Pos9: (); break;*/
-            case R.id.btn_ch: add_ch(); break;
-            case R.id.btn_oct: add_oct(); break;
-            case R.id.btn_C_hex: add_C(); break;
-
-            case R.id.btn_4: add_4(); break;
-            case R.id.btn_5: add_5(); break;
-            case R.id.btn_6: add_6(); break;
-            case R.id.btn_minus: add_minus(); break;
-            case R.id.btn_sqrt: add_sqrt(); break;
-            case R.id.btn_tg: add_tg(); break;
+        } else if (id == R.id.btn_ch) {
+            add_ch();
+        } else if (id == R.id.btn_oct) {
+            add_oct();
+        } else if (id == R.id.btn_C_hex) {
+            add_C();
+        } else if (id == R.id.btn_4) {
+            add_4();
+        } else if (id == R.id.btn_5) {
+            add_5();
+        } else if (id == R.id.btn_6) {
+            add_6();
+        } else if (id == R.id.btn_minus) {
+            add_minus();
+        } else if (id == R.id.btn_sqrt) {
+            add_sqrt();
+        } else if (id == R.id.btn_tg) {
+            add_tg();
             /*case R.id.btn_lg: add_lg(); break;*/
-            case R.id.btn_angle_degree: add_angle_degree(); break;
+        } else if (id == R.id.btn_angle_degree) {
+            add_angle_degree();
             /*case R.id.BtnRow4Pos9: (); break;*/
-            case R.id.btn_th: add_th(); break;
-            case R.id.btn_dec: add_dec(); break;
-            case R.id.btn_D_hex: add_D(); break;
-
-            case R.id.btn_7: add_7(); break;
-            case R.id.btn_8: add_8(); break;
-            case R.id.btn_9: add_9(); break;
-            case R.id.btn_mult: add_mult(); break;
+        } else if (id == R.id.btn_th) {
+            add_th();
+        } else if (id == R.id.btn_dec) {
+            add_dec();
+        } else if (id == R.id.btn_D_hex) {
+            add_D();
+        } else if (id == R.id.btn_7) {
+            add_7();
+        } else if (id == R.id.btn_8) {
+            add_8();
+        } else if (id == R.id.btn_9) {
+            add_9();
+        } else if (id == R.id.btn_mult) {
+            add_mult();
             //case R.id.btn_cbrt: add_cbrt(); break;
             //case R.id.btn_ctg: add_ctg(); break;
             /*case R.id.btn_lb: add_lb(); break;*/
-            case R.id.btn_percent: add_percent(); break;
-            case R.id.btn_inv: add_inv(); break;
+        } else if (id == R.id.btn_percent) {
+            add_percent();
+        } else if (id == R.id.btn_inv) {
+            add_inv();
             //case R.id.btn_cth: add_cth(); break;
-            case R.id.btn_hex: add_hex(); break;
-            case R.id.btn_Exp: add_E(); break;
-
-            case R.id.btn_E_hex: add_E(); break;
-            case R.id.btn_zero: add_0(); break;
-            case R.id.btn_point: add_point(); break;
-            case R.id.btn_div: add_div(); break;
-            case R.id.btn_factorial: add_factorial(); break;
-            case R.id.btn_pi: add_pi(); break;
-            case R.id.btn_e: add_e(); break;
+        } else if (id == R.id.btn_hex) {
+            add_hex();
+        } else if (id == R.id.btn_Exp) {
+            add_E();
+        } else if (id == R.id.btn_E_hex) {
+            add_E();
+        } else if (id == R.id.btn_zero) {
+            add_0();
+        } else if (id == R.id.btn_point) {
+            add_point();
+        } else if (id == R.id.btn_div) {
+            add_div();
+        } else if (id == R.id.btn_factorial) {
+            add_factorial();
+        } else if (id == R.id.btn_pi) {
+            add_pi();
+        } else if (id == R.id.btn_e) {
+            add_e();
             //case R.id.btn_infinity: add_infinity(); break;
-            case R.id.btn_abs: add_abs(); break;
+        } else if (id == R.id.btn_abs) {
+            add_abs();
             //case R.id.btn_signum: add_sgn(); break;
             /*case R.id.btn_set_radix: setRadix(); break;*/
-            case R.id.btn_F_hex: add_F(); break;
-
-
-            case R.id.btn_angle_unit: changeAngleUnit(); break;
-            case R.id.btn_radix: changeRadix(); break;
-
-            case R.id.result_text_view_1: toClipboardFromResultTextView1(); break;
-            case R.id.btn_delete_from_1: deleteSymbolFrom1(); break;
-            case R.id.btn_equals_from_1: calculateResultByButtonFrom1(); break;
-            case R.id.result_text_view_2: toClipboardFromResultTextView2(); break;
-            case R.id.btn_delete_from_2: deleteSymbolFrom2(); break;
-            case R.id.btn_equals_from_2: calculateResultByButtonFrom2(); break;
-
-
-            case R.id.test_btn: test(); break;
+        } else if (id == R.id.btn_F_hex) {
+            add_F();
+        } else if (id == R.id.btn_angle_unit) {
+            changeAngleUnit();
+        } else if (id == R.id.btn_radix) {
+            changeRadix();
+        } else if (id == R.id.result_text_view_1) {
+            toClipboardFromResultTextView1();
+        } else if (id == R.id.btn_delete_from_1) {
+            deleteSymbolFrom1();
+        } else if (id == R.id.btn_equals_from_1) {
+            calculateResultByButtonFrom1();
+        } else if (id == R.id.result_text_view_2) {
+            toClipboardFromResultTextView2();
+        } else if (id == R.id.btn_delete_from_2) {
+            deleteSymbolFrom2();
+        } else if (id == R.id.btn_equals_from_2) {
+            calculateResultByButtonFrom2();
+        } else if (id == R.id.test_btn) {
+            test();
         }
     }
 
@@ -1679,49 +1742,60 @@ public class Calculator
 
     @Override
     public boolean onLongClick(View view) {
-        switch (view.getId()){
-            case R.id.result_text_view_1:
-                try {prepareAndShowResultAlertDialog(resultTextView1.getText().toString());
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
-                    /*e.printStackTrace();*/
-                } break;
-
-            case R.id.result_text_view_2:
-                try { prepareAndShowResultAlertDialog(resultTextView2.getText().toString());
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
-                    /*e.printStackTrace();*/
-                } break;
-
-            case R.id.btn_delete_from_1:
-            case R.id.btn_delete_from_2:
-                new Thread(runnable).start();
-                break;
-
-            case R.id.btn_clear: clearAll(); break;
-            case R.id.btn_left_parenthesis: add_left_square_bracket();  break;
-            case R.id.btn_right_parenthesis: add_right_square_bracket(); break;
-            case R.id.btn_parentheses: add_square_brackets(); break;
+        int id = view.getId();
+        if (id == R.id.result_text_view_1) {
+            try {
+                prepareAndShowResultAlertDialog(resultTextView1.getText().toString());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
+                /*e.printStackTrace();*/
+            }
+        } else if (id == R.id.result_text_view_2) {
+            try {
+                prepareAndShowResultAlertDialog(resultTextView2.getText().toString());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
+                /*e.printStackTrace();*/
+            }
+        } else if (id == R.id.btn_delete_from_1 || id == R.id.btn_delete_from_2) {
+            new Thread(runnable).start();
+        } else if (id == R.id.btn_clear) {
+            clearAll();
+        } else if (id == R.id.btn_left_parenthesis) {
+            add_left_square_bracket();
+        } else if (id == R.id.btn_right_parenthesis) {
+            add_right_square_bracket();
+        } else if (id == R.id.btn_parentheses) {
+            add_square_brackets();
             //case R.id.btn_square: add_quad(); break;
             //case R.id.btn_sqrt: add_quad_root(); break;
-            case R.id.btn_zero: add_three_zeros(); break;
-            case R.id.btn_sin: add_arcsin(); break;
-            case R.id.btn_cos: add_arccos(); break;
-            case R.id.btn_tg: add_arctg(); break;
+        } else if (id == R.id.btn_zero) {
+            add_three_zeros();
+        } else if (id == R.id.btn_sin) {
+            add_arcsin();
+        } else if (id == R.id.btn_cos) {
+            add_arccos();
+        } else if (id == R.id.btn_tg) {
+            add_arctg();
             //case R.id.btn_ctg: add_arcctg(); break;
-            case R.id.btn_sh: add_arsh(); break;
-            case R.id.btn_ch: add_arch(); break;
-            case R.id.btn_th: add_arth(); break;
-            case R.id.btn_pi: add_infinity(); break;
-            case R.id.btn_abs: add_sgn(); break;
+        } else if (id == R.id.btn_sh) {
+            add_arsh();
+        } else if (id == R.id.btn_ch) {
+            add_arch();
+        } else if (id == R.id.btn_th) {
+            add_arth();
+        } else if (id == R.id.btn_pi) {
+            add_infinity();
+        } else if (id == R.id.btn_abs) {
+            add_sgn();
             //case R.id.btn_cth: add_arcth(); break;
             //case R.id.btn_log: add_lb(); break;
-            case R.id.btn_ln: add_lg(); break;
-            case R.id.btn_coverWithBrackets: coverWithBracketsBeforeCursor(); break;
-
-
-            case R.id.btn_radix: setRadix(); break;
+        } else if (id == R.id.btn_ln) {
+            add_lg();
+        } else if (id == R.id.btn_coverWithBrackets) {
+            coverWithBracketsBeforeCursor();
+        } else if (id == R.id.btn_radix) {
+            setRadix();
         }
         return true;
     }
@@ -1825,39 +1899,35 @@ public class Calculator
 
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.expr:
-                        addSymbols(
-                                entries.get(this.getAdapterPosition()).getExpression(),
-                                entries.get(this.getAdapterPosition()).getExpression().length()
-                        );
-                        break;
-                    case R.id.result:
-                        addSymbols(
-                                entries.get(this.getAdapterPosition()).getResult(),
-                                entries.get(this.getAdapterPosition()).getResult().length()
-                        );
-                        break;
-                    case R.id.delete_btn:
-                        historyManager.delete(entries.get(this.getAdapterPosition()));
-                        break;
-                    case R.id.copy_all:
-                        String s = entries.get(this.getAdapterPosition()).getExpression() +
-                                " = " +
-                                entries.get(this.getAdapterPosition()).getResult();
-                        clipboard.add(s);
-                        toastShort(getString(R.string.copied)+": \""+s+"\"");
-                        break;
-                    case R.id.copy_r:
-                        s = entries.get(this.getAdapterPosition()).getResult();
-                        clipboard.add(s);
-                        toastShort(getString(R.string.result_was_copied)+": \""+s+"\"");
-                        break;
-                    case R.id.copy_e:
-                        s = entries.get(this.getAdapterPosition()).getExpression();
-                        clipboard.add(s);
-                        toastShort(getString(R.string.expression_was_copied)+": \""+s+"\"");
-                        break;
+                int id = v.getId();
+                if (id == R.id.expr) {
+                    addSymbols(
+                            entries.get(this.getAdapterPosition()).getExpression(),
+                            entries.get(this.getAdapterPosition()).getExpression().length()
+                    );
+                } else if (id == R.id.result) {
+                    addSymbols(
+                            entries.get(this.getAdapterPosition()).getResult(),
+                            entries.get(this.getAdapterPosition()).getResult().length()
+                    );
+                } else if (id == R.id.delete_btn) {
+                    historyManager.delete(entries.get(this.getAdapterPosition()));
+                } else if (id == R.id.copy_all) {
+                    String s = entries.get(this.getAdapterPosition()).getExpression() +
+                            " = " +
+                            entries.get(this.getAdapterPosition()).getResult();
+                    clipboard.add(s);
+                    toastShort(getString(R.string.copied) + ": \"" + s + "\"");
+                } else if (id == R.id.copy_r) {
+                    String s;
+                    s = entries.get(this.getAdapterPosition()).getResult();
+                    clipboard.add(s);
+                    toastShort(getString(R.string.result_was_copied) + ": \"" + s + "\"");
+                } else if (id == R.id.copy_e) {
+                    String s;
+                    s = entries.get(this.getAdapterPosition()).getExpression();
+                    clipboard.add(s);
+                    toastShort(getString(R.string.expression_was_copied) + ": \"" + s + "\"");
                 }
             }
         }
@@ -1923,10 +1993,10 @@ public class Calculator
                     isGestureSelectionViewShowing = false;
                     moved = false;
                     int scrollX0 = ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).getScrollX();
-                    float touchX0 = view.getX()-scrollX0+x;
+                    float touchX0 = view.getX() - scrollX0 + x;
                     downX = touchX0;
 
-                    t = new Thread(()->{
+                    t = new Thread(() -> {
                         try { Thread.sleep(HALF_LONG_CLICK_THRESHOLD); } catch (InterruptedException e) { return; }
                         runOnUiThread(()->{
                             ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).requestDisallowInterceptTouchEvent(true);
@@ -1936,13 +2006,19 @@ public class Calculator
                             float touchX = viewX+x;
                             ConstraintLayout constraintLayout = findViewById(R.id.calculator_content);
                             String[] variants;
-                            switch (view.getId()){
-                                case R.id.btn_tg: variants = new String[]{"arctg", "ctg", "arcctg"}; break;
-                                case R.id.btn_ln: variants = new String[]{"lg", "log", "lb"}; break;
-                                case R.id.btn_square: variants = new String[]{"3", "4"}; break;
-                                case R.id.btn_th: variants = new String[]{"arth", "cth", "arcth"}; break;
-                                case R.id.btn_sqrt: variants = new String[]{getString(R.string.cubeRoot), getString(R.string.quadRoot)}; break;
-                                default: variants = new String[0]; break;
+                            int id = view.getId();
+                            if (id == R.id.btn_tg) {
+                                variants = new String[]{"arctg", "ctg", "arcctg"};
+                            } else if (id == R.id.btn_ln) {
+                                variants = new String[]{"lg", "log", "lb"};
+                            } else if (id == R.id.btn_square) {
+                                variants = new String[]{"3", "4"};
+                            } else if (id == R.id.btn_th) {
+                                variants = new String[]{"arth", "cth", "arcth"};
+                            } else if (id == R.id.btn_sqrt) {
+                                variants = new String[]{getString(R.string.cubeRoot), getString(R.string.quadRoot)};
+                            } else {
+                                variants = new String[0];
                             }
                             gestureSelectionView.create(touchX, viewX, constraintLayout.getWidth(), variants);
                             LinearLayout testLayout = gestureSelectionView.getRoot();
@@ -1996,40 +2072,61 @@ public class Calculator
                     if (t!=null) t.interrupt();
                     if (gestureSelectionView!=null){
                         ConstraintLayout root = findViewById(R.id.calculator_content);
-                        switch (view.getId()){
-                            case R.id.btn_tg:
-                                switch (gestureSelectionView.getSelectedIdx()){
-                                    case 0: add_arctg(); break;
-                                    case 1: add_ctg(); break;
-                                    case 2: add_arcctg(); break;
-                                }
-                                break;
-                            case R.id.btn_ln:
-                                switch (gestureSelectionView.getSelectedIdx()){
-                                    case 0: add_lg(); break;
-                                    case 1: add_log(); break;
-                                    case 2: add_lb(); break;
-                                }
-                                break;
-                            case R.id.btn_square:
-                                switch (gestureSelectionView.getSelectedIdx()){
-                                    case 0: add_cube(); break;
-                                    case 1: add_quad(); break;
-                                }
-                                break;
-                            case R.id.btn_sqrt:
-                                switch (gestureSelectionView.getSelectedIdx()){
-                                    case 0: add_cbrt(); break;
-                                    case 1: add_quad_root(); break;
-                                }
-                                break;
-                            case R.id.btn_th:
-                                switch (gestureSelectionView.getSelectedIdx()){
-                                    case 0: add_arth(); break;
-                                    case 1: add_cth(); break;
-                                    case 2: add_arcth(); break;
-                                }
-                                break;
+                        int id = view.getId();
+                        if (id == R.id.btn_tg) {
+                            switch (gestureSelectionView.getSelectedIdx()) {
+                                case 0:
+                                    add_arctg();
+                                    break;
+                                case 1:
+                                    add_ctg();
+                                    break;
+                                case 2:
+                                    add_arcctg();
+                                    break;
+                            }
+                        } else if (id == R.id.btn_ln) {
+                            switch (gestureSelectionView.getSelectedIdx()) {
+                                case 0:
+                                    add_lg();
+                                    break;
+                                case 1:
+                                    add_log();
+                                    break;
+                                case 2:
+                                    add_lb();
+                                    break;
+                            }
+                        } else if (id == R.id.btn_square) {
+                            switch (gestureSelectionView.getSelectedIdx()) {
+                                case 0:
+                                    add_cube();
+                                    break;
+                                case 1:
+                                    add_quad();
+                                    break;
+                            }
+                        } else if (id == R.id.btn_sqrt) {
+                            switch (gestureSelectionView.getSelectedIdx()) {
+                                case 0:
+                                    add_cbrt();
+                                    break;
+                                case 1:
+                                    add_quad_root();
+                                    break;
+                            }
+                        } else if (id == R.id.btn_th) {
+                            switch (gestureSelectionView.getSelectedIdx()) {
+                                case 0:
+                                    add_arth();
+                                    break;
+                                case 1:
+                                    add_cth();
+                                    break;
+                                case 2:
+                                    add_arcth();
+                                    break;
+                            }
                         }
 
                         root.removeView(findViewById(R.id.gesture_selection_layout));
@@ -2039,6 +2136,7 @@ public class Calculator
             }
 
 
+            view.performClick();
             return true;
         }
     }
