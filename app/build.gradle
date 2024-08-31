@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 31
-    buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.rrain.calculator4"
+        compileSdk 35 // old buildToolsVersion
         minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 25
-        versionName '1.8.3'
+        targetSdkVersion 34
+        versionCode 26
+        versionName '1.8.4'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -37,19 +36,19 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'com.google.android.gms:play-services-ads:20.4.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.gms:play-services-ads:23.3.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     //lombok - аннотации Getter Setter
-    implementation 'org.projectlombok:lombok:1.18.22' //не трогать, доложно быть implementation
+    annotationProcessor 'org.projectlombok:lombok:1.18.22' //не трогать, доложно быть implementation
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     //похож на css flex
