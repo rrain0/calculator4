@@ -273,14 +273,14 @@ public class SettingsManager {
     }
 
     public int getExpression1SelStart(){
-        return sharedPreferences.getInt(SETTINGS_EXPRESSION1_SEL_START, 0); // TODO: 22.08.2020  expressionEditText1.getText().length()
+        return sharedPreferences.getInt(SETTINGS_EXPRESSION1_SEL_START, 0); // TODO: 22.08.2020  getExpressionEditText1().getText().length()
     }
     public void setExpression1SelStart(SharedPreferences.Editor editor, int sel){
         editor.putInt(SETTINGS_EXPRESSION1_SEL_START, sel);
     }
 
     public int getExpression1SelEnd(){
-        return sharedPreferences.getInt(SETTINGS_EXPRESSION1_SEL_END, 0); // TODO: 22.08.2020  expressionEditText1.getText().length()
+        return sharedPreferences.getInt(SETTINGS_EXPRESSION1_SEL_END, 0); // TODO: 22.08.2020  getExpressionEditText1().getText().length()
     }
     public void setExpression1SelEnd(SharedPreferences.Editor editor, int sel){
         editor.putInt(SETTINGS_EXPRESSION1_SEL_END, sel);
@@ -308,14 +308,14 @@ public class SettingsManager {
     }
 
     public int getExpression2SelStart(){
-        return sharedPreferences.getInt(SETTINGS_EXPRESSION2_SEL_START, 0); // TODO: 22.08.2020  expressionEditText2.getText().length()
+        return sharedPreferences.getInt(SETTINGS_EXPRESSION2_SEL_START, 0); // TODO: 22.08.2020  getExpressionEditText2().getText().length()
     }
     public void setExpression2SelStart(SharedPreferences.Editor editor, int sel){
         editor.putInt(SETTINGS_EXPRESSION2_SEL_START, sel);
     }
 
     public int getExpression2SelEnd(){
-        return sharedPreferences.getInt(SETTINGS_EXPRESSION2_SEL_END, 0); // TODO: 22.08.2020  expressionEditText2.getText().length()
+        return sharedPreferences.getInt(SETTINGS_EXPRESSION2_SEL_END, 0); // TODO: 22.08.2020  getExpressionEditText2().getText().length()
     }
     public void setExpression2SelEnd(SharedPreferences.Editor editor, int sel){
         editor.putInt(SETTINGS_EXPRESSION2_SEL_END, sel);

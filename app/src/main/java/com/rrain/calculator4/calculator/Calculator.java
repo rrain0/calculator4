@@ -105,7 +105,7 @@ public class Calculator
     public static boolean enableAutocalculation;
     public static boolean enableRounding;
     public static int roundingPrecision;
-    public static int numberFormat; //0 обычный   1 научный   3 инженерный
+    public static int numberFormat; // 0 обычный  1 научный  3 инженерный
     public static String digitSeparator;
     public static boolean enableAutodeleteOfHistory;
     public static int historyLimit;
@@ -113,8 +113,8 @@ public class Calculator
     public static boolean enableSecondField;
     public static boolean enableSavingByEquals;
     public static String theme;
-    public static int angleUnit;//0_rad  1_deg
-    public static int radix;//2_bin    8_oct   10_dec  16_hex
+    public static int angleUnit; // 0_rad  1_deg
+    public static int radix; // 2_bin  8_oct  10_dec  16_hex
     static ArrayList<Integer> bracketColors1 = new ArrayList<>();
 
     //static boolean doRestart = false;
@@ -122,18 +122,18 @@ public class Calculator
 
     private ViewModel viewModel;
 
-
-    private EditText expressionEditText1;
+    private EditText getExpressionEditText1() { return findViewById(R.id.expression_edit_text_1); }
     private boolean alreadyChanged1 = false;
     public static UndoManager undoManager1 = new UndoManager(100);
-    private TextView resultTextView1;
-    private TextView infoTextView1;
+    private TextView getResultTextView1() { return findViewById(R.id.result_text_view_1); }
+    private TextView getInfoTextView1() { return findViewById(R.id.info_text_view_1); }
 
-    private  EditText expressionEditText2;
+
+    private EditText getExpressionEditText2() { return findViewById(R.id.expression_edit_text_2); }
     private boolean alreadyChanged2 = false;
     public static UndoManager undoManager2 = new UndoManager(100);
-    private TextView resultTextView2;
-    private TextView infoTextView2;
+    private TextView getResultTextView2() { return findViewById(R.id.result_text_view_2); }
+    private TextView getInfoTextView2() { return findViewById(R.id.info_text_view_2); }
 
 
     CoveringWithBrackets coveringWithBrackets = new CoveringWithBrackets();
@@ -166,7 +166,7 @@ public class Calculator
         binding = DataBindingUtil.setContentView(this, R.layout.calculator_1_drawer_layout);
 
         Toolbar toolbar = findViewById(R.id.calculator_toolbar);
-        //использовать тулбар как экш бар, где располагаются кнопки меню и др системные элементы
+        // использовать тулбар как экшон бар, где располагаются кнопки меню и др. системные элементы
         setSupportActionBar(toolbar);
 
 
@@ -184,11 +184,11 @@ public class Calculator
         for (int i = 0; i < ta.length(); i++) bracketColors1.add(ta.getColor(i, Color.BLACK));
 
 
-        ////История
-        RecyclerView historyRecyclerView = (RecyclerView)findViewById(R.id.history_recycler_view);//находим RecyclerView
+        //// История
+        RecyclerView historyRecyclerView = (RecyclerView)findViewById(R.id.history_recycler_view); // находим RecyclerView
         binding.setBottomSheetHeight(DisplayManager.getHeight(this) * 3f/5f);
-        HistoryRecyclerAdapter historyAdapter = new HistoryRecyclerAdapter(Collections.EMPTY_LIST);// создаем адаптер
-        historyRecyclerView.setAdapter(historyAdapter);// устанавливаем для списка адаптер
+        HistoryRecyclerAdapter historyAdapter = new HistoryRecyclerAdapter(Collections.EMPTY_LIST); // создаем адаптер
+        historyRecyclerView.setAdapter(historyAdapter); // устанавливаем для списка адаптер
         historyLive.observe(this, historyAdapter::updateContainer);
 
 
@@ -211,22 +211,14 @@ public class Calculator
         navigationView.setNavigationItemSelectedListener(this);*/
 
 
-        Button angleUnitButton = (Button) findViewById(R.id.btn_angle_unit);
-        Button radixBtn = (Button) findViewById(R.id.btn_radix);
+        Button angleUnitButton = findViewById(R.id.btn_angle_unit);
+        Button radixBtn = findViewById(R.id.btn_radix);
 
-        expressionEditText1 = (EditText)findViewById(R.id.expression_edit_text_1);
-        resultTextView1 = (TextView)findViewById(R.id.result_text_view_1);
-        infoTextView1 = (TextView)findViewById(R.id.info_text_view_1);
-
-        expressionEditText2 = (EditText)findViewById(R.id.expression_edit_text_2);
-        resultTextView2 = (TextView)findViewById(R.id.result_text_view_2);
-        infoTextView2 = (TextView)findViewById(R.id.info_text_view_2);
-
-        ViewUtil.showKeyboardOnFocus(false, expressionEditText1);
-        ViewUtil.showKeyboardOnFocus(false, expressionEditText2);
+        ViewUtil.showKeyboardOnFocus(false, getExpressionEditText1());
+        ViewUtil.showKeyboardOnFocus(false, getExpressionEditText2());
 
 
-        expressionEditText1.addTextChangedListener(new TextWatcher() {
+        getExpressionEditText1().addTextChangedListener(new TextWatcher() {
 
             /**
              * This method is called to notify you that, within <code>s</code>,
@@ -241,10 +233,10 @@ public class Calculator
             public void beforeTextChanged(
                     CharSequence charSequence, int posWhereCharsToBeAdded, int countCharsToBeReplaced, int i2) {
                 if (!alreadyChanged1 && undoManager1.getLast()!=null
-                        && expressionEditText1.getSelectionStart()!=undoManager1.getLast().pos
+                        && getExpressionEditText1().getSelectionStart()!=undoManager1.getLast().pos
                         && !undoManager1.alreadyChanged){
-                    undoManager1.add(expressionEditText1);
-                    undoManager1.addSelectionToLastEntry(expressionEditText1.getSelectionStart());
+                    undoManager1.add(getExpressionEditText1());
+                    undoManager1.addSelectionToLastEntry(getExpressionEditText1().getSelectionStart());
                 }
             }
 
@@ -268,29 +260,29 @@ public class Calculator
                 alreadyChanged1 = true;
 
                 viewModel.updateResultTV1TextColor(false);
-                infoTextView1.setText("");
+                getInfoTextView1().setText("");
 
-                try { stylizeExpression(expressionEditText1); }
+                try { stylizeExpression(getExpressionEditText1()); }
                 catch (Exception e) { e.printStackTrace(); }
 
-                undoManager1.add(expressionEditText1);
+                undoManager1.add(getExpressionEditText1());
 
                 alreadyChanged1 = false;
 
                 if (enableAutocalculation)
-                    calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, !enableSavingByEquals);
+                    calculateResultPreEntrance(getExpressionEditText1(), getResultTextView1(), getInfoTextView1(), !enableSavingByEquals);
             }
         });
 
-        expressionEditText2.addTextChangedListener(new TextWatcher() {
+        getExpressionEditText2().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!alreadyChanged2 && undoManager2.getLast()!=null
-                        && expressionEditText2.getSelectionStart()!=undoManager2.getLast().pos
+                        && getExpressionEditText2().getSelectionStart()!=undoManager2.getLast().pos
                         && !undoManager2.alreadyChanged){
 
-                        undoManager2.add(expressionEditText2);
-                        undoManager2.addSelectionToLastEntry(expressionEditText2.getSelectionStart());
+                        undoManager2.add(getExpressionEditText2());
+                        undoManager2.addSelectionToLastEntry(getExpressionEditText2().getSelectionStart());
                 }
             }
 
@@ -304,18 +296,18 @@ public class Calculator
                 alreadyChanged2 = true;
 
                 viewModel.updateResultTV2TextColor(false);
-                infoTextView2.setText("");
+                getInfoTextView2().setText("");
 
                 try {
-                    stylizeExpression(expressionEditText2); }
+                    stylizeExpression(getExpressionEditText2()); }
                 catch (Exception e) { e.printStackTrace(); }
 
-                undoManager2.add(expressionEditText2);
+                undoManager2.add(getExpressionEditText2());
 
                 alreadyChanged2 = false;
 
                 if (enableAutocalculation)
-                    calculateResultPreEntrance(expressionEditText2, resultTextView2, infoTextView2, !enableSavingByEquals);
+                    calculateResultPreEntrance(getExpressionEditText2(), getResultTextView2(), getInfoTextView2(), !enableSavingByEquals);
             }
         });
 
@@ -339,16 +331,16 @@ public class Calculator
         
         angleUnitButton.setOnClickListener(this);
         radixBtn.setOnClickListener(this);
-        resultTextView1.setOnClickListener(this);
+        getResultTextView1().setOnClickListener(this);
         findViewById(R.id.btn_delete_from_1).setOnClickListener(this);
         findViewById(R.id.btn_equals_from_1).setOnClickListener(this);
-        resultTextView2.setOnClickListener(this);
+        getResultTextView2().setOnClickListener(this);
         findViewById(R.id.btn_delete_from_2).setOnClickListener(this);
         findViewById(R.id.btn_equals_from_2).setOnClickListener(this);
 
 
-        resultTextView1.setOnLongClickListener(this);
-        resultTextView2.setOnLongClickListener(this);
+        getResultTextView1().setOnLongClickListener(this);
+        getResultTextView2().setOnLongClickListener(this);
         findViewById(R.id.btn_delete_from_1).setOnLongClickListener(this);
         findViewById(R.id.btn_delete_from_2).setOnLongClickListener(this);
         radixBtn.setOnLongClickListener(this);
@@ -406,18 +398,18 @@ public class Calculator
 
         enableConversionToast = settings.isConversionToastEnabled();
 
-        expressionEditText1.setText(settings.getExpression1());
-        expressionEditText1.setSelection(settings.getExpression1SelStart(), settings.getExpression1SelEnd());
-        resultTextView1.setText(settings.getResult1());
+        getExpressionEditText1().setText(settings.getExpression1());
+        getExpressionEditText1().setSelection(settings.getExpression1SelStart(), settings.getExpression1SelEnd());
+        getResultTextView1().setText(settings.getResult1());
         viewModel.updateResultTV1TextColor(settings.isResult1ColorPrimary());
 
-        expressionEditText2.setText(settings.getExpression2());
-        expressionEditText2.setSelection(settings.getExpression2SelStart(), settings.getExpression2SelEnd());
-        resultTextView2.setText(settings.getResult2());
+        getExpressionEditText2().setText(settings.getExpression2());
+        getExpressionEditText2().setSelection(settings.getExpression2SelStart(), settings.getExpression2SelEnd());
+        getResultTextView2().setText(settings.getResult2());
         viewModel.updateResultTV2TextColor(settings.isResult2ColorPrimary());
 
-        if (settings.getFocusedElem()==1) expressionEditText2.requestFocus();
-        ////Настройки
+        if (settings.getFocusedElem() == 1) getExpressionEditText2().requestFocus();
+        //// Настройки
 
         updateVisibilityOfSecondFields();
         viewModel.updateAngleUnit(angleUnit);
@@ -460,16 +452,16 @@ public class Calculator
         settings.setRadix(editor, radix);
         settings.setNumberFormat(editor, numberFormat);
         settings.setDigitSeparator(editor, digitSeparator);
-        settings.setFocusedElem(editor, getCurrentFocus()==expressionEditText1 ? 0 : 1);
-        settings.setExpression1(editor, expressionEditText1.getText().toString());
-        settings.setExpression1SelStart(editor, expressionEditText1.getSelectionStart());
-        settings.setExpression1SelEnd(editor, expressionEditText1.getSelectionEnd());
-        settings.setResult1(editor, resultTextView1.getText().toString());
+        settings.setFocusedElem(editor, getCurrentFocus()==getExpressionEditText1() ? 0 : 1);
+        settings.setExpression1(editor, getExpressionEditText1().getText().toString());
+        settings.setExpression1SelStart(editor, getExpressionEditText1().getSelectionStart());
+        settings.setExpression1SelEnd(editor, getExpressionEditText1().getSelectionEnd());
+        settings.setResult1(editor, getResultTextView1().getText().toString());
         settings.setResult1ColorPrimary(editor, viewModel.isResultTV1TextColorActual());
-        settings.setExpression2(editor, expressionEditText2.getText().toString());
-        settings.setExpression2SelStart(editor, expressionEditText2.getSelectionStart());
-        settings.setExpression2SelEnd(editor, expressionEditText2.getSelectionEnd());
-        settings.setResult2(editor, resultTextView2.getText().toString());
+        settings.setExpression2(editor, getExpressionEditText2().getText().toString());
+        settings.setExpression2SelStart(editor, getExpressionEditText2().getSelectionStart());
+        settings.setExpression2SelEnd(editor, getExpressionEditText2().getSelectionEnd());
+        settings.setResult2(editor, getResultTextView2().getText().toString());
         settings.setResult2ColorPrimary(editor, viewModel.isResultTV2TextColorActual());
         settings.setTheme(editor, theme);
 
@@ -486,10 +478,10 @@ public class Calculator
             restartActivity();
             doRestart = false;
         } else{
-            if( (resultTextView2.getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
+            if( (getResultTextView2().getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
             //if(changeButtonsSizeDialogEnabled) {changeButtonsSize(); changeButtonsSizeDialogEnabled = false; }
         }*/
-        if( (resultTextView2.getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
+        if( (getResultTextView2().getVisibility() == View.VISIBLE) != enableSecondField ) updateVisibilityOfSecondFields();
     }
 
     private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
@@ -512,11 +504,11 @@ public class Calculator
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            switch (requestCode){
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
                 case REQUEST_CODE_SETTINGS://результат приходит, когда возвращаемся в активити
                     //Log.e("CODEDE", "onActivityResult: "+requestCode);
-                    if (data!=null){
+                    if (data!=null) {
                         if (data.getBooleanExtra(INTENT_CODE_RESTART, false)) restartActivity();
                         if (data.getBooleanExtra(INTENT_CODE_CHANGE_BUTTONS_SIZE, false)) changeButtonsSize();
                     }
@@ -615,10 +607,11 @@ public class Calculator
 
 
 
-    private EditText lastEditText = expressionEditText1;
+    private EditText lastEditText = null;
     private EditText getCurrentEditText() {
         var view = getCurrentFocus();
         if (view instanceof EditText et) lastEditText = et;
+        if (lastEditText == null) lastEditText = getExpressionEditText1();
         //lastEditText.requestFocus()
         return lastEditText;
     }
@@ -769,18 +762,18 @@ public class Calculator
         editText.setSelection(editText.length());
     }
 
-    private void deleteSymbolFrom1() { deleteSymbols(expressionEditText1); }
-    private void deleteSymbolFrom2() { deleteSymbols(expressionEditText2); }
+    private void deleteSymbolFrom1() { deleteSymbols(getExpressionEditText1()); }
+    private void deleteSymbolFrom2() { deleteSymbols(getExpressionEditText2()); }
 
     private void clear() { 
         var editText = getCurrentEditText();
         editText.setText("");
     }
     private void clearAll() { 
-        expressionEditText1.setText("");
-        expressionEditText2.setText("");
-        resultTextView1.setText("");
-        resultTextView2.setText("");
+        getExpressionEditText1().setText("");
+        getExpressionEditText2().setText("");
+        getResultTextView1().setText("");
+        getResultTextView2().setText("");
     }
 
     private void copyExpression() { 
@@ -823,10 +816,10 @@ public class Calculator
 
 
     public void calculateResultByButtonFrom1() {
-        calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, true);
+        calculateResultPreEntrance(getExpressionEditText1(), getResultTextView1(), getInfoTextView1(), true);
     }
     public void calculateResultByButtonFrom2() {
-        calculateResultPreEntrance(expressionEditText2, resultTextView2, infoTextView2, true);
+        calculateResultPreEntrance(getExpressionEditText2(), getResultTextView2(), getInfoTextView2(), true);
     }
 
     void calculateResultPreEntrance (EditText editText, TextView resultTextView, TextView infoTextView, boolean doSaveToHistory) {
@@ -999,9 +992,9 @@ public class Calculator
 
     void autocalculateIfNecessary() { 
         if (enableAutocalculation) {
-            infoTextView1.setText(""); infoTextView2.setText("");
-            calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, !enableSavingByEquals);
-            calculateResultPreEntrance(expressionEditText2, resultTextView2, infoTextView2, !enableSavingByEquals);
+            getInfoTextView1().setText(""); getInfoTextView2().setText("");
+            calculateResultPreEntrance(getExpressionEditText1(), getResultTextView1(), getInfoTextView1(), !enableSavingByEquals);
+            calculateResultPreEntrance(getExpressionEditText2(), getResultTextView2(), getInfoTextView2(), !enableSavingByEquals);
         }
     }
 
@@ -1009,11 +1002,11 @@ public class Calculator
 
 
     public void toClipboardFromResultTextView1() { 
-            clipboard.add(resultTextView1.getText().toString());
+            clipboard.add(getResultTextView1().getText().toString());
             Toast.makeText(getApplicationContext(), getString(R.string.result_was_copied), Toast.LENGTH_SHORT).show();
     }
     public void toClipboardFromResultTextView2() { 
-            clipboard.add(resultTextView2.getText().toString());
+            clipboard.add(getResultTextView2().getText().toString());
             Toast.makeText(getApplicationContext(), getString(R.string.result_was_copied), Toast.LENGTH_SHORT).show();
     }
 
@@ -1056,7 +1049,7 @@ public class Calculator
         }
         bracketsStack.add(-expression.length()); //мнимая закрывающая скобка в конце выражения
 
-        /*List<Integer> colors = (editText == expressionEditText1) ? bracketColors1 : bracketColors2;*/
+        /*List<Integer> colors = (editText == getExpressionEditText1()) ? bracketColors1 : bracketColors2;*/
         List<Integer> colors = bracketColors1;
 
         int level = -1; int startIndex = 0;
@@ -1350,9 +1343,9 @@ public class Calculator
         updateVisibilityOfSecondFields();
     }
     void updateVisibilityOfSecondFields() { 
-        infoTextView2                       .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
-        expressionEditText2                 .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
-        resultTextView2                     .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        getInfoTextView2()                       .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        getExpressionEditText2()                 .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        getResultTextView2()                     .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
         findViewById(R.id.btn_delete_from_2).setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
         findViewById(R.id.btn_equals_from_2).setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
 
@@ -1488,7 +1481,7 @@ public class Calculator
 
 
 
-    static class UndoManager {
+    public static class UndoManager {
         private final List<Entry> stack = new LinkedList<>();
         int targetSize;
         private int position = -1;
@@ -1604,16 +1597,16 @@ public class Calculator
         } else if (id == R.id.btn_paste) {
             pasteExpression();
         } else if (id == R.id.btn_undo) {
-            if (getCurrentFocus() == expressionEditText1) {
-                undoManager1.undo(expressionEditText1);
-            } else if (getCurrentFocus() == expressionEditText2) {
-                undoManager2.undo(expressionEditText2);
+            if (getCurrentFocus() == getExpressionEditText1()) {
+                undoManager1.undo(getExpressionEditText1());
+            } else if (getCurrentFocus() == getExpressionEditText2()) {
+                undoManager2.undo(getExpressionEditText2());
             }
         } else if (id == R.id.btn_redo) {
-            if (getCurrentFocus() == expressionEditText1) {
-                undoManager1.redo(expressionEditText1);
-            } else if (getCurrentFocus() == expressionEditText2) {
-                undoManager2.redo(expressionEditText2);
+            if (getCurrentFocus() == getExpressionEditText1()) {
+                undoManager1.redo(getExpressionEditText1());
+            } else if (getCurrentFocus() == getExpressionEditText2()) {
+                undoManager2.redo(getExpressionEditText2());
             }
         } else if (id == R.id.btn_kbd) {
             ViewUtil.showHideKbd(this);
@@ -1756,14 +1749,14 @@ public class Calculator
         int id = view.getId();
         if (id == R.id.result_text_view_1) {
             try {
-                prepareAndShowResultAlertDialog(resultTextView1.getText().toString());
+                prepareAndShowResultAlertDialog(getResultTextView1().getText().toString());
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
                 /*e.printStackTrace();*/
             }
         } else if (id == R.id.result_text_view_2) {
             try {
-                prepareAndShowResultAlertDialog(resultTextView2.getText().toString());
+                prepareAndShowResultAlertDialog(getResultTextView2().getText().toString());
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), R.string.incorrect_expression, Toast.LENGTH_SHORT).show();
                 /*e.printStackTrace();*/
@@ -1832,12 +1825,12 @@ public class Calculator
     Runnable deleteWhenHoldBtn = () -> {
         View v;
         EditText editText;
-        if (getCurrentFocus()==expressionEditText1){
+        if (getCurrentFocus()==getExpressionEditText1()){
             v = findViewById(R.id.btn_delete_from_1);
-            editText = expressionEditText1;
-        } else if (getCurrentFocus()==expressionEditText2){
+            editText = getExpressionEditText1();
+        } else if (getCurrentFocus()==getExpressionEditText2()){
             v = findViewById(R.id.btn_delete_from_2);
-            editText = expressionEditText2;
+            editText = getExpressionEditText2();
         } else return;
 
         alreadyChanged1 = true;
