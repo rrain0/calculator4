@@ -1,5 +1,6 @@
 package com.rrain.calculator4.calculator;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -87,6 +88,8 @@ import static com.rrain.calculator4.CalculationUtil.toDec;
 import static com.rrain.calculator4.CalculationUtil.toPlainString;
 import static com.rrain.calculator4.ViewUtil.toastLong;
 import static com.rrain.calculator4.ViewUtil.toastShort;
+
+import org.jetbrains.annotations.Contract;
 
 
 public class Calculator
@@ -304,7 +307,7 @@ public class Calculator
                 infoTextView2.setText("");
 
                 try {
-                    stylizeExpression(expressionEditText2);}
+                    stylizeExpression(expressionEditText2); }
                 catch (Exception e) { e.printStackTrace(); }
 
                 undoManager2.add(expressionEditText2);
@@ -447,7 +450,7 @@ public class Calculator
 
 
     @Override
-    public void onPause(){
+    public void onPause() { 
 
         SharedPreferences.Editor editor = settings.getEditor();
 
@@ -476,7 +479,7 @@ public class Calculator
     }
 
     @Override
-    public void onResume(){
+    public void onResume() { 
         super.onResume();
 
         /*if (doRestart){
@@ -484,7 +487,7 @@ public class Calculator
             doRestart = false;
         } else{
             if( (resultTextView2.getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
-            //if(changeButtonsSizeDialogEnabled) {changeButtonsSize(); changeButtonsSizeDialogEnabled = false;}
+            //if(changeButtonsSizeDialogEnabled) {changeButtonsSize(); changeButtonsSizeDialogEnabled = false; }
         }*/
         if( (resultTextView2.getVisibility() == View.VISIBLE) != enableSecondField) updateVisibilityOfSecondFields();
     }
@@ -571,7 +574,7 @@ public class Calculator
     }
 
 
-    private void restartActivity(){
+    private void restartActivity() { 
         Intent i = new Intent( this , this.getClass() );
         this.finish();
         this.startActivity(i);
@@ -606,14 +609,25 @@ public class Calculator
     }*/
 
 
-    private void changeAutocalculationMode(){enableAutocalculation = !enableAutocalculation;}
+    private void changeAutocalculationMode() { 
+        enableAutocalculation = !enableAutocalculation;
+    }
 
 
 
+    private EditText lastEditText = expressionEditText1;
+    private EditText getCurrentEditText() {
+        var view = getCurrentFocus();
+        if (view instanceof EditText et) lastEditText = et;
+        //lastEditText.requestFocus()
+        return lastEditText;
+    }
 
-    void addSymbols(String symbols, int offset){//добавление символов в edit text
-        EditText editText = (EditText) getCurrentFocus();
-        if (editText==null) (editText=expressionEditText1).requestFocus();
+    
+    
+    // добавление символов в edit text
+    void addSymbols(String symbols, int offset){
+        var editText = getCurrentEditText();
         int start = editText.getSelectionStart();
         int end = editText.getSelectionEnd();
         StringBuilder stringBuilder = new StringBuilder(editText.getText().toString());
@@ -627,7 +641,7 @@ public class Calculator
         int end = editText.getSelectionEnd();
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder(editText.getText());
         if (start==end)
-            if(start>0) {stringBuilder.delete(start-1, end); start--;}
+            if(start>0) {stringBuilder.delete(start-1, end); start--; }
             else return;
         else stringBuilder.delete(start, end);
         editText.setText(stringBuilder);
@@ -644,92 +658,85 @@ public class Calculator
         editText.setSelection(index-quantity);
     }*/
 
-    private void add_0(){addSymbols("0", 1);}
-    private void add_three_zeros(){addSymbols("000", 3);}
-    private void add_point(){addSymbols(".", 1);}
-    private void add_1(){addSymbols("1", 1);}
-    private void add_2(){addSymbols("2", 1);}
-    private void add_3(){addSymbols("3", 1);}
-    private void add_4(){addSymbols("4", 1);}
-    private void add_5(){addSymbols("5", 1);}
-    private void add_6(){addSymbols("6", 1);}
-    private void add_7(){addSymbols("7", 1);}
-    private void add_8(){addSymbols("8", 1);}
-    private void add_9(){addSymbols("9", 1);}
-    private void add_E(){addSymbols("E", 1);}
+    private void add_0() { addSymbols("0", 1); }
+    private void add_three_zeros() { addSymbols("000", 3); }
+    private void add_point() { addSymbols(".", 1); }
+    private void add_1() { addSymbols("1", 1); }
+    private void add_2() { addSymbols("2", 1); }
+    private void add_3() { addSymbols("3", 1); }
+    private void add_4() { addSymbols("4", 1); }
+    private void add_5() { addSymbols("5", 1); }
+    private void add_6() { addSymbols("6", 1); }
+    private void add_7() { addSymbols("7", 1); }
+    private void add_8() { addSymbols("8", 1); }
+    private void add_9() { addSymbols("9", 1); }
+    private void add_E() { addSymbols("E", 1); }
 
-    private void add_pi(){addSymbols("π", 1);}
-    private void add_e(){addSymbols("e", 1);}
-    private void add_infinity(){addSymbols("∞", 1);}
+    private void add_pi() { addSymbols("π", 1); }
+    private void add_e() { addSymbols("e", 1); }
+    private void add_infinity() { addSymbols("∞", 1); }
 
-    private void add_left_parenthesis() {addSymbols("(", 1);}
-    private void add_right_parenthesis() {addSymbols(")", 1);}
-    private void add_parentheses() {addSymbols("()", 1);}
-    private void add_left_square_bracket() {addSymbols("[", 1);}
-    private void add_right_square_bracket() {addSymbols("]", 1);}
-    private void add_square_brackets() {addSymbols("[]", 1);}
+    private void add_left_parenthesis() { addSymbols("(", 1); }
+    private void add_right_parenthesis() { addSymbols(")", 1); }
+    private void add_parentheses() { addSymbols("()", 1); }
+    private void add_left_square_bracket() { addSymbols("[", 1); }
+    private void add_right_square_bracket() { addSymbols("]", 1); }
+    private void add_square_brackets() { addSymbols("[]", 1); }
 
-    private void add_plus(){addSymbols("+", 1);}
-    private void add_minus(){addSymbols("−", 1);}
-    private void add_mult(){addSymbols("×", 1);}
-    private void add_div(){addSymbols("/", 1);}
-    private void add_pow(){addSymbols("^", 1);}
-    private void add_square(){addSymbols("²", 1);}
-    private void add_cube(){addSymbols("³", 1);}
-    private void add_quad(){addSymbols("⁴", 1);}
-    private void add_sqrt(){addSymbols("√", 1);}
-    private void add_cbrt(){addSymbols(getString(R.string.cubeRoot), getString(R.string.cubeRoot).length());}
-    private void add_quad_root(){addSymbols(getString(R.string.quadRoot), getString(R.string.quadRoot).length());}
+    private void add_plus() { addSymbols("+", 1); }
+    private void add_minus() { addSymbols("−", 1); }
+    private void add_mult() { addSymbols("×", 1); }
+    private void add_div() { addSymbols("/", 1); }
+    private void add_pow() { addSymbols("^", 1); }
+    private void add_square() { addSymbols("²", 1); }
+    private void add_cube() { addSymbols("³", 1); }
+    private void add_quad() { addSymbols("⁴", 1); }
+    private void add_sqrt() { addSymbols("√", 1); }
+    private void add_cbrt() { addSymbols(getString(R.string.cubeRoot), getString(R.string.cubeRoot).length()); }
+    private void add_quad_root() { addSymbols(getString(R.string.quadRoot), getString(R.string.quadRoot).length()); }
 
-    private void add_abs(){addSymbols("abs()", 4);}
-    private void add_inv(){addSymbols("inv", 3);}
-    private void add_sgn(){addSymbols("sgn()", 4);}
+    private void add_abs() { addSymbols("abs()", 4); }
+    private void add_inv() { addSymbols("inv", 3); }
+    private void add_sgn() { addSymbols("sgn()", 4); }
 
-    private void add_sin(){addSymbols("sin", 3);}
-    private void add_cos(){addSymbols("cos", 3);}
-    private void add_tg(){addSymbols("tg", 2);}
-    private void add_ctg(){addSymbols("ctg", 3);}
-    private void add_arcsin(){addSymbols("arcsin", 6);}
-    private void add_arccos(){addSymbols("arccos", 6);}
-    private void add_arctg(){addSymbols("arctg", 5);}
-    private void add_arcctg(){addSymbols("arcctg", 6);}
+    private void add_sin() { addSymbols("sin", 3); }
+    private void add_cos() { addSymbols("cos", 3); }
+    private void add_tg() { addSymbols("tg", 2); }
+    private void add_ctg() { addSymbols("ctg", 3); }
+    private void add_arcsin() { addSymbols("arcsin", 6); }
+    private void add_arccos() { addSymbols("arccos", 6); }
+    private void add_arctg() { addSymbols("arctg", 5); }
+    private void add_arcctg() { addSymbols("arcctg", 6); }
 
-    private void add_sh(){addSymbols("sh", 2);}
-    private void add_ch(){addSymbols("ch", 2);}
-    private void add_th(){addSymbols("th", 2);}
-    private void add_cth(){addSymbols("cth", 3);}
-    private void add_arsh(){addSymbols("arsh", 4);}
-    private void add_arch(){addSymbols("arch", 4);}
-    private void add_arth(){addSymbols("arth", 4);}
-    private void add_arcth(){addSymbols("arcth", 5);}
+    private void add_sh() { addSymbols("sh", 2); }
+    private void add_ch() { addSymbols("ch", 2); }
+    private void add_th() { addSymbols("th", 2); }
+    private void add_cth() { addSymbols("cth", 3); }
+    private void add_arsh() { addSymbols("arsh", 4); }
+    private void add_arch() { addSymbols("arch", 4); }
+    private void add_arth() { addSymbols("arth", 4); }
+    private void add_arcth() { addSymbols("arcth", 5); }
 
-    private void add_log(){addSymbols("log[][]", 4);}
-    private void add_ln(){addSymbols("ln", 2);}
-    private void add_lg(){addSymbols("lg", 2);}
-    private void add_lb(){addSymbols("lb", 2);}
+    private void add_log() { addSymbols("log[][]", 4); }
+    private void add_ln() { addSymbols("ln", 2); }
+    private void add_lg() { addSymbols("lg", 2); }
+    private void add_lb() { addSymbols("lb", 2); }
 
-    private void add_factorial(){addSymbols("!", 1);}
-    private void add_angle_degree(){addSymbols("°", 1);}
-    private void add_percent(){addSymbols("%", 1);}
+    private void add_factorial() { addSymbols("!", 1); }
+    private void add_angle_degree() { addSymbols("°", 1); }
+    private void add_percent() { addSymbols("%", 1); }
 
-    private void add_bin(){addSymbols("bin", 3);}
-    private void add_oct(){addSymbols("oct", 3);}
-    private void add_dec(){addSymbols("dec", 3);}
-    private void add_hex(){addSymbols("hex", 3);}
-    private void add_A(){addSymbols("A", 1);}
-    private void add_B(){addSymbols("B", 1);}
-    private void add_C(){addSymbols("C", 1);}
-    private void add_D(){addSymbols("D", 1);}
-    private void add_F(){addSymbols("F", 1);}
+    private void add_bin() { addSymbols("bin", 3); }
+    private void add_oct() { addSymbols("oct", 3); }
+    private void add_dec() { addSymbols("dec", 3); }
+    private void add_hex() { addSymbols("hex", 3); }
+    private void add_A() { addSymbols("A", 1); }
+    private void add_B() { addSymbols("B", 1); }
+    private void add_C() { addSymbols("C", 1); }
+    private void add_D() { addSymbols("D", 1); }
+    private void add_F() { addSymbols("F", 1); }
 
-    private EditText getCurrentEditText() {
-        var view = getCurrentFocus();
-        var editText = expressionEditText1;
-        if (view instanceof EditText et) editText = et;
-        return editText;
-    }
-
-    private void coverWithBracketsBeforeCursor(){
+    private void coverWithBracketsBeforeCursor() { 
         var editText = getCurrentEditText();
         int start = editText.getSelectionStart();
         if(start == 0 || start != editText.getSelectionEnd()) return;
@@ -743,40 +750,40 @@ public class Calculator
 
 
 
-    private void cursorToLeft(){
+    private void cursorToLeft() { 
         var editText = getCurrentEditText();
         int index = editText.getSelectionStart();
         if (index != 0) editText.setSelection(index - 1);
     }
-    private void cursorToRight(){
+    private void cursorToRight() { 
         var editText = getCurrentEditText();
         int index = editText.getSelectionStart();
         if (index!= editText.length()) editText.setSelection(index + 1);
     }
-    private void cursorToStart(){
+    private void cursorToStart() { 
         var editText = getCurrentEditText();
         editText.setSelection(0);
     }
-    private void cursorToEnd(){
+    private void cursorToEnd() { 
         var editText = getCurrentEditText();
         editText.setSelection(editText.length());
     }
 
-    private void deleteSymbolFrom1(){ deleteSymbols(expressionEditText1); }
-    private void deleteSymbolFrom2(){ deleteSymbols(expressionEditText2); }
+    private void deleteSymbolFrom1() { deleteSymbols(expressionEditText1); }
+    private void deleteSymbolFrom2() { deleteSymbols(expressionEditText2); }
 
-    private void clear(){
+    private void clear() { 
         var editText = getCurrentEditText();
         editText.setText("");
     }
-    private void clearAll(){
+    private void clearAll() { 
         expressionEditText1.setText("");
         expressionEditText2.setText("");
         resultTextView1.setText("");
         resultTextView2.setText("");
     }
 
-    private void copyExpression(){
+    private void copyExpression() { 
         var editText = getCurrentEditText();
         int start = editText.getSelectionStart();
         int end = editText.getSelectionEnd();
@@ -793,7 +800,7 @@ public class Calculator
             } catch (Exception e) { e.printStackTrace(); }
         }
     }
-    private void pasteExpression(){
+    private void pasteExpression() { 
         try {
             String string = clipboard.getLast();
             addSymbols(string, string.length());
@@ -815,10 +822,14 @@ public class Calculator
 
 
 
-    public void calculateResultByButtonFrom1(){calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, true);}
-    public void calculateResultByButtonFrom2(){calculateResultPreEntrance(expressionEditText2, resultTextView2, infoTextView2, true);}
+    public void calculateResultByButtonFrom1() {
+        calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, true);
+    }
+    public void calculateResultByButtonFrom2() {
+        calculateResultPreEntrance(expressionEditText2, resultTextView2, infoTextView2, true);
+    }
 
-    void calculateResultPreEntrance (EditText editText, TextView resultTextView, TextView infoTextView, boolean doSaveToHistory){
+    void calculateResultPreEntrance (EditText editText, TextView resultTextView, TextView infoTextView, boolean doSaveToHistory) {
         String expression = editText.getText().toString();
         Expression expr = new Expression(expression, angleUnit, radix, enableConversionToast);
         String result = "";
@@ -865,7 +876,7 @@ public class Calculator
         }
         resultTextView.setText(result);
 
-        if(doSaveToHistory) {
+        if (doSaveToHistory) {
             try {
                 saveToHistory(expression, result);
             } catch (Exception e) {
@@ -881,20 +892,20 @@ public class Calculator
 
 
 
-    void showResultAlertDialog(String[] data){
+    void showResultAlertDialog(String[] data) {
         final View resultLayout = getLayoutInflater().inflate(R.layout.alert_dialog_result, null);
 
         AlertDialog.Builder resultDialog = new AlertDialog.Builder(Calculator.this);
-        resultDialog.setView(resultLayout)
+        resultDialog
+            .setView(resultLayout)
+            .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id){
+                    dialog.cancel();
+                }
+            });
 
-                .setNegativeButton("Back", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        dialog.cancel();
-                    }
-                });
 
-
-        View.OnClickListener clickListener = new View.OnClickListener(){
+        View.OnClickListener clickListener = new View.OnClickListener() { 
             @Override
             public void onClick(View view) {
                 int id = view.getId();
@@ -948,12 +959,12 @@ public class Calculator
 
 
 
-    private void showClearHistoryAlertDialog(){
+    private void showClearHistoryAlertDialog() { 
         ConfirmDialog.show(this, getString(R.string.clear_history)+"?", this::clearHistory);
     }
 
 
-    public void changeAngleUnit(){
+    public void changeAngleUnit() { 
         angleUnit^=1;
         viewModel.updateAngleUnit(angleUnit);
         autocalculateIfNecessary();
@@ -961,21 +972,19 @@ public class Calculator
 
 
 
-    public void changeRadix(){
-        switch (radix){
-            case 2: radix=8;  break;
-            case 8: radix=10; break;
-            case 10:radix=16; break;
-            case 16:radix=2;  break;
-            default:radix=10; break;
-        }
+    public void changeRadix() {
+        if (radix == 2) radix = 8;
+        else if (radix == 8) radix = 10;
+        else if (radix == 10) radix = 16;
+        else if (radix == 16) radix = 2;
+        else radix = 10;
         viewModel.updateRadix(radix);
         autocalculateIfNecessary();
     }
-    public void setRadix (){
+    public void setRadix () { 
         try {
-            int radixx = Integer.parseInt(((EditText) getCurrentFocus()).getText().toString());
-            if (radixx<0 || radixx>16) {throw new NumberFormatException();}
+            int radixx = Integer.parseInt(getCurrentEditText().getText().toString());
+            if (radixx < 0 || radixx > 16) { throw new NumberFormatException(); }
 
             radix = radixx;
             viewModel.updateRadix(radix);
@@ -988,7 +997,7 @@ public class Calculator
     }
 
 
-    void autocalculateIfNecessary(){
+    void autocalculateIfNecessary() { 
         if (enableAutocalculation) {
             infoTextView1.setText(""); infoTextView2.setText("");
             calculateResultPreEntrance(expressionEditText1, resultTextView1, infoTextView1, !enableSavingByEquals);
@@ -999,11 +1008,11 @@ public class Calculator
 
 
 
-    public void toClipboardFromResultTextView1(){
+    public void toClipboardFromResultTextView1() { 
             clipboard.add(resultTextView1.getText().toString());
             Toast.makeText(getApplicationContext(), getString(R.string.result_was_copied), Toast.LENGTH_SHORT).show();
     }
-    public void toClipboardFromResultTextView2(){
+    public void toClipboardFromResultTextView2() { 
             clipboard.add(resultTextView2.getText().toString());
             Toast.makeText(getApplicationContext(), getString(R.string.result_was_copied), Toast.LENGTH_SHORT).show();
     }
@@ -1012,13 +1021,13 @@ public class Calculator
     
 
 
-    void saveToHistory(String expression, String result){
+    void saveToHistory(String expression, String result) {
         historyManager.add(new HistoryEntry(expression, result));
         //boolean saved = historyManager.add(new HistoryEntry(expression, result));
         //if (saved) adapter.notifyDataSetChanged();
     }
 
-    private void clearHistory(){
+    private void clearHistory() { 
         historyManager.clear();
         //adapter.notifyDataSetChanged();
     }
@@ -1028,7 +1037,7 @@ public class Calculator
 
 
 
-    void stylizeExpression(EditText editText){
+    void stylizeExpression(EditText editText) {
         Spannable expression = new SpannableString(editText.getText().toString());
 
         ArrayList<Integer> bracketsStack = new ArrayList<>();
@@ -1081,7 +1090,7 @@ public class Calculator
         String currentText = "";
         int currentLevelCount = 0;
 
-        void coverWithBrackets(EditText editText){
+        void coverWithBrackets(EditText editText) {
             int selStart = editText.getSelectionStart();
             if (selStart != editText.getSelectionEnd()) return;
 
@@ -1089,12 +1098,13 @@ public class Calculator
 
             int levelUp = 0;
 
-            if (selection == selStart && sb.toString().equals(currentText)){
+            if (selection == selStart && sb.toString().equals(currentText)) {
                 levelUp = currentLevelCount;
                 sb = new StringBuilder(origText);
                 selStart = origSelection;
                 currentText="";
-            } else{
+            }
+            else {
                 currentLevelCount =0;
                 origText=sb.toString();
                 currentText="";
@@ -1162,8 +1172,8 @@ public class Calculator
                 }
 
 
-                while (levelUp>0 && start >0){
-                    for (int i = start-1; i >= 0; i--) {
+                while (levelUp > 0 && start > 0) {
+                    for (int i = start - 1; i >= 0; i--) {
                         if (list.get(i).isOpen && list.get(i).depth < level
                                 /*&& list.get(i).pair!=null*/
                                 && list.indexOf(list.get(i).pair)>end) {
@@ -1179,7 +1189,7 @@ public class Calculator
                 }
 
 
-                if (levelUp > 0 && list.get(start).depth <= 0){
+                if (levelUp > 0 && list.get(start).depth <= 0) {
                     editText.setText(sb.toString());
                     editText.setSelection(origSelection);
                     currentLevelCount = 0;
@@ -1191,7 +1201,7 @@ public class Calculator
                 sb.insert(list.get(end).pos, ")");
                 sb.insert(list.get(start).pos, "(");
                 editText.setText(sb.toString());
-                editText.setSelection(list.get(end).pos+1);
+                editText.setSelection(list.get(end).pos + 1);
 
                 currentLevelCount++;
                 selection=list.get(end).pos+1;
@@ -1206,7 +1216,7 @@ public class Calculator
 
     static class ChangingSing {
 
-        void changeSign(EditText editText){
+        void changeSign(EditText editText) {
             int selStart = editText.getSelectionStart();
             if (selStart != editText.getSelectionEnd()) return;
 
@@ -1248,7 +1258,7 @@ public class Calculator
 
 
 
-                if (list.get(start).pos>0 && sb.charAt(list.get(start).pos-1) == '+'){
+                if (list.get(start).pos>0 && sb.charAt(list.get(start).pos-1) == '+') {
                     sb.replace(list.get(start).pos-1, list.get(start).pos, "−");
                     editText.setText(sb.toString());
                     editText.setSelection(selStart);
@@ -1257,21 +1267,21 @@ public class Calculator
 
 
 
-                if (list.get(start).pos>0 && (sb.charAt(list.get(start).pos-1) == '−' || sb.charAt(list.get(start).pos-1) == '-')){
+                if (list.get(start).pos > 0 && (sb.charAt(list.get(start).pos - 1) == '−' || sb.charAt(list.get(start).pos - 1) == '-')) {
 
-                    if (list.get(start-1).isOpen
+                    if (list.get(start - 1).isOpen
                             && (
-                            (list.get(start-1).isReal && list.get(start-1).pos+2 == list.get(start).pos)
-                                    || (!list.get(start-1).isReal && list.get(start-1).pos+1 == list.get(start).pos)
+                            (list.get(start - 1).isReal && list.get(start - 1).pos + 2 == list.get(start).pos)
+                                    || (!list.get(start - 1).isReal && list.get(start - 1).pos + 1 == list.get(start).pos)
                     )
                             ) {
-                        sb.replace(list.get(start).pos-1,list.get(start).pos, "");
+                        sb.replace(list.get(start).pos - 1,list.get(start).pos, "");
                         editText.setText(sb.toString());
-                        editText.setSelection(selStart-1);
+                        editText.setSelection(selStart - 1);
                         return;
                     }
 
-                    sb.replace(list.get(start).pos-1,list.get(start).pos, "+");
+                    sb.replace(list.get(start).pos - 1,list.get(start).pos, "+");
                     editText.setText(sb.toString());
                     editText.setSelection(selStart);
                     return;
@@ -1289,15 +1299,15 @@ public class Calculator
                         Log.w("coverWithBrackets", sb2.toString());
                     }*/
 
-                    if (list.get(start-1).isOpen
+                    if (list.get(start - 1).isOpen
                             && (
-                                    (list.get(start-1).isReal && list.get(start-1).pos+1 == list.get(start).pos)
-                                    || (!list.get(start-1).isReal && list.get(start-1).pos == list.get(start).pos)
+                                    (list.get(start - 1).isReal && list.get(start - 1).pos + 1 == list.get(start).pos)
+                                    || (!list.get(start - 1).isReal && list.get(start - 1).pos == list.get(start).pos)
                                )
                             ) {
-                            sb.insert(list.get(start-1).isReal ? list.get(start-1).pos+1 : list.get(start-1).pos, "−");
+                            sb.insert(list.get(start - 1).isReal ? list.get(start - 1).pos + 1 : list.get(start - 1).pos, "−");
                             editText.setText(sb.toString());
-                            editText.setSelection(selStart+1);
+                            editText.setSelection(selStart + 1);
                             return;
                     }
 
@@ -1307,7 +1317,7 @@ public class Calculator
                     sb.insert(list.get(start).pair.pos, ")");
                     sb.insert(list.get(start).pos, "(−");
                     editText.setText(sb.toString());
-                    editText.setSelection(selStart+2);
+                    editText.setSelection(selStart + 2);
                 }
 
 
@@ -1335,19 +1345,19 @@ public class Calculator
 
 
 
-    private void showSecondField(){
+    private void showSecondField() { 
         enableSecondField = !enableSecondField;
         updateVisibilityOfSecondFields();
     }
-    void updateVisibilityOfSecondFields(){
-        infoTextView2                       .setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
-        expressionEditText2                 .setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
-        resultTextView2                     .setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
-        findViewById(R.id.btn_delete_from_2).setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
-        findViewById(R.id.btn_equals_from_2).setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
+    void updateVisibilityOfSecondFields() { 
+        infoTextView2                       .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        expressionEditText2                 .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        resultTextView2                     .setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        findViewById(R.id.btn_delete_from_2).setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
+        findViewById(R.id.btn_equals_from_2).setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-            findViewById(R.id.landSecondFieldsSeparator).setVisibility(enableSecondField ? View.VISIBLE:View.GONE);
+            findViewById(R.id.landSecondFieldsSeparator).setVisibility(enableSecondField ? View.VISIBLE : View.GONE);
 
     }
 
@@ -1356,10 +1366,12 @@ public class Calculator
 
 
 
+    @NonNull
+    @Contract(" -> new")
     private int[] extractWidthHeight() throws Exception{
         var editText = getCurrentEditText();
         String[] dimens = editText.getText().toString().split("[\\*×]");
-        if (dimens.length==1) dimens = new String[]{dimens[0], ""};
+        if (dimens.length == 1) dimens = new String[]{ dimens[0], "" };
         return new int[] {
                 dimens[0].isEmpty() ? -1 : Integer.parseInt(dimens[0]), //-1 если параметр не введён
                 dimens[1].isEmpty() ? -1 : Integer.parseInt(dimens[1])
@@ -1367,14 +1379,14 @@ public class Calculator
     }
 
     @BindingAdapter("android:layout_width")
-    public static void setLayoutWidth(View v, float w){
+    public static void setLayoutWidth(@NonNull View v, float w){
         ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
         layoutParams.width = (int)w;
         v.setLayoutParams(layoutParams);
     }
 
     @BindingAdapter("android:layout_height")
-    public static void setLayoutHeight(View v, float h){
+    public static void setLayoutHeight(@NonNull View v, float h){
         ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
         layoutParams.height = (int)h;
         v.setLayoutParams(layoutParams);
@@ -1425,7 +1437,7 @@ public class Calculator
             editor.apply();
         }
     }*/
-    /*private void doDefaultTopRowDimensPortrait(){
+    /*private void doDefaultTopRowDimensPortrait() { 
         changeTopRowDimensPortrait(
                 new int[]{getResources().getDimensionPixelSize(R.dimen.number_buttons_side),
                 getResources().getDimensionPixelSize(R.dimen.number_buttons0_side)}, true);
@@ -1456,14 +1468,14 @@ public class Calculator
             editor.apply();
         }
     }
-    private void doDefaultMainRowsDimensPortrait(){
+    private void doDefaultMainRowsDimensPortrait() { 
         changeMainRowsDimensPortrait(
                 new int[]{getResources().getDimensionPixelSize(R.dimen.number_buttons_side),
                         getResources().getDimensionPixelSize(R.dimen.number_buttons_side)}, true);
     }*/
 
 
-    private void changeButtonsSize(){
+    private void changeButtonsSize() { 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             ButtonsSizePortDialog dialog = new ButtonsSizePortDialog(this);
             dialog.show(getSupportFragmentManager(), "");
@@ -1476,21 +1488,20 @@ public class Calculator
 
 
 
-    static class UndoManager{
+    static class UndoManager {
         private final List<Entry> stack = new LinkedList<>();
         int targetSize;
         private int position = -1;
         boolean alreadyChanged = false;
         boolean readyToGetSelection = false;
 
-        public UndoManager() {
-        }
+        public UndoManager() { }
 
         public UndoManager(int targetSize) {
             this.targetSize = targetSize;
         }
 
-        private void add(EditText editText){
+        private void add(EditText editText) {
             if(alreadyChanged) return;
 
             readyToGetSelection = true;
@@ -1504,8 +1515,8 @@ public class Calculator
             /*Log.w("undoManager1", "add: text="+text);*/
         }
 
-        private void undo(EditText editText){
-            if (!stack.isEmpty() && position >0) {
+        private void undo(EditText editText) {
+            if (!stack.isEmpty() && position > 0) {
                 alreadyChanged = true;
                 position--;
                 try {
@@ -1519,7 +1530,7 @@ public class Calculator
         }
 
         private void redo(EditText editText){
-            if (position <stack.size()-1){
+            if (position < stack.size() - 1){
                 alreadyChanged = true;
                 position++;
                 try {
@@ -1533,17 +1544,17 @@ public class Calculator
         }
 
 
-        void addSelectionToLastEntry(int pos){
-            if (readyToGetSelection){
-                stack.get(stack.size()-1).pos = pos;
+        void addSelectionToLastEntry(int pos) {
+            if (readyToGetSelection) {
+                stack.get(stack.size() - 1).pos = pos;
                 /*Log.w("undoManager1", "addSel: text="+stack.get(stack.size()-1).text + " pos=" + stack.get(stack.size()-1).pos);*/
             }
             readyToGetSelection = false;
         }
 
 
-        Entry getLast(){
-            if (!stack.isEmpty() && position >=0){
+        Entry getLast() { 
+            if (!stack.isEmpty() && position >= 0) {
                 return stack.get(position);
             }else return null;
         }
@@ -1570,7 +1581,7 @@ public class Calculator
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         v.startAnimation(animAlpha);
@@ -1741,7 +1752,7 @@ public class Calculator
 
 
     @Override
-    public boolean onLongClick(View view) {
+    public boolean onLongClick(@NonNull View view) {
         int id = view.getId();
         if (id == R.id.result_text_view_1) {
             try {
@@ -1758,7 +1769,7 @@ public class Calculator
                 /*e.printStackTrace();*/
             }
         } else if (id == R.id.btn_delete_from_1 || id == R.id.btn_delete_from_2) {
-            new Thread(runnable).start();
+            new Thread(deleteWhenHoldBtn).start();
         } else if (id == R.id.btn_clear) {
             clearAll();
         } else if (id == R.id.btn_left_parenthesis) {
@@ -1803,7 +1814,7 @@ public class Calculator
     void prepareAndShowResultAlertDialog(String number) throws Exception{
         String origNumber = number;
         number = removeBitDividers(number);
-        if (radix==10) number = toPlainString(number);
+        if (radix == 10) number = toPlainString(number);
         number = stripTrailingZeros(number);
         number = toDec(number, radix);
         number = redesignateInfinities(number);
@@ -1817,7 +1828,8 @@ public class Calculator
     }
 
 
-    Runnable runnable = ()->{//удаление по зажатой кнопке
+    // удаление по зажатой кнопке
+    Runnable deleteWhenHoldBtn = () -> {
         View v;
         EditText editText;
         if (getCurrentFocus()==expressionEditText1){
@@ -1842,7 +1854,8 @@ public class Calculator
                 if(!v.isPressed()) return;
                 Thread.sleep(60);
             }
-        } catch (Exception e) {}
+        }
+        catch (Exception e) { }
         finally {
             alreadyChanged1 = false;
             alreadyChanged2 = false;
@@ -1883,7 +1896,7 @@ public class Calculator
             diffResult.dispatchUpdatesTo(this);
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             final TextView expr, result;
             final Button delBtn, copyAllBtn, copyResBtn, copyExprBtn;
 
@@ -1966,7 +1979,7 @@ public class Calculator
 
     public static final int HALF_LONG_CLICK_THRESHOLD = 300;
     public static final int MOVE_THRESHOLD = 30;
-    private class TouchListener implements View.OnTouchListener{
+    private class TouchListener implements View.OnTouchListener {
 
         //private float startX;
         private Thread t;
@@ -1975,8 +1988,9 @@ public class Calculator
         private boolean moved = false;
         private float downX;
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
+        public boolean onTouch(View view, @NonNull MotionEvent motionEvent) {
             float x = motionEvent.getX();
             float y = motionEvent.getY();
 
@@ -1998,7 +2012,7 @@ public class Calculator
 
                     t = new Thread(() -> {
                         try { Thread.sleep(HALF_LONG_CLICK_THRESHOLD); } catch (InterruptedException e) { return; }
-                        runOnUiThread(()->{
+                        runOnUiThread(() -> {
                             ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).requestDisallowInterceptTouchEvent(true);
                             gestureSelectionView = new GestureSelectionView(Calculator.this);
                             int scrollX = ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).getScrollX();
@@ -2008,22 +2022,22 @@ public class Calculator
                             String[] variants;
                             int id = view.getId();
                             if (id == R.id.btn_tg) {
-                                variants = new String[]{"arctg", "ctg", "arcctg"};
+                                variants = new String[]{ "arctg", "ctg", "arcctg" };
                             } else if (id == R.id.btn_ln) {
-                                variants = new String[]{"lg", "log", "lb"};
+                                variants = new String[]{ "lg", "log", "lb" };
                             } else if (id == R.id.btn_square) {
-                                variants = new String[]{"3", "4"};
+                                variants = new String[]{ "3", "4" };
                             } else if (id == R.id.btn_th) {
-                                variants = new String[]{"arth", "cth", "arcth"};
+                                variants = new String[]{ "arth", "cth", "arcth" };
                             } else if (id == R.id.btn_sqrt) {
-                                variants = new String[]{getString(R.string.cubeRoot), getString(R.string.quadRoot)};
+                                variants = new String[]{ getString(R.string.cubeRoot), getString(R.string.quadRoot) };
                             } else {
                                 variants = new String[0];
                             }
                             gestureSelectionView.create(touchX, viewX, constraintLayout.getWidth(), variants);
                             LinearLayout testLayout = gestureSelectionView.getRoot();
                             constraintLayout.addView(testLayout);
-                            Log.e("TAG", "onTouch: "+gestureSelectionView.getRoot().getWidth());
+                            Log.e("gestureSelectionView", "onTouch: "+gestureSelectionView.getRoot().getWidth());
                             ConstraintSet constraintSet = new ConstraintSet();
                             constraintSet.clone(constraintLayout);
                             constraintSet.connect(R.id.gesture_selection_layout, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT,0);
@@ -2044,11 +2058,11 @@ public class Calculator
                     break;
                 case MotionEvent.ACTION_MOVE: // движение
                     int scrollX = ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).getScrollX();
-                    float touchX = view.getX()-scrollX+x;;
-                    if (Math.abs(touchX - downX)>=MOVE_THRESHOLD) moved = true;
+                    float touchX = view.getX() - scrollX + x;
+                    if (Math.abs(touchX - downX) >= MOVE_THRESHOLD) moved = true;
                     if (isGestureSelectionViewShowing){
                         gestureSelectionView.setSelected(touchX);
-                    } else if (Math.abs(touchX - downX)>=MOVE_THRESHOLD)
+                    } else if (Math.abs(touchX - downX) >= MOVE_THRESHOLD)
                         ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).requestDisallowInterceptTouchEvent(false);
 
                     //Log.e("TAG", "onTouch: " + (x));
@@ -2062,15 +2076,15 @@ public class Calculator
                     //Log.e("TAG", "onTouch: " + testLayout.getChildAt(3).getX()+" "+testLayout.getChildAt(3).getWidth());
                     break;
 
-                case MotionEvent.ACTION_CANCEL: //отмена, например, когда возвращаем скрулу способность перехватывать движения
+                case MotionEvent.ACTION_CANCEL: // отмена, например, когда возвращаем скролу способность перехватывать движения
                     moved = true;
                 case MotionEvent.ACTION_UP: // отпускание
                     ((HorizontalScrollView)findViewById(R.id.kbd_scroll_view)).requestDisallowInterceptTouchEvent(false);
                     //Log.e("TAG", "onTouch: "+isGestureSelectionViewShowing+" "+moved);
                     if (!isGestureSelectionViewShowing && !moved) onClick(view);
                     isGestureSelectionViewShowing = false;
-                    if (t!=null) t.interrupt();
-                    if (gestureSelectionView!=null){
+                    if (t != null) t.interrupt();
+                    if (gestureSelectionView != null) {
                         ConstraintLayout root = findViewById(R.id.calculator_content);
                         int id = view.getId();
                         if (id == R.id.btn_tg) {
@@ -2130,13 +2144,12 @@ public class Calculator
                         }
 
                         root.removeView(findViewById(R.id.gesture_selection_layout));
-                        gestureSelectionView=null;
+                        gestureSelectionView = null;
                     }
                     break;
             }
 
 
-            view.performClick();
             return true;
         }
     }
@@ -2148,7 +2161,7 @@ public class Calculator
 
 
 
-    public void test(){
+    public void test() { 
         /*Intent i = new Intent(this, TestActivity.class);
         startActivity(i);*/
         //toastShort("test");
