@@ -4,8 +4,8 @@ android {
     defaultConfig {
         applicationId "com.rrain.calculator4"
         compileSdk 34 // old prop name: buildToolsVersion
-        minSdkVersion 26 // Oreo 8.0 API 26
-        targetSdkVersion 34
+        minSdkVersion 26
+        targetSdk 35// Oreo 8.0 API 26
         versionCode 29
         versionName '1.8.7'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
