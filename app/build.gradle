@@ -7,7 +7,7 @@ android {
         minSdkVersion 26 // Oreo 8.0 API 26
         targetSdkVersion 34
         versionCode 28
-        versionName '1.8.6'
+        versionName '1.8.7'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         javaCompileOptions {
@@ -41,11 +41,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.google.android.gms:play-services-ads:23.3.0'
+    implementation 'com.google.android.gms:play-services-ads:24.1.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     testImplementation 'junit:junit:4.13.2'
@@ -53,10 +53,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     // lombok - аннотации Getter Setter
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
-    testCompileOnly 'org.projectlombok:lombok:1.18.34'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 
     // похож на css flex
     // https://github.com/google/flexbox-layout
@@ -67,13 +67,13 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:common-java8:1.1.1"
 
     // Lightweight StreamAPI
-    implementation 'com.annimon:stream:1.2.1'
+    implementation 'com.annimon:stream:1.2.2'
 
     // Room - доступ к БД
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
     // замена java.time
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.9'
 }
 
