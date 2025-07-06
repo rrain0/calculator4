@@ -78,8 +78,8 @@ dependencies {
     implementation 'com.annimon:stream:1.2.2'
 
     // Room - доступ к БД
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation("androidx.room:room-runtime-android:2.7.2")
+    annotationProcessor("androidx.room:room-compiler:2.7.2")
 
     // замена java.time
     implementation 'com.jakewharton.threetenabp:threetenabp:1.4.9'
