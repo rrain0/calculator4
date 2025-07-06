@@ -13,7 +13,7 @@ public class InfoDialog {
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(context);
 
         infoDialog.setMessage(msg);
-        infoDialog.setNegativeButton(App.getApp().getText(R.string.back), (dialog, id) -> dialog.cancel());
+        infoDialog.setNegativeButton(App.Companion.getApp().getText(R.string.back), (dialog, id) -> dialog.cancel());
         infoDialog.create().show();
     }
 

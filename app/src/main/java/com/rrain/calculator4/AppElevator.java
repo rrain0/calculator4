@@ -17,7 +17,7 @@ public class AppElevator {
 
     public static void upgrade(){
 
-        SettingsManager settings = App.getApp().getSettingsManager();
+        SettingsManager settings = App.Companion.getApp().getSettingsManager();
         String appVersion = settings.getAppVersion();
         String newVersion;
 
@@ -53,16 +53,16 @@ public class AppElevator {
     @SuppressWarnings("unchecked")
     private static void migrateHistoryToDB182() {
         final String SAVED_HISTORY_CONTAINER = "History container";
-        File h = App.getApp().getFileStreamPath(SAVED_HISTORY_CONTAINER);
+        File h = App.Companion.getApp().getFileStreamPath(SAVED_HISTORY_CONTAINER);
         if (h.exists()){
             try {
-                FileInputStream fis = App.getApp().openFileInput(SAVED_HISTORY_CONTAINER);
+                FileInputStream fis = App.Companion.getApp().openFileInput(SAVED_HISTORY_CONTAINER);
                 ObjectInputStream oin = new ObjectInputStream(fis);
                 ArrayList<String[]> historyContainer = (ArrayList<String[]>) oin.readObject();
                 oin.close();
 
-                //HistoryEntryDao hed = App.getApp().getDbManager().getHistoryEntryDao();
-                HistoryManager historyManager = App.getApp().getHistoryManager();
+                //HistoryEntryDao hed = App.Companion.getApp().getDbManager().getHistoryEntryDao();
+                HistoryManager historyManager = App.Companion.getApp().getHistoryManager();
 
                 ListIterator<String[]> it = historyContainer.listIterator(historyContainer.size());
 
@@ -91,7 +91,7 @@ public class AppElevator {
     //новые размеры кнопок
     //работает по проверке существования настройки со старыми значениями
     private static void newButtonsSize182(){
-        SettingsManager settings = App.getApp().getSettingsManager();
+        SettingsManager settings = App.Companion.getApp().getSettingsManager();
         SharedPreferences savedSettings = settings.getSharedPreferences();
 
         final String SETTINGS_TOP_ROW_HEIGHT_PORTRAIT = "Top Row Height Portrait";
@@ -103,12 +103,12 @@ public class AppElevator {
 
         if (!savedSettings.contains(SETTINGS_MAIN_ROWS_WIDTH_PORTRAIT)) return;
 
-        int tw = savedSettings.getInt(SETTINGS_TOP_ROW_WIDTH_PORTRAIT, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
-        int th = savedSettings.getInt(SETTINGS_TOP_ROW_HEIGHT_PORTRAIT, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons0_side));
-        int mw = savedSettings.getInt(SETTINGS_MAIN_ROWS_WIDTH_PORTRAIT, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
-        int mh = savedSettings.getInt(SETTINGS_MAIN_ROWS_HEIGHT_PORTRAIT, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
-        int lw = savedSettings.getInt(SETTINGS_ROWS_WIDTH_LANDSCAPE, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
-        int lh = savedSettings.getInt(SETTINGS_ROWS_HEIGHT_LANDSCAPE, App.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons0_side));
+        int tw = savedSettings.getInt(SETTINGS_TOP_ROW_WIDTH_PORTRAIT, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
+        int th = savedSettings.getInt(SETTINGS_TOP_ROW_HEIGHT_PORTRAIT, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons0_side));
+        int mw = savedSettings.getInt(SETTINGS_MAIN_ROWS_WIDTH_PORTRAIT, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
+        int mh = savedSettings.getInt(SETTINGS_MAIN_ROWS_HEIGHT_PORTRAIT, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
+        int lw = savedSettings.getInt(SETTINGS_ROWS_WIDTH_LANDSCAPE, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons_side));
+        int lh = savedSettings.getInt(SETTINGS_ROWS_HEIGHT_LANDSCAPE, App.Companion.getApp().getResources().getDimensionPixelSize(R.dimen.number_buttons0_side));
 
         BtnSizePort bp = new BtnSizePort(tw, th, mw, mh);
         BtnSizeLand bl = new BtnSizeLand(lw, lh);

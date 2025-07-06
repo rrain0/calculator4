@@ -36,11 +36,11 @@ public class ViewUtil {
     }
 
     public static void toastShort(CharSequence txt){
-        Toast.makeText(App.getApp(), txt, Toast.LENGTH_SHORT).show();
+        Toast.makeText(App.Companion.getApp(), txt, Toast.LENGTH_SHORT).show();
     }
 
     public static void toastLong(CharSequence txt){
-        Toast.makeText(App.getApp(), txt, Toast.LENGTH_SHORT).show();
+        Toast.makeText(App.Companion.getApp(), txt, Toast.LENGTH_SHORT).show();
     }
 
 

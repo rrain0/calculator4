@@ -36,9 +36,9 @@ public class SettingsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        settings = App.getApp().getSettingsManager();
-        history = App.getApp().getHistoryManager();
-        themeManager = App.getApp().getThemeManager();
+        settings = App.Companion.getApp().getSettingsManager();
+        history = App.Companion.getApp().getHistoryManager();
+        themeManager = App.Companion.getApp().getThemeManager();
 
         setTheme(themeManager.getStyleIdByName(theme));
 

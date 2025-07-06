@@ -11,7 +11,7 @@ public class DBManager {
     private AppDB appDB;
 
     public DBManager() {
-        appDB = Room.databaseBuilder(App.getApp(), AppDB.class, APP_DB_FILENAME)
+        appDB = Room.databaseBuilder(App.Companion.getApp(), AppDB.class, APP_DB_FILENAME)
                 //.allowMainThreadQueries()
                 .build();
     }

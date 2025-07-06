@@ -15,7 +15,7 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ThemeManager themeManager = App.getApp().getThemeManager();
+        ThemeManager themeManager = App.Companion.getApp().getThemeManager();
         setTheme(themeManager.getStyleIdByName(theme));
 
         super.onCreate(savedInstanceState);

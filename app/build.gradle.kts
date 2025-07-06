@@ -1,7 +1,9 @@
 plugins {
+  id("com.google.devtools.ksp")
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
+  id("androidx.room")
 }
 
 android {
@@ -16,12 +18,6 @@ android {
     versionName = "1.8.8"
     
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    
-    javaCompileOptions {
-      annotationProcessorOptions {
-        arguments += "room.schemaLocation" to "$projectDir/schemas"
-      }
-    }
   }
   
   buildTypes {
@@ -33,21 +29,11 @@ android {
       )
     }
   }
-  configurations {
-    all {
-      // Exclude one of duplicate dependencies
-      // Maybe i need just clear .jar files cache to avoid error
-      exclude(group = "com.android.support", module = "support-compat")
-    }
-  }
   compileOptions {
-    // TODO make java 11
     sourceCompatibility = JavaVersion.VERSION_17
-    // TODO make java 11
     targetCompatibility = JavaVersion.VERSION_17
   }
   kotlinOptions {
-    // TODO make java 11
     jvmTarget = "17"
   }
   buildFeatures {
@@ -56,7 +42,12 @@ android {
     dataBinding = true
     viewBinding = true
   }
+  room {
+    // Specify your desired schema directory here
+    schemaDirectory("$projectDir/schemas")
+  }
 }
+
 
 dependencies {
   
@@ -94,12 +85,6 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
   implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1")
   
-  // lombok - аннотации Getter Setter
-  compileOnly("org.projectlombok:lombok:1.18.38")
-  annotationProcessor("org.projectlombok:lombok:1.18.38")
-  testCompileOnly("org.projectlombok:lombok:1.18.38")
-  testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
-  
   // Похож на css flex
   // https://github.com/google/flexbox-layout
   implementation("com.google.android.flexbox:flexbox:3.0.0")
@@ -112,14 +97,13 @@ dependencies {
   implementation("com.annimon:stream:1.2.2")
   
   // Room - доступ к БД
-  implementation("androidx.room:room-runtime-android:2.7.2")
-  implementation("android.arch.persistence.room:runtime:1.1.1")
-  annotationProcessor("android.arch.persistence.room:compiler:1.1.1")
+  val roomV = "2.7.2"
+  implementation("androidx.room:room-runtime-android:$roomV")
+  annotationProcessor("androidx.room:room-compiler:$roomV")
+  ksp("androidx.room:room-compiler:$roomV")
+  implementation("androidx.room:room-ktx:$roomV")
   
   
   // Замена java.time
   implementation("com.jakewharton.threetenabp:threetenabp:1.4.9")
-  
-  
-  
 }

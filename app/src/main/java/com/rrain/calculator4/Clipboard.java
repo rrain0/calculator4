@@ -12,7 +12,7 @@ public class Clipboard {
     private ClipboardManager clipboardManager;
 
     public Clipboard() {
-        clipboardManager = (ClipboardManager)App.getApp().getSystemService(CLIPBOARD_SERVICE);
+        clipboardManager = (ClipboardManager)App.Companion.getApp().getSystemService(CLIPBOARD_SERVICE);
     }
 
     public void add(String s){

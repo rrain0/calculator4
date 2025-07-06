@@ -150,12 +150,12 @@ public class Calculator
     protected void onCreate(Bundle savedInstanceState) {
         /*Date start = new Date();*/
 
-        settings = App.getApp().getSettingsManager();
-        historyManager = App.getApp().getHistoryManager();
-        themeManager = App.getApp().getThemeManager();
-        clipboard = App.getApp().getClipboard();
+        settings = App.Companion.getApp().getSettingsManager();
+        historyManager = App.Companion.getApp().getHistoryManager();
+        themeManager = App.Companion.getApp().getThemeManager();
+        clipboard = App.Companion.getApp().getClipboard();
         LiveData<List<HistoryEntry>> historyLive = historyManager.getHistoryLive();
-        ThemeManager themeManager = App.getApp().getThemeManager();
+        ThemeManager themeManager = App.Companion.getApp().getThemeManager();
 
         theme = settings.getTheme();
         setTheme(themeManager.getStyleIdByName(theme));
@@ -555,7 +555,9 @@ public class Calculator
             Intent intent1 = new Intent(this, HelpActivity.class);
             startActivity(intent1);
         } else if (itemId == R.id.theme_menu) {
-            String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
+            String[] elems = Stream.of(themeManager.getThemes())
+                    .map(e -> e.getValue().getDisplayedName())
+                    .toArray(String[]::new);
             SelectDialog.show(this, null, elems, pos -> {
                 theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
                 restartActivity();
