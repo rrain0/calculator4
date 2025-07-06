@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     defaultConfig {
         applicationId "com.rrain.calculator4"
-        compileSdk 34 // old prop name: buildToolsVersion
-        minSdkVersion 26
-        targetSdk 35// Oreo 8.0 API 26
-        versionCode 29
-        versionName '1.8.7'
+        compileSdk 36 // old prop name: buildToolsVersion
+        minSdkVersion 26 // Oreo 8.0 API 26
+        targetSdk 36
+        versionCode 30
+        versionName '1.8.8'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         javaCompileOptions {
@@ -37,26 +38,33 @@ android {
         viewBinding = true
     }
     namespace 'com.rrain.calculator4'
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    compileSdk 36
+    buildToolsVersion '35.0.0'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.google.android.gms:play-services-ads:24.1.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:24.4.0'
+    implementation 'androidx.gridlayout:gridlayout:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     // lombok - аннотации Getter Setter
-    compileOnly 'org.projectlombok:lombok:1.18.36'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
-    testCompileOnly 'org.projectlombok:lombok:1.18.36'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    testCompileOnly 'org.projectlombok:lombok:1.18.38'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
 
     // похож на css flex
     // https://github.com/google/flexbox-layout
