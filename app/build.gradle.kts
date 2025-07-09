@@ -93,17 +93,10 @@ dependencies {
   implementation("android.arch.lifecycle:extensions:1.1.1")
   annotationProcessor("android.arch.lifecycle:common-java8:1.1.1")
   
-  // Lightweight StreamAPI
-  implementation("com.annimon:stream:1.2.2")
-  
   // Room - доступ к БД
   val roomV = "2.7.2"
   implementation("androidx.room:room-runtime-android:$roomV")
   annotationProcessor("androidx.room:room-compiler:$roomV")
   ksp("androidx.room:room-compiler:$roomV")
   implementation("androidx.room:room-ktx:$roomV")
-  
-  
-  // Замена java.time
-  implementation("com.jakewharton.threetenabp:threetenabp:1.4.9")
 }

@@ -54,7 +54,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-import com.annimon.stream.Stream;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -555,11 +554,10 @@ public class Calculator
             Intent intent1 = new Intent(this, HelpActivity.class);
             startActivity(intent1);
         } else if (itemId == R.id.theme_menu) {
-            String[] elems = Stream.of(themeManager.getThemes())
-                    .map(e -> e.getValue().getDisplayedName())
-                    .toArray(String[]::new);
+            String[] elems = themeManager.getThemes().values().stream()
+                    .map(it -> it.getDisplayedName()).toArray(String[]::new);
             SelectDialog.show(this, null, elems, pos -> {
-                theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
+                theme = themeManager.getThemes().keySet().stream().skip(pos).findFirst().get();
                 restartActivity();
             });
         }

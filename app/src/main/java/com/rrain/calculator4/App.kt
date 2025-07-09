@@ -1,7 +1,6 @@
 package com.rrain.calculator4
 
 import android.app.Application
-import com.jakewharton.threetenabp.AndroidThreeTen
 import com.rrain.calculator4.db.DBManager
 
 class App : Application() {
@@ -26,19 +25,18 @@ class App : Application() {
   private var clipboard: Clipboard? = null
   fun getClipboard() = clipboard
   
-  //@Getter private DisplayManager displayManager;
+  //private lateinit var displayManager: DisplayManager
   override fun onCreate() {
     super.onCreate()
     app = this
-    AndroidThreeTen.init(this)
     
     dbManager = DBManager()
     settingsManager = SettingsManager()
     themeManager = ThemeManager()
-    historyManager = HistoryManager(dbManager!!.getHistoryEntryDao())
+    historyManager = HistoryManager(dbManager!!.historyEntryDao)
     clipboard = Clipboard()
     
-    // displayManager = new DisplayManager();
+    //displayManager = DisplayManager()
     AppElevator.upgrade()
   }
 }

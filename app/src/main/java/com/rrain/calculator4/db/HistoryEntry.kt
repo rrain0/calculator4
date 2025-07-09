@@ -3,14 +3,14 @@ package com.rrain.calculator4.db
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 
-// имя класса - имя таблицы, если не указать явно
-// имена полей - имена столбцов, если не указать явно
+// Имя класса - имя таблицы (если не указать явно)
+// Имена полей - имена столбцов (если не указать явно)
 @Entity(tableName = HistoryEntry.Companion.TABLE_NAME)
 class HistoryEntry {
   @PrimaryKey(autoGenerate = true)

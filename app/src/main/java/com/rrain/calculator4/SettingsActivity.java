@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.annimon.stream.Stream;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.rrain.calculator4.calculator.Calculator;
@@ -286,9 +284,10 @@ public class SettingsActivity extends AppCompatActivity
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.theme_tv) {
-            String[] elems = Stream.of(themeManager.getThemes()).map(e -> e.getValue().getDisplayedName()).toArray(String[]::new);
+            String[] elems = themeManager.getThemes().values().stream()
+                    .map(it -> it.getDisplayedName()).toArray(String[]::new);
             SelectDialog.show(this, "", elems, pos -> {// TODO: 25.08.2020 string R
-                theme = Stream.of(themeManager.getThemes()).skip(pos).findFirst().get().getKey();
+                theme = themeManager.getThemes().keySet().stream().skip(pos).findFirst().get();
                 //Calculator.doRestart = true;
                 Intent intent = new Intent();
                 intent.putExtra(Calculator.INTENT_CODE_RESTART, true);

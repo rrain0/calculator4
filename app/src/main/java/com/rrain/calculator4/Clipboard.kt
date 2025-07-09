@@ -1,25 +1,22 @@
-package com.rrain.calculator4;
+package com.rrain.calculator4
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import com.rrain.calculator4.App.Companion.getApp
 
-import com.annimon.stream.Objects;
-
-import static android.content.Context.CLIPBOARD_SERVICE;
-
-public class Clipboard {
-
-    private ClipboardManager clipboardManager;
-
-    public Clipboard() {
-        clipboardManager = (ClipboardManager)App.Companion.getApp().getSystemService(CLIPBOARD_SERVICE);
-    }
-
-    public void add(String s){
-        clipboardManager.setPrimaryClip(ClipData.newPlainText("text", s));
-    }
-
-    public String getLast(){
-        return Objects.requireNonNullElse(clipboardManager.getPrimaryClip().getItemAt(0).getText().toString(), "");
-    }
+class Clipboard {
+  private val clipboardManager: ClipboardManager
+  
+  init {
+    clipboardManager = getApp()!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+  }
+  
+  fun add(s: String?) {
+    clipboardManager.setPrimaryClip(ClipData.newPlainText("text", s))
+  }
+  
+  val last: String get() = (
+    clipboardManager.primaryClip?.getItemAt(0)?.text.toString() ?: ""
+  )
 }
